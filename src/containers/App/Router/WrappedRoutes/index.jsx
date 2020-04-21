@@ -1,9 +1,9 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 import Layout from '../../../Layout/index';
-import Commerce from './Commerce';
-import Crypto from './Crypto';
-import Documentation from './Documentation';
+// import Commerce from './Commerce';
+// import Crypto from './Crypto';
+// import Documentation from './Documentation';
 import DefaultPages from './DefaultPages';
 import Account from './Account';
 import ECommerce from './ECommerce';
@@ -18,8 +18,10 @@ import Todo from '../../../Todo/index';
 
 import Projects from '../../../Dashboards/Projects/index';
 import Teams from '../../../Dashboards/Teams/index';
-import MobileAppDashboard from '../../../Dashboards/MobileApp/index';
-import BookingDashboard from '../../../Dashboards/Booking/index';
+import Stats from '../../../Dashboards/Stats/index';
+import Records from '../../../Dashboards/Records/index';
+import Tasks from '../../../Dashboards/Tasks/index';
+import Settings from '../../../Dashboards/Settings/index';
 
 import Mail from '../../../Mail/index';
 
@@ -28,11 +30,11 @@ export default () => (
     <Layout />
     <div className="container__wrap">
       <Route path="/teams" component={Teams} />
-      <Route path="/dashboard_e_commerce" component={Commerce} />
+      <Route path="/tasks" component={Tasks} />
       <Route path="/projects" component={Projects} />
-      <Route path="/dashboard_crypto" component={Crypto} />
-      <Route exact path="/dashboard_mobile_app" component={MobileAppDashboard} />
-      <Route path="/dashboard_booking" component={BookingDashboard} />
+      <Route path="/settings" component={Settings} />
+      <Route exact path="/stats" component={Stats} />
+      <Route path="/records" component={Records} />
       <Route path="/ui" component={UI} />
       <Route path="/mail" component={Mail} />
       <Route path="/chat" component={Chat} />
@@ -44,7 +46,7 @@ export default () => (
       <Route path="/account" component={Account} />
       <Route path="/e-commerce" component={ECommerce} />
       <Route path="/default_pages" component={DefaultPages} />
-      <Route path="/documentation" component={Documentation} />
+      <Route path="/documentation" componen />
     </div>
   </div>
 );

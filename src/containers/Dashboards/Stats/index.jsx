@@ -1,7 +1,7 @@
 import React from 'react';
 import { Col, Container, Row } from 'reactstrap';
 import { withTranslation } from 'react-i18next';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import CurrentUsers from './components/CurrentUsers';
 import ActiveUsers from './components/ActiveUsers';
@@ -14,11 +14,11 @@ import WeeklyStatMobile from './components/WeeklyStatMobile';
 import SocialMarketing from './components/SocialMarketing';
 import { RTLProps } from '../../../shared/prop-types/ReducerProps';
 
-const MobileAppDashboard = ({ t, rtl }) => (
+const Stats = ({ rtl }) => (
   <Container className="dashboard">
     <Row>
       <Col md={12}>
-        <h3 className="page-title">{t('dashboard_mobile_app.page_title')}</h3>
+        <h3 className="page-title">Estadísticas de ruta</h3>
       </Col>
     </Row>
     <Row>
@@ -39,11 +39,10 @@ const MobileAppDashboard = ({ t, rtl }) => (
   </Container>
 );
 
-MobileAppDashboard.propTypes = {
-  t: PropTypes.func.isRequired,
+Stats.propTypes = {
   rtl: RTLProps.isRequired,
 };
 
 export default connect(state => ({
   rtl: state.rtl,
-}))(withTranslation('common')(MobileAppDashboard));
+}))(withTranslation('common')(Stats));

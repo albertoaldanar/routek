@@ -25,7 +25,7 @@ class SidebarContent extends Component {
           <SidebarLink
             title="Actividades"
             icon="location"
-            route="/dashboard_e_commerce"
+            route="/tasks"
             onClick={this.hideSidebar}
           />
           <SidebarLink
@@ -37,19 +37,19 @@ class SidebarContent extends Component {
           <SidebarLink
             title="Registros"
             icon="list"
-            route="/dashboard_crypto"
+            route="/records"
             onClick={this.hideSidebar}
           />
           <SidebarLink
             title="Configuración"
             icon="cog"
-            route="/dashboard_booking"
+            route="/settings"
             onClick={this.hideSidebar}
           />
           <SidebarLink
             title="Estadisticas"
             icon="chart-bars"
-            route="/dashboard_mobile_app"
+            route="/stats"
             onClick={this.hideSidebar}
           />
           <SidebarLink

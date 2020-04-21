@@ -22,11 +22,10 @@ import { deleteNewOrderTableData } from '../../../redux/actions/newOrderTableAct
 import { NewOrderTableProps } from '../../../shared/prop-types/TablesProps';
 import { RTLProps } from '../../../shared/prop-types/ReducerProps';
 
-class ECommerceDashboard extends PureComponent {
+class Tasks extends PureComponent {
   static propTypes = {
     newOrder: NewOrderTableProps.isRequired,
     dispatch: PropTypes.func.isRequired,
-    t: PropTypes.func.isRequired,
     rtl: RTLProps.isRequired,
   };
 
@@ -40,13 +39,13 @@ class ECommerceDashboard extends PureComponent {
   };
 
   render() {
-    const { t, newOrder, rtl } = this.props;
+    const { newOrder, rtl } = this.props;
 
     return (
       <Container className="dashboard">
         <Row>
           <Col md={12}>
-            <h3 className="page-title">{t('dashboard_commerce.page_title')}</h3>
+            <h3 className="page-title">Gestión de Actividades</h3>
           </Col>
         </Row>
         <Row>
@@ -76,4 +75,4 @@ class ECommerceDashboard extends PureComponent {
 export default connect(state => ({
   newOrder: state.newOrder.items,
   rtl: state.rtl,
-}))(withTranslation('common')(ECommerceDashboard));
+}))(withTranslation('common')(Tasks));

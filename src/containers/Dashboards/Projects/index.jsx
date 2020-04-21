@@ -1,6 +1,6 @@
 import React from 'react';
 import { Col, Container, Row } from 'reactstrap';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { withTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
@@ -15,11 +15,11 @@ import TodayRunningMap from './components/TodayRunningMap';
 import MyCompetitors from './components/MyCompetitors';
 import { RTLProps } from '../../../shared/prop-types/ReducerProps';
 
-const Projects = ({ t, rtl }) => (
+const Projects = ({ rtl }) => (
   <Container className="dashboard">
     <Row>
       <Col md={12}>
-        <h3 className="page-title">{t('dashboard_fitness.page_title')}</h3>
+        <h3 className="page-title">Gestión de proyectos</h3>
       </Col>
     </Row>
     <Row>
@@ -39,7 +39,7 @@ const Projects = ({ t, rtl }) => (
 );
 
 Projects.propTypes = {
-  t: PropTypes.func.isRequired,
+  // t: PropTypes.func.isRequired,
   rtl: RTLProps.isRequired,
 };
 

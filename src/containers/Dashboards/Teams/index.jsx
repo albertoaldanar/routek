@@ -3,7 +3,7 @@ import { Col, Container, Row } from 'reactstrap';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { withTranslation } from 'react-i18next';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import Visits from './components/Visits';
 import TotalPageViews from './components/TotalPageViews';
 import NewUsers from './components/NewUsers';
@@ -18,11 +18,11 @@ import BestSellingRegions from './components/BestSellingRegions';
 import GoalsCompletion from './components/GoalsCompletion';
 import { RTLProps } from '../../../shared/prop-types/ReducerProps';
 
-const Teams = ({ t, rtl }) => (
+const Teams = ({ rtl }) => (
   <Container className="dashboard">
     <Row>
       <Col md={12}>
-        <h3 className="page-title">{t('dashboard_default.page_title')}</h3>
+        <h3 className="page-title">Gestión de equipos</h3>
       </Col>
     </Row>
     <Row>
@@ -45,7 +45,6 @@ const Teams = ({ t, rtl }) => (
 );
 
 Teams.propTypes = {
-  t: PropTypes.func.isRequired,
   rtl: RTLProps.isRequired,
 };
 

@@ -16,9 +16,8 @@ import { deleteCryptoTableData } from '../../../redux/actions/cryptoTableActions
 import { CryptoTableProps } from '../../../shared/prop-types/TablesProps';
 import { ThemeProps, RTLProps } from '../../../shared/prop-types/ReducerProps';
 
-class CryptoDashboard extends PureComponent {
+class Settings extends PureComponent {
   static propTypes = {
-    t: PropTypes.func.isRequired,
     cryptoTable: CryptoTableProps.isRequired,
     dispatch: PropTypes.func.isRequired,
     rtl: RTLProps.isRequired,
@@ -35,14 +34,14 @@ class CryptoDashboard extends PureComponent {
 
   render() {
     const {
-      t, cryptoTable, rtl, theme,
+      cryptoTable, rtl, theme,
     } = this.props;
 
     return (
       <Container className="dashboard">
         <Row>
           <Col md={12}>
-            <h3 className="page-title">{t('dashboard_crypto.page_title')}</h3>
+            <h3 className="page-title">Configuración routek</h3>
           </Col>
         </Row>
         <Row>
@@ -70,4 +69,4 @@ export default connect(state => ({
   cryptoTable: state.cryptoTable.items,
   rtl: state.rtl,
   theme: state.theme,
-}))(withTranslation('common')(CryptoDashboard));
+}))(withTranslation('common')(Settings));
