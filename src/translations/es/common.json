@@ -1,7 +1,7 @@
 {
-	"dashboard_default": {
-		"page_title": "Standard-Dashboard",
-		"visits": "Besuche",
+	"teams": {
+		"page_title": "Gestión de equipos",
+		"add_team": " Añadir nuevo equipo",
 		"total_page_views": "Gesamtzahl der aufgerufenen Seiten",
 		"new_users": "Neue Nutzer",
 		"bounce_rate": "Absprungrate",

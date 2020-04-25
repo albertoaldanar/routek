@@ -1,8 +1,8 @@
 import resources from './resources';
-
+// Aqui se pondra el idioma inicial del cliente
 export const config = {
   interpolation: { escapeValue: false }, // React already does escaping
-  lng: 'en',
+  lng: 'es',
   resources,
 };
 

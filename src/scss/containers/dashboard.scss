@@ -1,6 +1,34 @@
 .dashboard {
 
-  //default
+  //teams
+
+  .dashboard__add-team {
+    display: flex;
+    position: relative;
+
+    &:before {
+      content: "";
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      top: 0;
+      z-index: 0;
+      opacity: 0;
+      transition: all 0.5s;
+
+      @include themify($themes) {
+        background: themed('colorHover');
+      }
+    }
+
+    &:hover {
+        border-radius: 5px;
+      &:before {
+        opacity: 0.9;
+        border-radius: 5px;
+      }
+    }
+  }
 
   .dashboard__visitors-chart-title {
 
@@ -427,7 +455,7 @@
       width: calc(100% + 65px);
       top: 0;
       @include directify($directions) {
-        #{directed('left')}: -30px;
+        #{directed('left')}: -50px;
       }
       z-index: 0;
       opacity: 0;
@@ -441,7 +469,7 @@
     &:hover {
 
       &:before {
-        opacity: 1;
+        opacity: 0.5;
       }
     }
   }
