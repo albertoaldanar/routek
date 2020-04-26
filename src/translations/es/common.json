@@ -16,8 +16,8 @@
 	"tasks": {
 		"page_title": "Gestión de activadades",
 		"activities": "Actividades",
+		"add_activity": "Crear actividad",
 		"map": "Mapa",
-		"orders_today": "bestellt heute",
 		"subscriptions": "Abonnements",
 		"product_sales": "Verkauf von Produkten",
 		"new_orders": "Neue Bestellungen",
