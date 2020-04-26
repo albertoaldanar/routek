@@ -51,7 +51,7 @@ class AddTeam extends PureComponent {
           <Link className="dashboard__add-team" to="/account/profile">
             <CardBody className="dashboard__card-widget">
               <div className="card__title">
-                <span className="sidebar__link-icon lnr lnr-users" />
+                <span className="sidebar__link-icon lnr lnr-users"> +</span>
                 <h5>{t('teams.add_team')}</h5>
               </div>
             </CardBody>

@@ -3,31 +3,26 @@
   //teams
 
   .dashboard__add-team {
+    align: right;
+  }
+
+  .dashboard__title-and-button {
     display: flex;
-    position: relative;
+    flex-direction: row;
+    justify-content: space-between;
+  }
 
-    &:before {
-      content: "";
-      position: absolute;
-      height: 100%;
-      width: 100%;
-      top: 0;
-      z-index: 0;
-      opacity: 0;
-      transition: all 0.5s;
+  .dashboard__see-team {
+    text-align: center;
+    justify-content: center;
+    margin-top: 17px;
+    width: 100%;
+  }
 
-      @include themify($themes) {
-        background: themed('colorHover');
-      }
-    }
-
-    &:hover {
-        border-radius: 5px;
-      &:before {
-        opacity: 0.9;
-        border-radius: 5px;
-      }
-    }
+  .center-text{
+    text-align: center;
+    justify-content: center;
+    align: center;
   }
 
   .dashboard__visitors-chart-title {
@@ -639,7 +634,7 @@
       }
 
       .dashboard__stat-main-number {
-        color: $color-red;
+        color: light-gray;
         font-size: 48px;
         line-height: 34px;
         margin-top: 15px;

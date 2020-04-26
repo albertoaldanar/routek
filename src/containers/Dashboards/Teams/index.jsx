@@ -1,10 +1,13 @@
-import React from 'react';
-import { Col, Container, Row } from 'reactstrap';
+import React, { PureComponent } from 'react';
+import {
+  Col, Container, Row, Button,
+} from 'reactstrap';
+import UserAddIcon from 'mdi-react/UserAddIcon';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { withTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
-import AddTeam from './components/AddTeam';
+// import AddTeam from './components/AddTeam';
 // import TotalPageViews from './components/TotalPageViews';
 // import NewUsers from './components/NewUsers';
 // import BounceRate from './components/BounceRate';
@@ -13,28 +16,65 @@ import AddTeam from './components/AddTeam';
 // import VisitorsSessions from './components/VisitorsSessions';
 // import BounceRateArea from './components/BounceRateArea';
 // import AudienceByCountry from './components/AudienceByCountry';
-// import BudgetStatistic from './components/BudgetStatistic';
+import TeamList from './components/TeamList';
 // import BestSellingRegions from './components/BestSellingRegions';
 // import GoalsCompletion from './components/GoalsCompletion';
 // import { RTLProps } from '../../../shared/prop-types/ReducerProps';
 
-const Teams = ({ t }) => (
-  <Container className="dashboard">
-    <Row>
-      <Col md={12}>
-        <h3 className="page-title">{t('teams.page_title')}</h3>
-      </Col>
-    </Row>
-    <Row>
-      <AddTeam />
-    </Row>
-  </Container>
-);
+class Teams extends PureComponent {
+  static propTypes = {
+    t: PropTypes.func.isRequired,
+  };
 
-Teams.propTypes = {
-  // rtl: RTLProps.isRequired,
-  t: PropTypes.func.isRequired,
-};
+  constructor(props) {
+    super(props);
+    this.state = {
+      hasTeams: true,
+    };
+  }
+
+  renderTeams() {
+    const { hasTeams } = this.state;
+
+    if (hasTeams) {
+      return (
+        <Row>
+          <TeamList />
+          <TeamList />
+        </Row>
+      );
+    }
+    return (
+      <Row>
+        <p style={{ color: '#fffff' }}>No tienes equipos</p>
+      </Row>
+    );
+  }
+
+  render() {
+    const { t } = this.props;
+
+    return (
+      <Container className="dashboard">
+        <Row>
+          <Col md={12} className="dashboard__title-and-button">
+            <h3 className="page-title">{t('teams.page_title')}</h3>
+            <Button color="success" className="dashboard__add-team icon">
+              <UserAddIcon /> Crear equipo
+            </Button>
+          </Col>
+        </Row>
+
+        {this.renderTeams()}
+      </Container>
+    );
+  }
+}
+
+// Teams.propTypes = {
+//   // rtl: RTLProps.isRequired,
+//   t: PropTypes.func.isRequired,
+// };
 
 export default compose(withTranslation('common'), connect(state => ({
   // rtl: state.rtl,
