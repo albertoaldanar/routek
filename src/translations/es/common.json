@@ -13,10 +13,10 @@
 		"best_selling": "meistverkaufte Regionen",
 		"goals_completion": "Ziel erreicht"
 	},
-	"dashboard_commerce": {
-		"page_title": "E-Commerce des Dashboards",
-		"total_products": "Gesamtprodukte",
-		"total_profit": "Gesamtgewinn",
+	"tasks": {
+		"page_title": "Gestión de activadades",
+		"activities": "Actividades",
+		"map": "Mapa",
 		"orders_today": "bestellt heute",
 		"subscriptions": "Abonnements",
 		"product_sales": "Verkauf von Produkten",
