@@ -35,6 +35,7 @@ class Teams extends PureComponent {
 
   renderTeams() {
     const { hasTeams } = this.state;
+    const { t } = this.props;
 
     if (hasTeams) {
       return (
@@ -46,7 +47,8 @@ class Teams extends PureComponent {
     }
     return (
       <Row>
-        <p style={{ color: '#fffff' }}>No tienes equipos</p>
+        <img src="https://image.flaticon.com/icons/svg/476/476761.svg" height={300} width={300} alt="" />
+        <p className="dashboard__no-teams">{t('teams.no_teams_yet')}</p>
       </Row>
     );
   }
@@ -60,7 +62,7 @@ class Teams extends PureComponent {
           <Col md={12} className="dashboard__title-and-button">
             <h3 className="page-title">{t('teams.page_title')}</h3>
             <Button color="success" className="dashboard__add-team icon">
-              <UserAddIcon /> Crear equipo
+              <UserAddIcon /> {t('teams.add_team')}
             </Button>
           </Col>
         </Row>

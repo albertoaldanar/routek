@@ -1,8 +1,8 @@
 {
 	"teams": {
 		"page_title": "Gestión de equipos",
-		"add_team": " Añadir nuevo equipo",
-		"total_page_views": "Gesamtzahl der aufgerufenen Seiten",
+		"add_team": "Crear equipo",
+		"no_teams_yet": "Aún no tienes equipos",
 		"new_users": "Neue Nutzer",
 		"bounce_rate": "Absprungrate",
 		"ab_testing": "A / B-Testanalyse",
