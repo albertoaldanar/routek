@@ -1,10 +1,10 @@
-export const LOAD_CRYPTO_TABLE_DATA = 'LOAD_CRYPTO_TABLE_DATA';
+export const LOAD_RECORDS_TABLE_DATA = 'LOAD_RECORDS_TABLE_DATA';
 export const CHANGE_CRYPTO_TABLE_DATA = 'CHANGE_CRYPTO_TABLE_DATA';
 export const DELETE_CRYPTO_TABLE_DATA = 'DELETE_CRYPTO_TABLE_DATA';
 
-export function loadCryptoTableData(index) {
+export function loadRecordsTableData(index) {
   return {
-    type: LOAD_CRYPTO_TABLE_DATA,
+    type: LOAD_RECORDS_TABLE_DATA,
     index,
   };
 }

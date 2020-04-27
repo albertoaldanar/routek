@@ -42,8 +42,8 @@
 		"fat_burning": "Fettverbrennung",
 		"activity_rating": "Aktivitätsbewertung"
 	},
-	"dashboard_crypto": {
-		"page_title": "Crypto Dashboard",
+	"records": {
+		"page_title": "Registros operativos",
 		"trade_history": "Handelsgeschichte",
 		"cryptotrends_today": "Cryptotrends heute",
 		"place_order": "Bestellung aufgeben",

@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Col, Container, Row } from 'reactstrap';
 import BigCalendar from './components/BigCalendar';
-import EventLabels from './components/EventLabels';
+// import EventLabels from './components/EventLabels';
 import { RTLProps } from '../../../shared/prop-types/ReducerProps';
 
 const Calendar = ({ rtl }) => (
@@ -17,7 +17,6 @@ const Calendar = ({ rtl }) => (
     </Row>
     <Row>
       <BigCalendar dir={rtl.direction} />
-      <EventLabels />
     </Row>
   </Container>
 );

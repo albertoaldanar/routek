@@ -1,30 +1,29 @@
 import React, { PureComponent } from 'react';
 import { Col, Container, Row } from 'reactstrap';
 import { withTranslation } from 'react-i18next';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import TotalProfitEarned from './components/TotalProfitEarned';
 import TotalCustomers from './components/TotalCustomers';
 import TotalBookings from './components/TotalBookings';
 import BookingCancels from './components/BookingCancels';
-import Reservations from './components/Reservations';
-import WeeklyStat from './components/WeeklyStat';
-import Occupancy from './components/Occupancy';
-import { RTLProps } from '../../../shared/prop-types/ReducerProps';
+import RecordsList from './components/RecordsList';
+import { CryptoTableProps } from '../../../shared/prop-types/TablesProps';
 
 class Records extends PureComponent {
   static propTypes = {
-    rtl: RTLProps.isRequired,
+    recordsTable: CryptoTableProps.isRequired,
+    t: PropTypes.func.isRequired,
   };
 
   render() {
-    const { rtl } = this.props;
+    const { recordsTable, t } = this.props;
 
     return (
       <Container className="dashboard">
         <Row>
           <Col md={12}>
-            <h3 className="page-title">Registros operativos</h3>
+            <h3 className="page-title">{t('records.page_title')}</h3>
           </Col>
         </Row>
         <Row>
@@ -34,9 +33,7 @@ class Records extends PureComponent {
           <BookingCancels />
         </Row>
         <Row>
-          <Reservations dir={rtl.direction} />
-          <WeeklyStat />
-          <Occupancy dir={rtl.direction} />
+          <RecordsList recordsTable={recordsTable} />
         </Row>
       </Container>
     );
@@ -44,5 +41,6 @@ class Records extends PureComponent {
 }
 
 export default connect(state => ({
-  rtl: state.rtl,
+  recordsTable: state.recordsTable.items,
+  rtl: state,
 }))(withTranslation('common')(Records));

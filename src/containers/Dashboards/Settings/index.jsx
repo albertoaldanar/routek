@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import { Col, Container, Row } from 'reactstrap';
 import { withTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import BTC from './components/BTC';
 import ETH from './components/ETH';
 import BCH from './components/BCH';
@@ -12,25 +12,25 @@ import BtcEth from './components/BtcEth';
 import CryptotrendsToday from './components/CryptotrendsToday';
 import TopTen from './components/TopTen';
 import PlaceOrder from './components/PlaceOrder';
-import { deleteCryptoTableData } from '../../../redux/actions/cryptoTableActions';
+// import { deleteCryptoTableData } from '../../../redux/actions/cryptoTableActions';
 import { CryptoTableProps } from '../../../shared/prop-types/TablesProps';
 import { ThemeProps, RTLProps } from '../../../shared/prop-types/ReducerProps';
 
 class Settings extends PureComponent {
   static propTypes = {
     cryptoTable: CryptoTableProps.isRequired,
-    dispatch: PropTypes.func.isRequired,
+    // dispatch: PropTypes.func.isRequired,
     rtl: RTLProps.isRequired,
     theme: ThemeProps.isRequired,
   };
 
-  onDeleteCryptoTableData = (index, e) => {
-    const { dispatch, cryptoTable } = this.props;
-    e.preventDefault();
-    const arrayCopy = [...cryptoTable];
-    arrayCopy.splice(index, 1);
-    dispatch(deleteCryptoTableData(arrayCopy));
-  };
+  // onDeleteCryptoTableData = (index, e) => {
+  //   const { dispatch, cryptoTable } = this.props;
+  //   e.preventDefault();
+  //   const arrayCopy = [...cryptoTable];
+  //   arrayCopy.splice(index, 1);
+  //   dispatch(deleteCryptoTableData(arrayCopy));
+  // };
 
   render() {
     const {

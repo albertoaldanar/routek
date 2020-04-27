@@ -1,7 +1,7 @@
 import { combineReducers, createStore } from 'redux';
 import { reducer as reduxFormReducer } from 'redux-form';
 import {
-  cryptoTableReducer,
+  recordsTableReducer,
   newOrderTableReducer,
   sidebarReducer,
   themeReducer,
@@ -16,7 +16,7 @@ const reducer = combineReducers({
   theme: themeReducer,
   rtl: rtlReducer,
   sidebar: sidebarReducer,
-  cryptoTable: cryptoTableReducer,
+  recordsTable: recordsTableReducer,
   newOrder: newOrderTableReducer,
   customizer: customizerReducer,
   todos: todoReducer,

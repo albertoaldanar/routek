@@ -1,7 +1,7 @@
 import themeReducer from './themeReducer';
 import rtlReducer from './rtlReducer';
 import sidebarReducer from './sidebarReducer';
-import cryptoTableReducer from './cryptoTableReducer';
+import recordsTableReducer from './recordsTableReducer';
 import newOrderTableReducer from './newOrderTableReducer';
 import customizerReducer from './customizerReducer';
 import todoReducer from './todoReducer';
@@ -11,7 +11,7 @@ export {
   themeReducer,
   rtlReducer,
   sidebarReducer,
-  cryptoTableReducer,
+  recordsTableReducer,
   newOrderTableReducer,
   customizerReducer,
   todoReducer,

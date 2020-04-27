@@ -1,15 +1,12 @@
 /* eslint-disable react/no-array-index-key,react/no-typos */
 import React from 'react';
-// import {
-//   ResponsiveContainer, Tooltip,
-// } from 'recharts';
 import {
-  DropdownItem, DropdownMenu, DropdownToggle, UncontrolledDropdown, Table,
+  Table,
 } from 'reactstrap';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { withTranslation } from 'react-i18next';
-import DotsHorizontalIcon from 'mdi-react/DotsHorizontalIcon';
+import ArrowRightIcon from 'mdi-react/ArrowRightIcon';
 import { CryptoTableProps } from '../../../../shared/prop-types/TablesProps';
 import Panel from '../../../../shared/components/Panel';
 
@@ -131,41 +128,40 @@ CustomTooltip.defaultProps = {
   payload: null,
 };
 
-const DropDownMore = ({ index, handleDeleteRow }) => (
-  <UncontrolledDropdown className="dashboard__table-more">
-    <DropdownToggle>
-      <p><DotsHorizontalIcon /></p>
-    </DropdownToggle>
-    <DropdownMenu className="dropdown__menu">
-      <Link to={`/dashboard_crypto/edit/${index}`}><DropdownItem>Edit</DropdownItem></Link>
-      <DropdownItem onClick={handleDeleteRow}>Delete</DropdownItem>
-    </DropdownMenu>
-  </UncontrolledDropdown>
-);
+// const DropDownMore = ({ index, handleDeleteRow }) => (
+//   <UncontrolledDropdown className="dashboard__table-more">
+//     <DropdownToggle>
+//       <p><ArrowRightIcon /></p>
+//     </DropdownToggle>
+//     <DropdownMenu className="dropdown__menu">
+//       <Link to={`/dashboard_crypto/edit/${index}`}><DropdownItem>Edit</DropdownItem></Link>
+//       <DropdownItem onClick={handleDeleteRow}>Delete</DropdownItem>
+//     </DropdownMenu>
+//   </UncontrolledDropdown>
+// );
 
-DropDownMore.propTypes = {
-  index: PropTypes.number.isRequired,
-  handleDeleteRow: PropTypes.func.isRequired,
-};
+// DropDownMore.propTypes = {
+//   index: PropTypes.number.isRequired,
+//   handleDeleteRow: PropTypes.func.isRequired,
+// };
 
-const TopTen = ({ cryptoTable, onDeleteCryptoTableData, t }) => (
+const TopTen = ({ recordsTable, t }) => (
   <Panel lg={12} title={t('dashboard_crypto.top_cryptocurrencies')}>
     <Table responsive className="table--bordered dashboard__table-crypto">
       <thead>
         <tr>
-          <th>#</th>
+          <th>Folio</th>
           <th>Name</th>
           <th>Market Cap</th>
           <th>Price</th>
           <th>Volume</th>
           <th>Circulating Supply</th>
           <th>Change</th>
-          <th dir="ltr">Graph (7 days)</th>
           <th />
         </tr>
       </thead>
       <tbody>
-        {cryptoTable.map((crypto, index) => (
+        {recordsTable.map((crypto, index) => (
           <tr key={index}>
             <td>{index + 1}</td>
             <td>{crypto.name}</td>
@@ -174,9 +170,7 @@ const TopTen = ({ cryptoTable, onDeleteCryptoTableData, t }) => (
             <td dir="ltr">{crypto.volume}</td>
             <td dir="ltr">{crypto.supply} {crypto.chart}</td>
             <td>{crypto.change}</td>
-            <td>
-              <DropDownMore index={index} handleDeleteRow={e => onDeleteCryptoTableData(index, e)} />
-            </td>
+            <td><ArrowRightIcon /></td>
           </tr>
         ))}
       </tbody>
@@ -185,8 +179,7 @@ const TopTen = ({ cryptoTable, onDeleteCryptoTableData, t }) => (
 );
 
 TopTen.propTypes = {
-  cryptoTable: CryptoTableProps.isRequired,
-  onDeleteCryptoTableData: PropTypes.func.isRequired,
+  recordsTable: CryptoTableProps.isRequired,
   t: PropTypes.func.isRequired,
 };
 

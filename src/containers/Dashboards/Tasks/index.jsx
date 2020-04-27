@@ -1,11 +1,12 @@
 import React, { PureComponent } from 'react';
 import {
-  Button, Container, Col, Row, Nav, NavItem, NavLink, TabContent, TabPane,
+  Button, ButtonToolbar, Container, Col, Row, Nav, NavItem, NavLink, TabContent, TabPane,
 } from 'reactstrap';
 import classnames from 'classnames';
 import { withTranslation } from 'react-i18next';
 import UserAddIcon from 'mdi-react/UserAddIcon';
 import { connect } from 'react-redux';
+import SettingsIcon from 'mdi-react/SettingsIcon';
 import PropTypes from 'prop-types';
 import MapView from './components/MapView';
 
@@ -76,6 +77,11 @@ class Tasks extends PureComponent {
               </TabPane>
               <TabPane tabId="2">
                 <MapView />
+                <div className="dashboard__map-button">
+                  <ButtonToolbar>
+                    <Button className="icon" color="danger" outline><p><SettingsIcon /> Settings</p></Button>
+                  </ButtonToolbar>
+                </div>
               </TabPane>
             </TabContent>
           </div>
