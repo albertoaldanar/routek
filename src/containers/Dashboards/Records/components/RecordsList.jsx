@@ -146,7 +146,7 @@ CustomTooltip.defaultProps = {
 // };
 
 const TopTen = ({ recordsTable, t }) => (
-  <Panel lg={12} title={t('dashboard_crypto.top_cryptocurrencies')}>
+  <Panel lg={12} title={t('records.table_data')}>
     <Table responsive className="table--bordered dashboard__table-crypto">
       <thead>
         <tr>

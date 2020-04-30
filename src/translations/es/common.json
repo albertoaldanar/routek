@@ -44,9 +44,9 @@
 	},
 	"records": {
 		"page_title": "Registros operativos",
-		"trade_history": "Handelsgeschichte",
-		"cryptotrends_today": "Cryptotrends heute",
-		"place_order": "Bestellung aufgeben",
+		"table_data": "Resultados de busqueda",
+    "word": "Buscar por palabra",
+		"filter": "Buscar por filtro",
 		"top_cryptocurrencies": "Top 10 Cryptocurrencies"
 	},
     "dashboard_mobile_app": {

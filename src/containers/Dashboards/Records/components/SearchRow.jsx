@@ -1,7 +1,12 @@
 /* eslint-disable */
 import React, { PureComponent } from 'react';
 import {
-  Card, CardBody, Col, Container, Nav, NavItem, NavLink, Row, TabContent, TabPane,
+  Card, CardBody, Col, Container,
+  Nav, NavItem, NavLink, Row, TabContent, TabPane,
+  DropdownItem,
+  DropdownMenu,
+  DropdownToggle,
+  UncontrolledDropdown,
 } from 'reactstrap';
 import { withTranslation } from 'react-i18next';
 // import PropTypes from 'prop-types';
@@ -9,8 +14,10 @@ import { connect } from 'react-redux';
 import classnames from 'classnames';
 import FilterIcon from 'mdi-react/FilterIcon';
 import SearchIcon from 'mdi-react/SearchIcon';
+import ChevronDownIcon from 'mdi-react/ChevronDownIcon';
+import { Field, reduxForm } from 'redux-form';
 
-class Records extends PureComponent {
+class SearchRow extends PureComponent {
   // static propTypes = {
   //   t: PropTypes.func.isRequired,
   // };
@@ -38,7 +45,6 @@ class Records extends PureComponent {
     return (
           <Col md={12} sm={12}>
             <Card>
-              <CardBody>
                 <div className="tabs tabs--bordered-bottom">
                   <div className="tabs__wrap">
                     <Nav tabs>
@@ -49,7 +55,7 @@ class Records extends PureComponent {
                             this.toggle('1');
                           }}
                         >
-                          <SearchIcon /> Buscar por palabra
+                          <SearchIcon /> {t('records.word')}
                         </NavLink>
                       </NavItem>
                       <NavItem>
@@ -59,34 +65,52 @@ class Records extends PureComponent {
                             this.toggle('2');
                           }}
                         >
-                          <FilterIcon />  Buscar por filtros
+                          <FilterIcon />  {t('records.filter')}
                         </NavLink>
                       </NavItem>
                     </Nav>
                     <TabContent activeTab={activeTab}>
                       <TabPane tabId="1">
-                        <p>Direction has strangers now believing. Respect enjoyed gay far exposed parlors towards. Enjoyment
-                          use tolerably dependent listening men. No peculiar in handsome together unlocked do by. Article
-                          concern joy anxious did picture sir her. Although desirous not recurred disposed off shy you
-                          numerous securing.
-                        </p>
+                        <CardBody>
+                          <form className="form form--horizontal">
+                            <div className="form__form-group">
+                              <UncontrolledDropdown className ="form__form-group-label">
+                                <DropdownToggle className="icon icon--right" outline>
+                                  <p>Cliente <ChevronDownIcon /></p>
+                                </DropdownToggle>
+                                <DropdownMenu className="dropdown__menu">
+                                  <DropdownItem>Action</DropdownItem>
+                                  <DropdownItem>Another Action</DropdownItem>
+                                </DropdownMenu>
+                              </UncontrolledDropdown>
+                              <div className="form__form-group-field">
+                                <Field
+                                  name="defaultInput"
+                                  component="input"
+                                  type="text"
+                                  placeholder="Palabra a buscar"
+                                />
+                              </div>
+                            </div>
+                          </form>
+                        </CardBody>
                       </TabPane>
                       <TabPane tabId="2">
-                        <p>Direction has strangers now believing. Respect enjoyed gay far exposed parlors towards. Enjoyment
-                          use tolerably dependent listening men. No peculiar in handsome together unlocked do by.
-                        </p>
+                        <CardBody>
+                        </CardBody>
                       </TabPane>
                     </TabContent>
                   </div>
                 </div>
-              </CardBody>
             </Card>
           </Col>
     );
   }
 }
+// export default reduxForm({
+//   form: 'horizontal_form', // a unique identifier for this form
+// })(withTranslation('common')(Rec));
 
-export default connect(state => ({
-  recordsTable: state.recordsTable.items,
-  rtl: state,
-}))(withTranslation('common')(Records));
+export default reduxForm({
+  form: 'horizontal_form', // a unique identifier for this form
+})(withTranslation('common')(SearchRow));

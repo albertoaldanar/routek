@@ -51,12 +51,6 @@ class Records extends PureComponent {
           </Col>
         </Row>
         <Row>
-          <TotalProfitEarned />
-          <TotalBookings />
-          <TotalCustomers />
-          <BookingCancels />
-        </Row>
-        <Row>
           <SearchRow />
         </Row>
         <Row>
