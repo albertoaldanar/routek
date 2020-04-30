@@ -67,7 +67,6 @@ class SidebarContent extends Component {
             </button>
           </SidebarCategory>
         </ul>
-
         <ul className="sidebar__block">
           <SidebarCategory title="UI Elements" icon="diamond">
             <SidebarLink title="Alerts" route="/ui/alerts" onClick={this.hideSidebar} />
@@ -117,7 +116,6 @@ class SidebarContent extends Component {
             <SidebarLink title="Vector map" route="/maps/vector_map" onClick={this.hideSidebar} />
           </SidebarCategory>
         </ul>
-
         <ul className="sidebar__block">
           <SidebarLink title="Log Out" icon="exit" route="/log_in" />
         </ul>

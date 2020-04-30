@@ -5,6 +5,8 @@ import {
 import classnames from 'classnames';
 import { withTranslation } from 'react-i18next';
 import UserAddIcon from 'mdi-react/UserAddIcon';
+import CalendarTaskIcon from 'mdi-react/CalendarTaskIcon';
+import MapMarkerIcon from 'mdi-react/MapMarkerIcon';
 import { connect } from 'react-redux';
 import SettingsIcon from 'mdi-react/SettingsIcon';
 import PropTypes from 'prop-types';
@@ -55,7 +57,7 @@ class Tasks extends PureComponent {
                     this.toggle('1');
                   }}
                 >
-                  {t('tasks.activities')}
+                  <CalendarTaskIcon /> {t('tasks.activities')}
                 </NavLink>
               </NavItem>
               <NavItem>
@@ -65,7 +67,7 @@ class Tasks extends PureComponent {
                     this.toggle('2');
                   }}
                 >
-                  {t('tasks.map')}
+                  <MapMarkerIcon /> {t('tasks.map')}
                 </NavLink>
               </NavItem>
             </Nav>
