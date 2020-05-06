@@ -11,7 +11,6 @@ import NewUsersShort from './components/NewUsersShort';
 import PageViewsShort from './components/PageViewsShort';
 import AppTileClicks from './components/AppTileClicks';
 import WeeklyStatMobile from './components/WeeklyStatMobile';
-import SocialMarketing from './components/SocialMarketing';
 import { RTLProps } from '../../../shared/prop-types/ReducerProps';
 
 const Stats = ({ rtl }) => (
@@ -22,19 +21,18 @@ const Stats = ({ rtl }) => (
       </Col>
     </Row>
     <Row>
-      <CurrentUsers />
-      <ActiveUsers dir={rtl.direction} />
-    </Row>
-    <Row>
       <SessionShort />
       <ActiveUsersShort />
       <NewUsersShort />
       <PageViewsShort />
     </Row>
     <Row>
+      <ActiveUsers dir={rtl.direction} />
+      <CurrentUsers />
+    </Row>
+    <Row>
       <AppTileClicks dir={rtl.direction} />
       <WeeklyStatMobile />
-      <SocialMarketing />
     </Row>
   </Container>
 );

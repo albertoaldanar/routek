@@ -1,12 +1,13 @@
+/* eslint-disable */
 import React from 'react';
 import { Col } from 'reactstrap';
 import { compose, withProps } from 'recompose';
 import { GoogleMap, withGoogleMap, withScriptjs } from 'react-google-maps';
 import { withTranslation } from 'react-i18next';
-// import PropTypes from 'prop-types';
-// import silverMapStyle from './silverMapStyle.json';
-// import blueMapStyle from './blueMapStyle.json';
-// import retroMapStyle from './retroMapStyle.json';
+import PropTypes from 'prop-types';
+import silverMapStyle from './silverMapStyle.json';
+import blueMapStyle from './blueMapStyle.json';
+import retroMapStyle from './retroMapStyle.json';
 import darkMapStyle from './darkMapStyle.json';
 
 const GrayMap = compose(

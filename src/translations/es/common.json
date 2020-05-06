@@ -30,10 +30,10 @@
 		"basic_card": "Basiskarte",
 		"recent_orders": "Letzte Bestellungen"
 	},
-	"dashboard_fitness": {
-		"page_title": "Armaturenbrett-Fitness",
-		"heartrate": "Herzfrequenz",
-		"calories_burn": "Kalorien verbrennen",
+	"projects": {
+		"page_title": "Gestión de proyectos",
+		"add_project": "Crear proyecto",
+		"no_projects_yet": "Aún no tienes proyectos",
 		"steps": "Schritte",
 		"distance": "Entfernung",
 		"activity_chart": "Aktivitätsdiagramm",
