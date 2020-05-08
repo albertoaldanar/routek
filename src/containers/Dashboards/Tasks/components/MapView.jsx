@@ -10,7 +10,7 @@ import blueMapStyle from './blueMapStyle.json';
 import retroMapStyle from './retroMapStyle.json';
 import darkMapStyle from './darkMapStyle.json';
 
-const GrayMap = compose(
+const MainMap = compose(
   withProps({
     // generate your API key
     googleMapURL: 'https://maps.googleapis.com/maps/api/js?key=AIzaSyA1PquORAjAjumChpMb1to9WHsifrBrjvs&callback=initMap'
@@ -25,13 +25,13 @@ const GrayMap = compose(
   <GoogleMap
     defaultZoom={13}
     defaultCenter={{ lat: 56.009483, lng: 92.8121694 }}
-    defaultOptions={{ styles: darkMapStyle }}
+    defaultOptions={{ styles: blueMapStyle }}
   />
 ));
 
 const MapView = () => (
   <Col xs={12} md={12} lg={12}>
-    <GrayMap />
+    <MainMap />
   </Col>
 );
 

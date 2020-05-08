@@ -59,17 +59,20 @@ class Records extends PureComponent {
             </Button>
           </Col>
         </Row>
-        <UncontrolledDropdown>
-          <DropdownToggle className="icon icon--right" outline>
-          <p>Este mes <ChevronDownIcon /></p>
-          </DropdownToggle>
-            <DropdownMenu className="dropdown__menu">
-              <DropdownItem>Este año</DropdownItem>
-              <DropdownItem>Esta mes</DropdownItem>
-              <DropdownItem>Esta semana</DropdownItem>
-              <DropdownItem>Todos los registros</DropdownItem>
-          </DropdownMenu>
-        </UncontrolledDropdown>
+        <div className="search_dropdown">
+          <p className="search_label">Buscar: </p>
+          <UncontrolledDropdown>
+            <DropdownToggle className="icon icon--right" outline>
+            <p>Actividades <ChevronDownIcon /></p>
+            </DropdownToggle>
+              <DropdownMenu className="dropdown__menu">
+                <DropdownItem> Gastos</DropdownItem>
+                <DropdownItem> Paradas fuera de ruta</DropdownItem>
+                <DropdownItem> Indicencias</DropdownItem>
+                <DropdownItem> Actividades</DropdownItem>
+            </DropdownMenu>
+          </UncontrolledDropdown>
+        </div>
         <Row>
           <SearchRow />
         </Row>

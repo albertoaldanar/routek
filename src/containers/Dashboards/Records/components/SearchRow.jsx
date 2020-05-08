@@ -45,6 +45,7 @@ class SearchRow extends PureComponent {
     return (
           <Col md={12} sm={12}>
             <Card>
+              <CardBody>
                 <div className="tabs tabs--bordered-bottom">
                   <div className="tabs__wrap">
                     <Nav tabs>
@@ -102,6 +103,7 @@ class SearchRow extends PureComponent {
                     </TabContent>
                   </div>
                 </div>
+              </CardBody>
             </Card>
           </Col>
     );

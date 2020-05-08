@@ -12,6 +12,8 @@ import { connect } from 'react-redux';
 import SettingsIcon from 'mdi-react/SettingsIcon';
 import PropTypes from 'prop-types';
 import MapView from './components/MapView';
+import Calendar from "./components/Calendar";
+import events from "./components/events";
 
 class Tasks extends PureComponent {
   static propTypes = {
@@ -74,9 +76,7 @@ class Tasks extends PureComponent {
             </Nav>
             <TabContent activeTab={activeTab}>
               <TabPane tabId="1">
-                <p>
-                  Aqui van las actividades
-                </p>
+                <Calendar events={events}/>
               </TabPane>
               <TabPane tabId="2">
                 <MapView />
