@@ -12,29 +12,26 @@ import getTooltipStyles from '../../../../shared/helpers';
 
 const data = [
   {
-    name: 'News', uv: 4000, pv: 2400, amt: 2400,
+    name: 'Entre actividades', uv: 4000,
   },
   {
-    name: 'Video', uv: 3000, pv: 1398, amt: 2210,
+    name: 'En actividad', uv: 3000,
   },
   {
-    name: 'Messages', uv: 2000, pv: 9800, amt: 2290,
+    name: 'Retraso llegadas', uv: 2000,
   },
   {
-    name: 'Photos', uv: 2780, pv: 3908, amt: 2000,
-  },
-  {
-    name: 'Weather', uv: 1890, pv: 4800, amt: 2181,
+    name: 'Retraso salidas', uv: 2780,
   },
 ];
 
 const AppTileClicks = ({ t, dir, themeName }) => (
   <Panel
-    lg={6}
-    xl={6}
+    lg={8}
+    xl={8}
     md={12}
-    title={t('dashboard_mobile_app.app_tile_clicks')}
-    subhead="How effective your business is in comparison with the previous month"
+    title={t('stats.time_analysis')}
+    subhead={t('stats.time_analysis_explained')}
     panelClass="panel--narrow"
   >
     <div dir="ltr">

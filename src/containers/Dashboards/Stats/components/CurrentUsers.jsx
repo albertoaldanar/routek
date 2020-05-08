@@ -10,10 +10,10 @@ const pieChartData = [{ value: 60, fill: '#b8e986' },
 
 const CurrentUsers = ({ t }) => (
   <Panel
-    lg={6}
-    xl={3}
+    lg={4}
+    xl={4}
     md={12}
-    title={t('dashboard_mobile_app.current_users')}
+    title={t('stats.percentage')}
     subhead="Last 10 minutes"
   >
     <div className="dashboard__current-users">
@@ -31,15 +31,15 @@ const CurrentUsers = ({ t }) => (
             paddingAngle={0}
           />
         </PieChart>
-        <p className="dashboard__current-users-label">345</p>
+        <p className="dashboard__current-users-label">34%</p>
       </div>
       <div className="dashboard__current-users-info" dir="ltr">
         <p className="dashboard__current-users-day">
-          <span>7d min</span>
+          <span>Actividades</span>
           <span>0</span>
         </p>
         <p className="dashboard__current-users-day">
-          <span>7d max</span>
+          <span>Actividades</span>
           <span>500</span>
         </p>
       </div>

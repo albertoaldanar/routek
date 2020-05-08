@@ -1,7 +1,11 @@
 /* eslint-disable */
 import React, { PureComponent } from 'react';
 import {
-  Card, CardBody, Col, Container, Nav, NavItem, NavLink, Row, TabContent, TabPane,
+  Button, Card, CardBody, Col, Container, Nav, NavItem, NavLink, Row, TabContent, TabPane,
+  DropdownMenu,
+  DropdownToggle,
+  DropdownItem,
+  UncontrolledDropdown,
 } from 'reactstrap';
 import { withTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
@@ -16,6 +20,8 @@ import BookingCancels from './components/BookingCancels';
 import RecordsList from './components/RecordsList';
 import SearchRow from "./components/SearchRow";
 import { CryptoTableProps } from '../../../shared/prop-types/TablesProps';
+import ChevronDownIcon from 'mdi-react/ChevronDownIcon';
+import UserAddIcon from 'mdi-react/UserAddIcon';
 
 class Records extends PureComponent {
   static propTypes = {
@@ -46,10 +52,24 @@ class Records extends PureComponent {
     return (
       <Container className="dashboard">
         <Row>
-          <Col md={12}>
+          <Col md={12} className="dashboard__title-and-button">
             <h3 className="page-title">{t('records.page_title')}</h3>
+            <Button color="success" className="dashboard__add-team icon">
+              <UserAddIcon /> {t('teams.add_team')}
+            </Button>
           </Col>
         </Row>
+        <UncontrolledDropdown>
+          <DropdownToggle className="icon icon--right" outline>
+          <p>Este mes <ChevronDownIcon /></p>
+          </DropdownToggle>
+            <DropdownMenu className="dropdown__menu">
+              <DropdownItem>Este año</DropdownItem>
+              <DropdownItem>Esta mes</DropdownItem>
+              <DropdownItem>Esta semana</DropdownItem>
+              <DropdownItem>Todos los registros</DropdownItem>
+          </DropdownMenu>
+        </UncontrolledDropdown>
         <Row>
           <SearchRow />
         </Row>

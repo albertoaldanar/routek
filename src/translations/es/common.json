@@ -49,15 +49,15 @@
 		"filter": "Buscar por filtro",
 		"top_cryptocurrencies": "Top 10 Cryptocurrencies"
 	},
-    "dashboard_mobile_app": {
-      "page_title": "Dashboard DE Mobile App",
-      "current_users": "Current Users",
-      "active_users": "Active Users",
-      "widget_sessions": "Sessions",
-      "widget_active_users": "Active Users",
-      "widget_new_users": "New Users",
-      "widget_pageviews": "Pageviews",
-	  "app_tile_clicks": "App Tile Clicks",
+    "stats": {
+      "page_title": "Estadísticas de ruta",
+      "total_activities": "Total actividades",
+      "done_activities": "Actividades terminadas",
+      "not_done_activities": "Actividades sin terminar",
+      "percentage": "Porcentaje finalizado",
+      "time_analysis": "Analisis de tiempos",
+      "time_analysis_explained": "Promedio de como se invierte el tiempo por actividad",
+	     "problems": "Incidencias",
       "weekly_stat_mobile": "Weekly Stat",
 	  "social_marketing_mobile": "Social Marketing"
 
