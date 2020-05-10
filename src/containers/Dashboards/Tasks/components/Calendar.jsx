@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Calendar, momentLocalizer } from 'react-big-calendar';
@@ -48,6 +49,10 @@ export default class CalendarComponent extends PureComponent {
     });
   };
 
+  message(event){
+    console.log("Clicked", event);
+  }
+
   eventStyleGetter = (event) => {
     let color;
 
@@ -96,6 +101,7 @@ export default class CalendarComponent extends PureComponent {
           timeslots={1}
           showMultiDayTimes
           onEventDrop={this.moveEvent}
+          onSelectEvent={this.message}
           defaultDate={new Date(2018, 3, 1)}
           eventPropGetter={(this.eventStyleGetter)}
           messages={{

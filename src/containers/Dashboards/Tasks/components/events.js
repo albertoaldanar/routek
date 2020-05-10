@@ -1,3 +1,4 @@
+/* eslint-disable */
 export default [
   {
     id: 0,
@@ -6,6 +7,7 @@ export default [
     start: new Date(2018, 3, 0),
     end: new Date(2018, 3, 1),
     priority: 'high',
+    driver: 'Carlos',
   },
   {
     id: 1,
@@ -13,6 +15,7 @@ export default [
     start: new Date(2018, 3, 7, 12, 0, 0),
     end: new Date(2018, 3, 10),
     priority: 'high',
+    driver: 'Joaquin',
   },
 
   {

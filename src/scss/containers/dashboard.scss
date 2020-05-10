@@ -12,13 +12,6 @@
     justify-content: space-between;
   }
 
-  .dashboard__map-button {
-    position: absolute;
-    right: 550px;
-    top: 225px;
-    height: 9%;
-    width: 9%;
-  }
 
   .dashboard__no-teams {
     text-align: center;
@@ -242,6 +235,39 @@
     margin-right: 15px;
     margin-top: 8px;
   }
+
+  //tasks
+
+  .dashboard__map-button {
+    // position: absolute;
+    // right: 350px;
+    // top: 235px;
+    // height: 9%;
+    width: 100%;
+    flex: display;
+    margin-top: -70px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    align: center;
+    text-align: center;
+  }
+
+  .dashboard__map-drivers {
+    // position: absolute;
+    // right: 350px;
+    // top: 235px;
+    // height: 9%;
+    // width: 30%;
+    flex: display;
+    margin-top: -350px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    align: center;
+    text-align: center;
+  }
+
 
   //commerce
 

@@ -1,7 +1,11 @@
 /* eslint-disable */
 import React, { PureComponent } from 'react';
 import {
-  Button, ButtonToolbar, Container, Col, Row, Nav, NavItem, NavLink, TabContent, TabPane,
+  Button, ButtonToolbar, Container, Col, CardBody, Row, Nav, NavItem, NavLink, TabContent, TabPane,
+  DropdownItem,
+  DropdownMenu,
+  DropdownToggle,
+  UncontrolledDropdown,
 } from 'reactstrap';
 import classnames from 'classnames';
 import { withTranslation } from 'react-i18next';
@@ -10,10 +14,12 @@ import CalendarTaskIcon from 'mdi-react/CalendarTaskIcon';
 import MapMarkerIcon from 'mdi-react/MapMarkerIcon';
 import { connect } from 'react-redux';
 import SettingsIcon from 'mdi-react/SettingsIcon';
+import ChevronDownIcon from 'mdi-react/ChevronDownIcon';
 import PropTypes from 'prop-types';
 import MapView from './components/MapView';
 import Calendar from "./components/Calendar";
 import events from "./components/events";
+import Drivers from "./components/drivers";
 
 class Tasks extends PureComponent {
   static propTypes = {
@@ -42,6 +48,7 @@ class Tasks extends PureComponent {
 
     return (
       <Container className="dashboard">
+        <CardBody>
         <Row>
           <Col md={12} className="dashboard__title-and-button">
             <h3 className="page-title">{t('tasks.page_title')}</h3>
@@ -76,19 +83,27 @@ class Tasks extends PureComponent {
             </Nav>
             <TabContent activeTab={activeTab}>
               <TabPane tabId="1">
-                <Calendar events={events}/>
+                  <Calendar events={events}/>
+
               </TabPane>
               <TabPane tabId="2">
                 <MapView />
                 <div className="dashboard__map-button">
-                  <ButtonToolbar>
-                    <Button className="icon" color="danger" outline><p><SettingsIcon /> Settings</p></Button>
-                  </ButtonToolbar>
+                    <UncontrolledDropdown>
+                      <DropdownToggle className="icon icon--right" color="success">
+                        <p>Ruta de hoy <ChevronDownIcon /></p>
+                      </DropdownToggle>
+                      <DropdownMenu className="dropdown__menu">
+                        <DropdownItem>Ruta de hoy</DropdownItem>
+                        <DropdownItem>Cambiar fecha</DropdownItem>
+                      </DropdownMenu>
+                    </UncontrolledDropdown>
                 </div>
               </TabPane>
             </TabContent>
           </div>
         </div>
+        </CardBody>
       </Container>
     );
   }
