@@ -48,7 +48,6 @@ class Tasks extends PureComponent {
 
     return (
       <Container className="dashboard">
-        <CardBody>
         <Row>
           <Col md={12} className="dashboard__title-and-button">
             <h3 className="page-title">{t('tasks.page_title')}</h3>
@@ -57,52 +56,53 @@ class Tasks extends PureComponent {
             </Button>
           </Col>
         </Row>
-        <div className="tabs tabs--justify tabs--bordered-bottom">
-          <div className="tabs__wrap">
-            <Nav tabs>
-              <NavItem>
-                <NavLink
-                  className={classnames({ active: activeTab === '1' })}
-                  onClick={() => {
-                    this.toggle('1');
-                  }}
-                >
-                  <CalendarTaskIcon /> {t('tasks.activities')}
-                </NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink
-                  className={classnames({ active: activeTab === '2' })}
-                  onClick={() => {
-                    this.toggle('2');
-                  }}
-                >
-                  <MapMarkerIcon /> {t('tasks.map')}
-                </NavLink>
-              </NavItem>
-            </Nav>
-            <TabContent activeTab={activeTab}>
-              <TabPane tabId="1">
-                  <Calendar events={events}/>
-
-              </TabPane>
-              <TabPane tabId="2">
-                <MapView />
-                <div className="dashboard__map-button">
-                    <UncontrolledDropdown>
-                      <DropdownToggle className="icon icon--right" color="success">
-                        <p>Ruta de hoy <ChevronDownIcon /></p>
-                      </DropdownToggle>
-                      <DropdownMenu className="dropdown__menu">
-                        <DropdownItem>Ruta de hoy</DropdownItem>
-                        <DropdownItem>Cambiar fecha</DropdownItem>
-                      </DropdownMenu>
-                    </UncontrolledDropdown>
-                </div>
-              </TabPane>
-            </TabContent>
+        <CardBody style={{position: "relative"}}>
+          <div className="tabs tabs--justify tabs--bordered-bottom">
+            <div className="tabs__wrap">
+              <Nav tabs>
+                <NavItem>
+                  <NavLink
+                    className={classnames({ active: activeTab === '1' })}
+                    onClick={() => {
+                      this.toggle('1');
+                    }}
+                  >
+                    <CalendarTaskIcon /> {t('tasks.activities')}
+                  </NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink
+                    className={classnames({ active: activeTab === '2' })}
+                    onClick={() => {
+                      this.toggle('2');
+                    }}
+                  >
+                    <MapMarkerIcon /> {t('tasks.map')}
+                  </NavLink>
+                </NavItem>
+              </Nav>
+              <TabContent activeTab={activeTab}>
+                <TabPane tabId="1">
+                    <Calendar events={events}/>
+                </TabPane>
+                <TabPane tabId="2">
+                  <MapView />
+                  <Drivers/>
+                  <div className="dashboard__map-button">
+                      <UncontrolledDropdown>
+                        <DropdownToggle className="icon icon--right" color="success">
+                          <p>Ruta de hoy <ChevronDownIcon /></p>
+                        </DropdownToggle>
+                        <DropdownMenu className="dropdown__menu">
+                          <DropdownItem>Ruta de hoy</DropdownItem>
+                          <DropdownItem>Cambiar fecha</DropdownItem>
+                        </DropdownMenu>
+                      </UncontrolledDropdown>
+                  </div>
+                </TabPane>
+              </TabContent>
+            </div>
           </div>
-        </div>
         </CardBody>
       </Container>
     );

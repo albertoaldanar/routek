@@ -1,6 +1,6 @@
 /* eslint-disable */
 import React from 'react';
-import { Col } from 'reactstrap';
+import { Col, Button } from 'reactstrap';
 import { compose, withProps, withStateHandlers } from 'recompose';
 import { GoogleMap, Marker, withGoogleMap, withScriptjs, } from 'react-google-maps';
 import { withTranslation } from 'react-i18next';
@@ -12,6 +12,7 @@ import blueMapStyle from './blueMapStyle.json';
 import retroMapStyle from './retroMapStyle.json';
 import darkMapStyle from './darkMapStyle.json';
 import nightMapStyle from './nightMapStyle.json';
+import UserAddIcon from 'mdi-react/UserAddIcon';
 
 const MainMap = compose(
   withProps({

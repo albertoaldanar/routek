@@ -1,25 +1,24 @@
+/* eslint-disable */
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 import Panel from '../../../../shared/components/Panel';
 
-const Ava1 = `${process.env.PUBLIC_URL}/img/11.png`;
-const Ava2 = `${process.env.PUBLIC_URL}/img/12.png`;
-const Ava3 = `${process.env.PUBLIC_URL}/img/14.png`;
-const Ava4 = `${process.env.PUBLIC_URL}/img/15.png`;
-const Ava5 = `${process.env.PUBLIC_URL}/img/photo_notification.png`;
-const Ava6 = `${process.env.PUBLIC_URL}/img/ava.png`;
+const Ava1 = 'https://logan-marshall.com/wp-content/uploads/2016/08/Circle-Profile-No-Background-PNG-120dpi-page001.png';
+const Ava2 = 'https://www.scripturaengage.com/wp-content/uploads/2018/01/Profile-Picture-Jim-Verbist-2-Circle.png';
+const Ava3 = 'https://allswellproductions.ca/wp-content/uploads/2018/05/Jeroen-Van-Dalen-circle-profile.png'
+const Ava4 = 'https://camg242.hotglue.me/?TECH.head.153143598539';
 
 const Drivers = ({ t }) => (
-  <Panel lg={5} xl={3} md={5} xs={5} title={t('dashboard_fitness.my_competitors')}>
+  <div className="dashboard__map-drivers">
+    <p className="dashboard__drivers-title">Conductores</p>
     <Link className="dashboard__competitor" to="/account/profile">
       <div className="dashboard__competitor-img">
         <img src={Ava1} alt="" />
       </div>
       <div className="dashboard__competitor-info">
-        <p className="dashboard__competitor-name">Peter Jackson</p>
-        <p className="dashboard__competitor-result">12,254 km</p>
+        <p className="dashboard__competitor-name">Pablo</p>
       </div>
     </Link>
     <Link className="dashboard__competitor" to="/account/profile">
@@ -27,8 +26,7 @@ const Drivers = ({ t }) => (
         <img src={Ava2} alt="" />
       </div>
       <div className="dashboard__competitor-info">
-        <p className="dashboard__competitor-name">Lora Melbourn</p>
-        <p className="dashboard__competitor-result">11,224 km</p>
+        <p className="dashboard__competitor-name">Bonnifcaio</p>
       </div>
     </Link>
     <Link className="dashboard__competitor" to="/account/profile">
@@ -36,8 +34,7 @@ const Drivers = ({ t }) => (
         <img src={Ava3} alt="" />
       </div>
       <div className="dashboard__competitor-info">
-        <p className="dashboard__competitor-name">Cat Mew</p>
-        <p className="dashboard__competitor-result">9,921 km</p>
+        <p className="dashboard__competitor-name">Carlos</p>
       </div>
     </Link>
     <Link className="dashboard__competitor" to="/account/profile">
@@ -45,29 +42,10 @@ const Drivers = ({ t }) => (
         <img src={Ava4} alt="" />
       </div>
       <div className="dashboard__competitor-info">
-        <p className="dashboard__competitor-name">Liza Orly</p>
-        <p className="dashboard__competitor-result">7,875 km</p>
+        <p className="dashboard__competitor-name">Ricardo</p>
       </div>
     </Link>
-    <Link className="dashboard__competitor" to="/account/profile">
-      <div className="dashboard__competitor-img">
-        <img src={Ava6} alt="" />
-      </div>
-      <div className="dashboard__competitor-info">
-        <p className="dashboard__competitor-name">Michael Bro</p>
-        <p className="dashboard__competitor-result">6,154 km</p>
-      </div>
-    </Link>
-    <Link className="dashboard__competitor" to="/account/profile">
-      <div className="dashboard__competitor-img">
-        <img src={Ava5} alt="" />
-      </div>
-      <div className="dashboard__competitor-info">
-        <p className="dashboard__competitor-name">Charlie Sunset</p>
-        <p className="dashboard__competitor-result">6,154 km</p>
-      </div>
-    </Link>
-  </Panel>
+  </div>
 );
 
 Drivers.propTypes = {
