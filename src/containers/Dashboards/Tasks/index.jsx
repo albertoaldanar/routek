@@ -52,7 +52,7 @@ class Tasks extends PureComponent {
           <Col md={12} className="dashboard__title-and-button">
             <h3 className="page-title">{t('tasks.page_title')}</h3>
             <Button color="success" className="dashboard__add-team icon">
-              <UserAddIcon /> {t('tasks.add_activity')}
+              <UserAddIcon/> {t('tasks.add_activity')}
             </Button>
           </Col>
         </Row>
@@ -86,8 +86,8 @@ class Tasks extends PureComponent {
                     <Calendar events={events}/>
                 </TabPane>
                 <TabPane tabId="2">
-                  <MapView />
-                  <Drivers/>
+                  <MapView events={events}/>
+                  <Drivers />
                   <div className="dashboard__map-button">
                       <UncontrolledDropdown>
                         <DropdownToggle className="icon icon--right" color="success">

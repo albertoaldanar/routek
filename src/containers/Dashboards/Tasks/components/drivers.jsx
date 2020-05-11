@@ -12,7 +12,7 @@ const Ava4 = 'https://camg242.hotglue.me/?TECH.head.153143598539';
 
 const Drivers = ({ t }) => (
   <div className="dashboard__map-drivers">
-    <p className="dashboard__drivers-title">Conductores</p>
+    <p className="dashboard__drivers-title">CONDUCTORES</p>
     <Link className="dashboard__competitor" to="/account/profile">
       <div className="dashboard__competitor-img">
         <img src={Ava1} alt="" />
@@ -35,6 +35,14 @@ const Drivers = ({ t }) => (
       </div>
       <div className="dashboard__competitor-info">
         <p className="dashboard__competitor-name">Carlos</p>
+      </div>
+    </Link>
+    <Link className="dashboard__competitor" to="/account/profile">
+      <div className="dashboard__competitor-img">
+        <img src={Ava4} alt="" />
+      </div>
+      <div className="dashboard__competitor-info">
+        <p className="dashboard__competitor-name">Ricardo</p>
       </div>
     </Link>
     <Link className="dashboard__competitor" to="/account/profile">

@@ -259,12 +259,12 @@
   }
 
   .dashboard__map-drivers {
-    background-color: #f5f5f5;
+    background-color: #2A2A31;
     border-radius: 5px;
-    padding: 8px;
+    padding: 15px 28px;
     position: absolute;
-    left: 75px;
-    bottom: 90px;
+    left: 47px;
+    bottom: 80px;
     // height: 40%;
     // width: 20%;
     // margin-top: -300px;
@@ -284,9 +284,11 @@
   .dashboard__drivers-title {
     color: gray;
     border-bottom-width: 0.3px;
-    border-bottom-color: black;
+    border-bottom-color: white;
     // padding-bottom: 5px;
-    padding-bottom: 8px;
+    color:white;
+    font-weight: bold;
+    padding-bottom: 12px;
   }
   //commerce
 
@@ -656,7 +658,7 @@
       content: "";
       position: absolute;
       height: 100%;
-      width: calc(100% + 18px);
+      width: calc(100% + 30px);
       top: 0;
       @include directify($directions) {
         #{directed('left')}: -10px;
@@ -674,6 +676,7 @@
 
       &:before {
         opacity: 0.3;
+        border-radius: 5px;
       }
     }
   }
