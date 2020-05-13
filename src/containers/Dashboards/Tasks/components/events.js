@@ -143,7 +143,7 @@ export default [
         end: new Date(2018, 3, 1),
         priority: 'high',
         lat: 57.009410,
-        lng: 93.8121612
+        lng: 93.8621612
       },
       {
         id: 1,
@@ -151,8 +151,8 @@ export default [
         start: new Date(2018, 3, 7, 12, 0, 0),
         end: new Date(2018, 3, 10),
         priority: 'high',
-        lat: 57.009441,
-        lng: 93.8121619
+        lat: 57.004441,
+        lng: 93.8921619
       },
 
       {
@@ -161,8 +161,8 @@ export default [
         start: new Date(2018, 2, 13, 0, 0, 0),
         end: new Date(2018, 2, 20, 0, 0, 0),
         priority: 'high',
-        lat: 57.009140,
-        lng: 93.8121617
+        lat: 57.002140,
+        lng: 93.7321617
       },
 
       {
@@ -175,15 +175,15 @@ export default [
         lng: 93.8121610
       },
 
-      {
-        id: 4,
-        title: 'Find blacksmith',
-        start: new Date(2018, 3, 9, 0, 0, 0),
-        end: new Date(2018, 3, 9, 0, 0, 0),
-        priority: 'family',
-        lat: 57.006412,
-        lng: 93.8121612
-      },
+      // {
+      //   id: 4,
+      //   title: 'Find blacksmith',
+      //   start: new Date(2018, 3, 9, 0, 0, 0),
+      //   end: new Date(2018, 3, 9, 0, 0, 0),
+      //   priority: 'family',
+      //   lat: 57.006412,
+      //   lng: 93.8121612
+      // },
     ]
   },
   {
@@ -193,7 +193,7 @@ export default [
       paradas: [
         {
           id: 0,
-          title: 'All Day Event very long title',
+          title: 'UNo',
           allDay: true,
           start: new Date(2018, 3, 0),
           end: new Date(2018, 3, 1),
@@ -203,7 +203,7 @@ export default [
         },
         {
           id: 1,
-          title: 'Escape from the Dragon',
+          title: 'Dos',
           start: new Date(2018, 3, 7, 12, 0, 0),
           end: new Date(2018, 3, 10),
           priority: 'high',
@@ -213,7 +213,7 @@ export default [
 
         {
           id: 2,
-          title: 'DTS STARTS',
+          title: 'Tres',
           start: new Date(2018, 2, 13, 0, 0, 0),
           end: new Date(2018, 2, 20, 0, 0, 0),
           priority: 'high',
@@ -223,7 +223,7 @@ export default [
 
         {
           id: 3,
-          title: 'DTS ENDS',
+          title: 'Cuatro',
           start: new Date(2018, 10, 6, 0, 0, 0),
           end: new Date(2018, 10, 13, 0, 0, 0),
           priority: 'high',
@@ -233,7 +233,7 @@ export default [
 
         {
           id: 4,
-          title: 'Find blacksmith',
+          title: 'Cinco',
           start: new Date(2018, 3, 9, 0, 0, 0),
           end: new Date(2018, 3, 9, 0, 0, 0),
           priority: 'family',

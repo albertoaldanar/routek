@@ -13,6 +13,24 @@ import retroMapStyle from './retroMapStyle.json';
 import darkMapStyle from './darkMapStyle.json';
 import nightMapStyle from './nightMapStyle.json';
 import UserAddIcon from 'mdi-react/UserAddIcon';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
+
+//OPCION 1 MARKER
+const icon2 = "https://raw.githubusercontent.com/Concept211/Google-Maps-Markers/master/images/marker_purple10.png"
+//red, black, blue, green, grey, orange, purple, white, yellow
+//OPCION 2 MARKER
+const icon3 = 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=3|000000|F5F5F5';
+
+var mIcon = {
+  path: "M 0,0 C -2,-20 -10,-22 -10,-30 A 10,10 0 1,1 10,-30 C 10,-22 2,-20 0,0 z",
+  fillOpacity: 1,
+  fillColor: 'gold',
+  strokeOpacity: 1,
+  strokeWeight: 0.4,
+  strokeColor: '#333',
+  scale: 1.3
+};
 
 const MainMap = compose(
   withProps({
@@ -29,7 +47,7 @@ const MainMap = compose(
   <GoogleMap
     defaultZoom={13}
     defaultCenter={{ lat: 56.009483, lng: 92.8121694 }}
-    defaultOptions={{ styles: blueMapStyle, mapTypeControl: false, streetViewControl: false, }}
+    defaultOptions={{ styles: nightMapStyle, mapTypeControl: false, streetViewControl: false, }}
   >
     {
       props.events.map(route => {
@@ -60,19 +78,13 @@ const MainMap = compose(
     {
       props.events.map(route => {
           console.log("routes=>", route);
-        return route.paradas.map(parada => {
+        return route.paradas.map((parada, index) => {
           console.log(parada.lng, parada.lat);
           return(
-              <Marker position={{ "lat": parada.lat, "lng": parada.lng}}>
-                <InfoBox options={{ closeBoxURL: '', enableEventPropagation: true }}>
-                  <div className="map__marker-label">
-                    <div className="map__marker-label-content">
-                      <div className="map__maker-label-close" onClick={props.onToggleOpen}><CloseIcon /></div>
-                      {route.color}
-                    </div>
-                  </div>
-                </InfoBox>
+            <div>
+              <Marker position={{ "lat": parada.lat, "lng": parada.lng}} icon={icon2}>
               </Marker>
+            </div>
           );
         })
       })
@@ -93,3 +105,51 @@ const MapView = (props) => (
 
 
 export default withTranslation('common')(MapView);
+
+
+
+// {
+//   "abonos":[
+//     {
+//       "apellidomat": "DFWSADF",
+//       "apellidopat": "FADFDS",
+//       "fechaAlta": "2019-03-25",
+//       "fechaVencimiento": "2021-03-20",
+//       "folio": 29985,
+//       "folioSeguro": 29985,
+//       "iduSeguro": 1,
+//       "importe": 0,
+//       "mesesSeguro": "1",
+//       "nombre": "AFA",
+//       "tipoAsegurado": "Adicional",
+//       "tipoPlan": "",
+//       "total": 0
+//     },
+//     {
+//       "apellidomat": "CAMPOS",
+//       "apellidopat": "QUINTERO",
+//       "fechaAlta": "2019-03-25",
+//       "fechaVencimiento": "2021-03-20",
+//       "folio": 49230,
+//       "folioSeguro": 49230,
+//       "iduSeguro": 5,
+//       "importe": 95,
+//       "mesesSeguro": "1",
+//       "nombre": "MARIA ISABEL",
+//       "tipoAsegurado": "Titular",
+//       "tipoPlan": "Quintuple                     ",
+//       "total": 95
+//     },
+
+//   ],
+//   "fechaSistema": "2020-04-09",
+//   "fechaVencimiento": "2020-06-11",
+//   "folioAbono": "2004090490000000047",
+//   "iduseguro": 1,
+//   "importeTotal": 95,
+//   "index": 29,
+//   "numeroCaja": "69",
+//   "numeroTienda": "490",
+//   "token": "10835456",
+//   "usuarioSistema": "90011322"
+// }
