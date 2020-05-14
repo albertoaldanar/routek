@@ -90,7 +90,6 @@ const MainMap = compose(
         return route.paradas.map((parada, index) => {
           console.log(parada.lng, parada.lat);
           return(
-
               <MarkerWithLabel
                 position={{ lat: parada.lat, lng: parada.lng }}
                 icon={mIcon(route.color)}
@@ -98,7 +97,15 @@ const MainMap = compose(
                 labelAnchor={new google.maps.Point(7, 40)}
                 labelStyle={{fontSize: "10px", padding: "2px", color: "#ffff"}}
               >
-                <FontAwesomeIcon icon="check-circle" />
+              {
+                parada.done ?
+                  <FontAwesomeIcon icon="check-circle" />
+                :
+                parada.working ?
+                  <div>Trabajando</div>
+                :
+                  <div>{ index + 1 }</div>
+              }
               </MarkerWithLabel>
           );
         })

@@ -143,7 +143,9 @@ export default [
         end: new Date(2018, 3, 1),
         priority: 'high',
         lat: 57.009410,
-        lng: 93.8621612
+        lng: 93.8621612,
+        done: false,
+        working: false
       },
       {
         id: 1,
@@ -152,7 +154,9 @@ export default [
         end: new Date(2018, 3, 10),
         priority: 'high',
         lat: 57.004441,
-        lng: 93.8921619
+        lng: 93.8921619,
+        done: true,
+        working: false
       },
 
       {
@@ -162,7 +166,9 @@ export default [
         end: new Date(2018, 2, 20, 0, 0, 0),
         priority: 'high',
         lat: 57.002140,
-        lng: 93.7321617
+        lng: 93.7321617,
+        done: false,
+        working: true
       },
 
       {
@@ -172,7 +178,9 @@ export default [
         end: new Date(2018, 10, 13, 0, 0, 0),
         priority: 'high',
         lat: 57.007433,
-        lng: 93.8121610
+        lng: 93.8121610,
+        done: true,
+        working: false
       },
 
       // {
@@ -199,7 +207,9 @@ export default [
           end: new Date(2018, 3, 1),
           priority: 'high',
           lat: 56.009410,
-          lng: 92.8121612
+          lng: 92.8121612,
+          done: true,
+          working: false
         },
         {
           id: 1,
@@ -208,7 +218,9 @@ export default [
           end: new Date(2018, 3, 10),
           priority: 'high',
           lat: 56.009441,
-          lng: 92.8121619
+          lng: 92.8121619,
+          done: true,
+          working: false
         },
 
         {
@@ -218,7 +230,9 @@ export default [
           end: new Date(2018, 2, 20, 0, 0, 0),
           priority: 'high',
           lat: 56.009140,
-          lng: 92.8121617
+          lng: 92.8121617,
+          done: false,
+          working: true
         },
 
         {
@@ -228,7 +242,9 @@ export default [
           end: new Date(2018, 10, 13, 0, 0, 0),
           priority: 'high',
           lat: 56.007433,
-          lng: 92.8121610
+          lng: 92.8121610,
+          done: false,
+          working: false
         },
 
         {
@@ -238,7 +254,9 @@ export default [
           end: new Date(2018, 3, 9, 0, 0, 0),
           priority: 'family',
           lat: 56.006412,
-          lng: 92.8121612
+          lng: 92.8121612,
+          done: false,
+          working: false
         },
       ]
     },
