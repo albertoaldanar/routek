@@ -16,6 +16,14 @@
     ]
   },
   {
+    "elementType": "labels.icon",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
     "elementType": "labels.text.stroke",
     "stylers": [
       {
@@ -37,7 +45,7 @@
     "elementType": "labels.text.fill",
     "stylers": [
       {
-        "color": "#64779e"
+        "visibility": "off"
       }
     ]
   },

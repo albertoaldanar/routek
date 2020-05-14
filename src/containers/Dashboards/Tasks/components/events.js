@@ -133,7 +133,7 @@ export default [
   {
     id: 1,
     driver: "Carlos Gutierrez",
-    color: "blue",
+    color: "#6495ED",
     paradas: [
       {
         id: 0,
@@ -189,7 +189,7 @@ export default [
   {
     id: 2,
     driver: "Pablo Hernandez",
-      color: "red",
+      color: "#DC143C",
       paradas: [
         {
           id: 0,
