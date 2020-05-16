@@ -20,6 +20,7 @@ import MapView from './components/MapView';
 import Calendar from "./components/Calendar";
 import events from "./components/events";
 import Drivers from "./components/drivers";
+import DriversList from "./components/driversList";
 
 class Tasks extends PureComponent {
   static propTypes = {
@@ -86,7 +87,7 @@ class Tasks extends PureComponent {
                     <Calendar events={events}/>
                 </TabPane>
                 <TabPane tabId="2">
-                  <MapView events={events}/>
+                  <MapView events={events} drivers={DriversList}/>
                   <Drivers />
                   <div className="dashboard__map-button">
                       <UncontrolledDropdown>
