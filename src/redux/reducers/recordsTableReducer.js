@@ -1,7 +1,7 @@
 import {
   CHANGE_CRYPTO_TABLE_DATA,
   DELETE_CRYPTO_TABLE_DATA,
-  LOAD_RECORDS_TABLE_DATA,
+  LOAD_CRYPTO_TABLE_DATA,
 } from '../actions/recordsTableActions';
 
 const initialState = {
@@ -192,7 +192,7 @@ const initialState = {
 
 export default function (state = initialState, action) {
   switch (action.type) {
-    case LOAD_RECORDS_TABLE_DATA: {
+    case LOAD_CRYPTO_TABLE_DATA: {
       const loadData = state.items[action.index];
       return { ...state, data: loadData };
     }

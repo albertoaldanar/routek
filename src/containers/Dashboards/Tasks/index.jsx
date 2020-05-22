@@ -21,31 +21,53 @@ import Calendar from "./components/Calendar";
 import events from "./components/events";
 import Drivers from "./components/drivers";
 import DriversList from "./components/driversList";
+import { getRoutes } from '../../../redux/actions/routesActions';
+// import { changeCryptoTableData, loadCryptoTableData } from '../../../redux/actions/cryptoTableActions';
 
 class Tasks extends PureComponent {
   static propTypes = {
     t: PropTypes.func.isRequired,
   };
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       activeTab: '1',
+      lat: 56.009483,
+      lng: 92.8121694,
+      driverSelected: null
     };
+  }
+
+  componentWillMount(){
+     this.props.getRoutes();
   }
 
   toggle = (tab) => {
     const { activeTab } = this.state;
     if (activeTab !== tab) {
       this.setState({
-        activeTab: tab,
+        activeTab: tab
       });
     }
   };
 
+  moveInMap(driver){
+    this.setState({
+      lat: driver.lat, lng: driver.lng, driverSelected: driver.name
+    })
+  }
+
+  resetDrivers(){
+    this.setState({
+      driverSelected: null
+    })
+  }
+
   render() {
-    const { t } = this.props;
-    const { activeTab } = this.state;
+    const { t, routes, rtl, getRoutes} = this.props;
+    const { activeTab, lat, lng, driverSelected } = this.state;
+    console.log("routes => ", routes);
 
     return (
       <Container className="dashboard">
@@ -87,8 +109,8 @@ class Tasks extends PureComponent {
                     <Calendar events={events}/>
                 </TabPane>
                 <TabPane tabId="2">
-                  <MapView events={events} drivers={DriversList}/>
-                  <Drivers />
+                  <MapView events={events} drivers={DriversList} lat={lat} lng={lng} showIcon={true} driverSelected={driverSelected} resetDrivers={this.resetDrivers.bind(this)} moveInMap={this.moveInMap.bind(this)}/>
+                  <Drivers drivers={DriversList} moveInMap={this.moveInMap.bind(this)}/>
                   <div className="dashboard__map-button">
                       <UncontrolledDropdown>
                         <DropdownToggle className="icon icon--right" color="success">
@@ -110,6 +132,15 @@ class Tasks extends PureComponent {
   }
 }
 
-export default connect(state => ({
+const mapStateToProps = state => ({
   rtl: state,
-}))(withTranslation('common')(Tasks));
+  routes: state.routes,
+});
+const mapDispatchToProps = dispatch => ({
+  getRoutes: () => dispatch(getRoutes()),
+});
+// const mapDispatchToProps = dispatch => ({
+//   getRoutes: () => dispatch(getRoutes()),
+// });
+
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation('common')(Tasks));

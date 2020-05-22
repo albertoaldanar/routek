@@ -46,8 +46,9 @@ class Records extends PureComponent {
   };
 
   render() {
-    const { recordsTable, t } = this.props;
+    const { recordsTable, t, routes } = this.props;
     const { activeTab } = this.state;
+    console.log("routes=> ", routes);
 
     return (
       <Container className="dashboard">
@@ -86,5 +87,6 @@ class Records extends PureComponent {
 
 export default connect(state => ({
   recordsTable: state.recordsTable.items,
+  routes: state.routes,
   rtl: state,
 }))(withTranslation('common')(Records));

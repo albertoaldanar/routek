@@ -43,14 +43,10 @@ const mIcon = (color) => (
 
 const carIcon = {
   url: 'https://snapledgers.com/wp-content/uploads/2018/03/source.gif',
-  scaledSize: new window.google.maps.Size(40, 40)
+  // scaledSize: new window.google.maps.Size(40, 40)
 }
 
-const handleMouseOver = e => {
-  console.log(e)
-};
-
-const MainMap = compose(
+const MapView = compose(
   withProps({
     // generate your API key
     googleMapURL: 'https://maps.googleapis.com/maps/api/js?key=AIzaSyA1PquORAjAjumChpMb1to9WHsifrBrjvs&callback=initMap'
@@ -62,102 +58,104 @@ const MainMap = compose(
   withScriptjs,
   withGoogleMap,
 )((props) => (
-  <GoogleMap
-    defaultZoom={14}
-    defaultCenter={{ lat: 56.009483, lng: 92.8121694 }}
-    defaultOptions={{ styles: darkMapStyle, mapTypeControl: false, streetViewControl: false, }}
-  >
-    {
-      props.events.map(route => {
-        console.log("routes=>", route);
-        var locations = [];
-        return route.paradas.map(parada => {
-          console.log(parada.lng, parada.lat);
-          locations.push({"lat": parada.lat, "lng": parada.lng});
-          return(
-            <Polyline
-              path={locations}
-              options={{
-              strokeColor: route.color,
-              strokeOpacity: 1,
-              strokeWeight: 2,
-              icons: [{
-                icon: "hello",
-                offset: '0',
-                repeat: '10px'
-              }],
-              }}
-            />
-          );
-        })
-      })
-    }
-
-    {
-      props.events.map(route => {
-          console.log("routes=>", route);
-        return route.paradas.map((parada, index) => {
-          console.log(parada.lng, parada.lat);
-          // "position": new google.maps.Point(index + 1 > 9 ? 9 : 5.4, 37), "style": { fontSize: index + 1 > 10 ? "12px" : "13px" , padding: "2px", color: "#ffff"}, "label": <div>{ index + 1 }</div>
-          const properties =
-                  parada.done ?
-                    {
-                      "position": new google.maps.Point(index + 1 > 9 ? 9 : 5.4, 50), "style" : {fontSize: index + 1 > 10 ? "12px" : "13px", padding: "2px", color: "#ffff"}, "label":  <div> { index + 1 }<FontAwesomeIcon style={{fontSize: "18px", marginLeft: "4px", marginBottom: "8px", color: "#4CE1B6"}} icon = "check-circle"/>  </div>
-                    }
-                  :
-                  parada.working ?
-                    {
-                      "position": new google.maps.Point(index + 1 > 9 ? 9 : 5.4, 50), "style" : {fontSize: index + 1 > 10 ? "12px" : "13px", padding: "2px", color: "#ffff"}, "label": <div> { index + 1 } <FontAwesomeIcon style={{fontSize: "18px", marginLeft: "4px", marginBottom: "8px"}} icon = "clock"/>  </div>
-                    }
-                  :
-
-                    {
-                      "position": new google.maps.Point(index + 1 > 9 ? 9 : 5.4, 37), "style": { fontSize: index + 1 > 10 ? "12px" : "13px" , padding: "2px", color: "#ffff"}, "label": <div>{ index + 1 }</div>
-                    }
-
-          return(
-              <MarkerWithLabel
-                position={{ lat: parada.lat, lng: parada.lng }}
-                icon={mIcon(route.color)}
-                draggable={true}
-                labelAnchor={properties.position}
-                labelStyle={properties.style}
-                onMouseOver={handleMouseOver("Hello")}
-              >
-                {properties.label}
-              </MarkerWithLabel>
-          );
-        })
-      })
-    }
-
-    {
-      props.drivers.map(driver => {
-        console.log(driver)
-        return(
-          <Marker
-            icon={carIcon}
-            position={{ lat: driver.lat, lng: driver.lng }}
-            draggable={true}
-          >
-          </Marker>
-        )
-      })
-    }
-
-
-  </GoogleMap>
-));
-
-const MapView = (props) => (
   <Col xs={12} md={12} lg={12}>
-    <MainMap isMarkerShown events={props.events} drivers={props.drivers}/>
-  </Col>
-);
+    <GoogleMap
+      defaultZoom={13}
+      defaultCenter={{ lat: props.lat, lng: props.lng }}
+      defaultOptions={{ styles: darkMapStyle, mapTypeControl: false, streetViewControl: false, }}
+      center={{lat: props.lat, lng: props.lng}}
+    >
+      {
+        props.events.map(route => {
+          var locations = [];
+          return route.paradas.map(parada => {
+            locations.push({"lat": parada.lat, "lng": parada.lng});
+            return(
+              <Polyline
+                path={locations}
+                options={{
+                strokeColor: route.color,
+                strokeOpacity: 1,
+                strokeWeight: 2,
+                icons: [{
+                  icon: "hello",
+                  offset: '0',
+                  repeat: '10px'
+                }],
+                }}
+              />
+            );
+          })
+        })
+      }
 
-// MapView.propTypes = {
-//   t: PropTypes.func.isRequired,
-// };
+      {
+        props.events.map(route => {
+          console.log("MAPA => ", props.lng, props.lat)
+          return route.paradas.map((parada, index) => {
+            // "position": new google.maps.Point(index + 1 > 9 ? 9 : 5.4, 37), "style": { fontSize: index + 1 > 10 ? "12px" : "13px" , padding: "2px", color: "#ffff"}, "label": <div>{ index + 1 }</div>
+            const properties =
+                    parada.done ?
+                      {
+                        "position": new google.maps.Point(index + 1 > 9 ? 9 : 5.4, 50), "style" : {fontSize: index + 1 > 10 ? "12px" : "13px", padding: "2px", color: "#ffff"}, "label":  <div> { index + 1 }<FontAwesomeIcon style={{fontSize: "18px", marginLeft: "4px", marginBottom: "8px", color: "#4CE1B6"}} icon = "check-circle"/>  </div>
+                      }
+                    :
+                    parada.working ?
+                      {
+                        "position": new google.maps.Point(index + 1 > 9 ? 9 : 5.4, 50), "style" : {fontSize: index + 1 > 10 ? "12px" : "13px", padding: "2px", color: "#ffff"}, "label": <div> { index + 1 } <FontAwesomeIcon style={{fontSize: "18px", marginLeft: "4px", marginBottom: "8px"}} icon = "clock"/>  </div>
+                      }
+                    :
+
+                      {
+                        "position": new google.maps.Point(index + 1 > 9 ? 9 : 5.4, 37), "style": { fontSize: index + 1 > 10 ? "12px" : "13px" , padding: "2px", color: "#ffff"}, "label": <div>{ index + 1 }</div>
+                      }
+
+            return(
+                <MarkerWithLabel
+                  position={{ lat: parada.lat, lng: parada.lng }}
+                  icon={mIcon(route.color)}
+                  draggable={true}
+                  labelAnchor={properties.position}
+                  labelStyle={properties.style}
+                >
+                  {properties.label}
+                </MarkerWithLabel>
+            );
+          })
+        })
+      }
+
+      {
+        props.drivers.map(driver => {
+          // console.log(driver)
+          return(
+            <Marker
+              icon={carIcon}
+              position={{ lat: driver.lat, lng: driver.lng }}
+              draggable={true}
+              onClick={props.moveInMap.bind(this,driver)}
+            >
+            {
+              props.showIcon && props.driverSelected == driver.name &&
+                (
+                  <InfoBox options={{ closeBoxURL: '', enableEventPropagation: true }}>
+                    <div className="map__marker-label">
+                      <div className="map__marker-label-content">
+                        <div className="map__maker-label-close" onClick={props.resetDrivers}><CloseIcon /></div>
+                          {driver.name}
+                      </div>
+                    </div>
+                  </InfoBox>
+                )
+            }
+            </Marker>
+          )
+        })
+      }
+
+    </GoogleMap>
+  </Col>
+));
 
 
 export default withTranslation('common')(MapView);

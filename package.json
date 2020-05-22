@@ -93,6 +93,7 @@
     "recompose": "^0.30.0",
     "redux": "^4.0.1",
     "redux-form": "^8.1.0",
+    "redux-thunk": "^2.3.0",
     "resolve": "^1.10.0",
     "slick-carousel": "^1.8.1",
     "smooth-scrollbar": "^8.3.1",

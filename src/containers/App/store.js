@@ -1,5 +1,6 @@
-import { combineReducers, createStore } from 'redux';
+import { combineReducers, createStore, applyMiddleware } from 'redux';
 import { reducer as reduxFormReducer } from 'redux-form';
+import thunk from 'redux-thunk';
 import {
   recordsTableReducer,
   newOrderTableReducer,
@@ -9,6 +10,7 @@ import {
   todoReducer,
   rtlReducer,
   authReducer,
+  routesReducer,
 } from '../../redux/reducers/index';
 
 const reducer = combineReducers({
@@ -21,7 +23,8 @@ const reducer = combineReducers({
   customizer: customizerReducer,
   todos: todoReducer,
   user: authReducer,
+  routes: routesReducer,
 });
-const store = createStore(reducer);
+const store = createStore(reducer, applyMiddleware(thunk));
 
 export default store;
