@@ -8,9 +8,10 @@ import {
   themeReducer,
   customizerReducer,
   todoReducer,
+  routesReducer,
   rtlReducer,
   authReducer,
-  routesReducer,
+
 } from '../../redux/reducers/index';
 
 const reducer = combineReducers({

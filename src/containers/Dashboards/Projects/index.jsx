@@ -70,5 +70,5 @@ class Projects extends Component {
 // };
 
 export default compose(withTranslation('common'), connect(state => ({
-  rtl: state,
+  rtl: state.rtl,
 })))(Projects);

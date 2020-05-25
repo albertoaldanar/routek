@@ -4,7 +4,7 @@ import {
 } from '../actions/sidebarActions';
 
 const initialState = {
-  show: false,
+  show: true,
   collapse: false,
 };
 

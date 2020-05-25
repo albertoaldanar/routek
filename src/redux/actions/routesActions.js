@@ -4,10 +4,10 @@ export const CREATE_ROUTE = 'CREATE_ROUTE';
 export const UPDATE_ROUTE = 'UPDATE_ROUTE';
 export const FILTER_ROUTE = 'FILTER_ROUTE';
 
-export function getAllRoutes(data) {
+export function getAllRoutes(routes) {
   return {
     type: GET_ALL_ROUTES,
-    data,
+    routes,
   };
 }
 
@@ -36,22 +36,6 @@ export function getRoutes(){
         fixedRoute: true,
         name: "ruta-primavera-2020-6-12*01",
         key: "2020-6-12*01",
-        driver: {
-          id: 2,
-          color: "#6495ED",
-          name: "Alfonso",
-          lastName: "Bermudez",
-          onDutty: true,
-          locations: {
-            lat: 57.109410,
-            lng: 93.3921619,
-          },
-          car: {
-            name: "Cangu",
-            color: "white",
-            number: "A-F67C42"
-          }
-        },
         status: 0,
         paradas: [
           {
@@ -66,8 +50,23 @@ export function getRoutes(){
             lng: 93.8621612,
             done: false,
             working: false,
-            driverId: 2,
-            client: "DAFI"
+            client: "DAFI",
+            driver: {
+              id: 2,
+              color: "#6495ED",
+              name: "Alfonso",
+              lastName: "Bermudez",
+              onDutty: true,
+              locations: {
+                lat: 57.109410,
+                lng: 93.3921619,
+              },
+              car: {
+                name: "Cangu",
+                color: "white",
+                number: "A-F67C42"
+              }
+            }
           },
           {
             id: 1,
@@ -78,9 +77,24 @@ export function getRoutes(){
             lat: 57.004441,
             lng: 93.8921619,
             done: true,
-            working: false
+            working: false,
+            driver: {
+              id: 2,
+              color: "#6495ED",
+              name: "Alfonso",
+              lastName: "Bermudez",
+              onDutty: true,
+              locations: {
+                lat: 57.409410,
+                lng: 93.2921619,
+              },
+              car: {
+                name: "Cangu",
+                color: "white",
+                number: "A-F67C42"
+              }
+            }
           },
-
           {
             id: 2,
             title: 'DTS STARTS',
@@ -90,27 +104,29 @@ export function getRoutes(){
             lat: 57.002140,
             lng: 93.7321617,
             done: false,
-            working: true
-          },
-
-          {
-            id: 3,
-            title: 'DTS ENDS',
-            start: new Date(2018, 10, 6, 0, 0, 0),
-            end: new Date(2018, 10, 13, 0, 0, 0),
-            priority: 'high',
-            lat: 57.007433,
-            lng: 93.8121610,
-            done: true,
-            working: false
-          },
+            working: true,
+            driver: {
+              id: 2,
+              color: "#8A2BE2",
+              name: "Raul",
+              lastName: "Bermudez",
+              onDutty: true,
+              locations: {
+                lat: 57.209410,
+                lng: 93.1921619,
+              },
+              car: {
+                name: "Tsuru",
+                color: "white",
+                number: "A-F67C42"
+              }
+            }
+          }
         ]
       },
       {
         id: 2,
-        driver: "Pablo Hernandez",
-          color: "#DC143C",
-          paradas: [
+        paradas: [
             {
               id: 0,
               title: 'UNo',
@@ -118,10 +134,26 @@ export function getRoutes(){
               start: new Date(2018, 3, 0),
               end: new Date(2018, 3, 1),
               priority: 'high',
-              lat: 56.009410,
-              lng: 92.8121612,
+              lat: 56.109410,
+              lng: 92.9121612,
               done: true,
-              working: false
+              working: false,
+              driver: {
+                id: 2,
+                color: "#5F9EA0",
+                name: "Sebastian",
+                lastName: "Bermudez",
+                onDutty: true,
+                locations: {
+                  lat: 57.209410,
+                  lng: 93.1921619,
+                },
+                car: {
+                  name: "Sentra",
+                  color: "white",
+                  number: "A-F67C42"
+                }
+              }
             },
             {
               id: 1,
@@ -132,52 +164,66 @@ export function getRoutes(){
               lat: 56.009441,
               lng: 92.8121619,
               done: true,
-              working: false
-            },
+              working: false,
+              driver: {
+                id: 2,
+                color: "#FF7F50",
+                name: "Sebastian",
+                lastName: "Bermudez",
+                onDutty: true,
+                locations: {
+                  lat: 57.209410,
+                  lng: 93.1921619,
+                },
+                car: {
+                  name: "Sentra",
+                  color: "white",
+                  number: "A-F67C42"
+                }
+              }
+            }
 
-            {
-              id: 2,
-              title: 'Tres',
-              start: new Date(2018, 2, 13, 0, 0, 0),
-              end: new Date(2018, 2, 20, 0, 0, 0),
-              priority: 'high',
-              lat: 56.009140,
-              lng: 92.8121617,
-              done: false,
-              working: true
-            },
+            // {
+            //   id: 2,
+            //   title: 'Tres',
+            //   start: new Date(2018, 2, 13, 0, 0, 0),
+            //   end: new Date(2018, 2, 20, 0, 0, 0),
+            //   priority: 'high',
+            //   lat: 56.009140,
+            //   lng: 92.8121617,
+            //   done: false,
+            //   working: true
+            // },
 
-            {
-              id: 3,
-              title: 'Cuatro',
-              start: new Date(2018, 10, 6, 0, 0, 0),
-              end: new Date(2018, 10, 13, 0, 0, 0),
-              priority: 'high',
-              lat: 56.007433,
-              lng: 92.8121610,
-              done: false,
-              working: false
-            },
+            // {
+            //   id: 3,
+            //   title: 'Cuatro',
+            //   start: new Date(2018, 10, 6, 0, 0, 0),
+            //   end: new Date(2018, 10, 13, 0, 0, 0),
+            //   priority: 'high',
+            //   lat: 56.007433,
+            //   lng: 92.8121610,
+            //   done: false,
+            //   working: false
+            // },
 
-            {
-              id: 4,
-              title: 'Cinco',
-              start: new Date(2018, 3, 9, 0, 0, 0),
-              end: new Date(2018, 3, 9, 0, 0, 0),
-              priority: 'family',
-              lat: 56.006412,
-              lng: 92.8121612,
-              done: false,
-              working: false
-            },
-          ]
-        },
+            // {
+            //   id: 4,
+            //   title: 'Cinco',
+            //   start: new Date(2018, 3, 9, 0, 0, 0),
+            //   end: new Date(2018, 3, 9, 0, 0, 0),
+            //   priority: 'family',
+            //   lat: 56.006412,
+            //   lng: 92.8121612,
+            //   done: false,
+            //   working: false
+            // },
+        ]
+      },
     ]
 
     dispatch(getAllRoutes(json));
   }
-
-
     // return fetch(`${HOST}/api/v1/rooms?address=${filter.address}&start_date=${filter.startDate}&end_date=${filter.endDate}}`)
     //   .then(response => response.json())
     //   .then(json => {

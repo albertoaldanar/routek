@@ -29,6 +29,7 @@ class Tasks extends PureComponent {
     t: PropTypes.func.isRequired,
   };
 
+
   constructor(props) {
     super(props);
     this.state = {
@@ -37,10 +38,12 @@ class Tasks extends PureComponent {
       lng: 92.8121694,
       driverSelected: null
     };
+
   }
 
   componentWillMount(){
      this.props.getRoutes();
+     console.log("Component mounted");
   }
 
   toggle = (tab) => {
@@ -67,7 +70,7 @@ class Tasks extends PureComponent {
   render() {
     const { t, routes, rtl, getRoutes} = this.props;
     const { activeTab, lat, lng, driverSelected } = this.state;
-    console.log("routes => ", routes);
+    console.log("R=> ", routes);
 
     return (
       <Container className="dashboard">
@@ -109,7 +112,13 @@ class Tasks extends PureComponent {
                     <Calendar events={events}/>
                 </TabPane>
                 <TabPane tabId="2">
-                  <MapView events={events} drivers={DriversList} lat={lat} lng={lng} showIcon={true} driverSelected={driverSelected} resetDrivers={this.resetDrivers.bind(this)} moveInMap={this.moveInMap.bind(this)}/>
+                  <MapView
+                    events={events}
+                    drivers={DriversList}
+                    routes = {routes}
+                    lat={lat} lng={lng}
+                    showIcon={true} driverSelected={driverSelected}
+                    resetDrivers={this.resetDrivers.bind(this)} moveInMap={this.moveInMap.bind(this)}/>
                   <Drivers drivers={DriversList} moveInMap={this.moveInMap.bind(this)}/>
                   <div className="dashboard__map-button">
                       <UncontrolledDropdown>
@@ -136,11 +145,10 @@ const mapStateToProps = state => ({
   rtl: state,
   routes: state.routes,
 });
+
 const mapDispatchToProps = dispatch => ({
   getRoutes: () => dispatch(getRoutes()),
 });
-// const mapDispatchToProps = dispatch => ({
-//   getRoutes: () => dispatch(getRoutes()),
-// });
 
 export default connect(mapStateToProps, mapDispatchToProps)(withTranslation('common')(Tasks));
+

@@ -19,15 +19,14 @@ import TotalBookings from './components/TotalBookings';
 import BookingCancels from './components/BookingCancels';
 import RecordsList from './components/RecordsList';
 import SearchRow from "./components/SearchRow";
-import { CryptoTableProps } from '../../../shared/prop-types/TablesProps';
 import ChevronDownIcon from 'mdi-react/ChevronDownIcon';
 import UserAddIcon from 'mdi-react/UserAddIcon';
 
 class Records extends PureComponent {
-  static propTypes = {
-    recordsTable: CryptoTableProps.isRequired,
-    t: PropTypes.func.isRequired,
-  };
+  // static propTypes = {
+  //   recordsTable: CryptoTableProps.isRequired,
+  //   t: PropTypes.func.isRequired,
+  // };
 
   constructor() {
     super();
@@ -46,9 +45,8 @@ class Records extends PureComponent {
   };
 
   render() {
-    const { recordsTable, t, routes } = this.props;
+    const { t } = this.props;
     const { activeTab } = this.state;
-    console.log("routes=> ", routes);
 
     return (
       <Container className="dashboard">
@@ -77,16 +75,15 @@ class Records extends PureComponent {
         <Row>
           <SearchRow />
         </Row>
-        <Row>
-          <RecordsList recordsTable={recordsTable} />
-        </Row>
+
       </Container>
     );
   }
 }
 
-export default connect(state => ({
-  recordsTable: state.recordsTable.items,
-  routes: state.routes,
-  rtl: state,
-}))(withTranslation('common')(Records));
+// const mapStateToProps = state => ({
+//   recordsTable: state.recordsTable.items,
+// });
+
+
+export default withTranslation('common')(Records);

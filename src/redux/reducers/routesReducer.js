@@ -1,27 +1,25 @@
 /* eslint-disable */
 import { GET_ALL_ROUTES } from "../actions/routesActions";
 
-const initialState= {
-  rooms: [],
-  room: null,
-  filter: {
-    address: "",
-    startDate: "",
-    endDate: ""
-  }
-}
+const initialState = {
+  routes: [{
 
+  }],
+  loaded: false
+}
 export default function(state = initialState, action){
 
   switch (action.type) {
     case GET_ALL_ROUTES:
       return {
-        routes: action.data
+        ...state,
+        routes: action.routes,
+        loaded: true
       }
     // case CHANGE_DIRECTION_TO_RTL:
     //   return { direction: 'rtl' };
     default:
-      return state;
+      return state
   }
 
 }

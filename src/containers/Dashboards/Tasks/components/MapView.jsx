@@ -1,11 +1,12 @@
 /* eslint-disable */
-import React from 'react';
+import React, { Component } from 'react';
 import { Col, Button } from 'reactstrap';
 import { compose, withProps, withStateHandlers } from 'recompose';
 import { GoogleMap, Marker, withGoogleMap, withScriptjs, Polyline} from 'react-google-maps';
 import { withTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 import CloseIcon from 'mdi-react/CloseIcon';
+import { connect } from 'react-redux';
 import { InfoBox } from 'react-google-maps/lib/components/addons/InfoBox';
 import silverMapStyle from './silverMapStyle.json';
 import blueMapStyle from './blueMapStyle.json';
@@ -16,7 +17,7 @@ import UserAddIcon from 'mdi-react/UserAddIcon';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {MarkerWithLabel} from "react-google-maps/lib/components/addons/MarkerWithLabel";
 import CheckCircleIcon from 'mdi-react/CheckCircleIcon';
-import { faCoffee } from '@fortawesome/fontawesome-free-solid'
+import { faCoffee } from '@fortawesome/fontawesome-free-solid';
 
 //OPCION 1 MARKER
 const icon2 = "https://raw.githubusercontent.com/Concept211/Google-Maps-Markers/master/images/marker_purple10.png"
@@ -58,15 +59,16 @@ const MapView = compose(
   withScriptjs,
   withGoogleMap,
 )((props) => (
-  <Col xs={12} md={12} lg={12}>
+   <Col xs={12} md={12} lg={12}>
     <GoogleMap
       defaultZoom={13}
       defaultCenter={{ lat: props.lat, lng: props.lng }}
       defaultOptions={{ styles: darkMapStyle, mapTypeControl: false, streetViewControl: false, }}
       center={{lat: props.lat, lng: props.lng}}
     >
+
       {
-        props.events.map(route => {
+        props.routes.routes.map(route => {
           var locations = [];
           return route.paradas.map(parada => {
             locations.push({"lat": parada.lat, "lng": parada.lng});
@@ -74,7 +76,7 @@ const MapView = compose(
               <Polyline
                 path={locations}
                 options={{
-                strokeColor: route.color,
+                strokeColor: "#D3D3D3",
                 strokeOpacity: 1,
                 strokeWeight: 2,
                 icons: [{
@@ -90,7 +92,7 @@ const MapView = compose(
       }
 
       {
-        props.events.map(route => {
+        props.routes.routes.map(route => {
           console.log("MAPA => ", props.lng, props.lat)
           return route.paradas.map((parada, index) => {
             // "position": new google.maps.Point(index + 1 > 9 ? 9 : 5.4, 37), "style": { fontSize: index + 1 > 10 ? "12px" : "13px" , padding: "2px", color: "#ffff"}, "label": <div>{ index + 1 }</div>
@@ -113,7 +115,7 @@ const MapView = compose(
             return(
                 <MarkerWithLabel
                   position={{ lat: parada.lat, lng: parada.lng }}
-                  icon={mIcon(route.color)}
+                  icon={mIcon(parada.driver.color)}
                   draggable={true}
                   labelAnchor={properties.position}
                   labelStyle={properties.style}
@@ -133,7 +135,7 @@ const MapView = compose(
               icon={carIcon}
               position={{ lat: driver.lat, lng: driver.lng }}
               draggable={true}
-              onClick={props.moveInMap.bind(this,driver)}
+              onClick={props.moveInMap.bind(this, driver)}
             >
             {
               props.showIcon && props.driverSelected == driver.name &&
@@ -152,7 +154,6 @@ const MapView = compose(
           )
         })
       }
-
     </GoogleMap>
   </Col>
 ));
