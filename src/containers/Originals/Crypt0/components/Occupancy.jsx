@@ -5,7 +5,7 @@ import {
 } from 'recharts';
 import { withTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
-import { Table } from 'reactstrap';
+// import { Table } from 'reactstrap';
 import Panel from '../../../../shared/components/Panel';
 import OccupancyTooltipContent from './OccupancyTooltipContent';
 
@@ -88,52 +88,7 @@ class Occupancy extends PureComponent {
           </ResponsiveContainer>
         </div>
         <hr />
-        <div>
-          <Table responsive className="table dashboard__occupancy-table">
-            <tbody>
-              <tr>
-                <td className="td-head">Arrivals</td>
-                <td className="td-blue">24</td>
-                <td className="td-blue">74</td>
-                <td className="td-blue">54</td>
-                <td className="td-blue">57</td>
-                <td className="td-blue">32</td>
-                <td className="td-blue">68</td>
-                <td className="td-blue">53</td>
-              </tr>
-              <tr>
-                <td className="td-head">Departures</td>
-                <td className="td-green">75</td>
-                <td className="td-green">65</td>
-                <td className="td-green">46</td>
-                <td className="td-green">35</td>
-                <td className="td-green">65</td>
-                <td className="td-green">21</td>
-                <td className="td-green">34</td>
-              </tr>
-              <tr>
-                <td className="td-head">Stay overs</td>
-                <td className="td-gray">3113</td>
-                <td className="td-gray">2424</td>
-                <td className="td-gray">4545</td>
-                <td className="td-gray">4543</td>
-                <td className="td-gray">3432</td>
-                <td className="td-gray">3211</td>
-                <td className="td-gray">2112</td>
-              </tr>
-              <tr>
-                <td className="td-head">Customers</td>
-                <td className="td-gray">131</td>
-                <td className="td-gray">133</td>
-                <td className="td-gray">343</td>
-                <td className="td-gray">342</td>
-                <td className="td-gray">351</td>
-                <td className="td-gray">234</td>
-                <td className="td-gray">242</td>
-              </tr>
-            </tbody>
-          </Table>
-        </div>
+
       </Panel>
     );
   }

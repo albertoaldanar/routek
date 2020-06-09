@@ -26,6 +26,9 @@ const icon2 = "https://raw.githubusercontent.com/Concept211/Google-Maps-Markers/
 const icon3 = 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=3|000000|F5F5F5';
 
 const css = {fontSize: "white"}
+
+let ref
+
 const mIcon = (color) => (
   {
     path: "M 0,0 C -2,-20 -10,-22 -10,-30 A 10,10 0 1,1 10,-30 C 10,-22 2,-20 0,0 z",
@@ -62,9 +65,13 @@ const MapView = compose(
    <Col xs={12} md={12} lg={12}>
     <GoogleMap
       defaultZoom={13}
+      ref={(mapRef) => ref = mapRef}
       defaultCenter={{ lat: props.lat, lng: props.lng }}
       defaultOptions={{ styles: darkMapStyle, mapTypeControl: false, streetViewControl: false, }}
       center={{lat: props.lat, lng: props.lng}}
+      onCenterChanged={(e) => {
+          props.setCenter(ref.getCenter(e).toJSON())
+      }}
     >
 
       {

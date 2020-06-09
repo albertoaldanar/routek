@@ -13,8 +13,9 @@ const SquareButtons = ({ t }) => (
           <h5 className="bold-text">{t('ui_elements.buttons.square_buttons')}</h5>
           <h5 className="subhead">Use default button with class <span className="red-text">square</span></h5>
         </div>
+        <Button color="primary" className="but">Minimal</Button>
         <ButtonToolbar>
-          <Button className="square" outline>Minimal</Button>
+          <Button>Minimal</Button>
           <Button className="square">Secondary</Button>
           <Button disabled className="square">Disabled</Button>
           <Button color="primary" className="square">Primary</Button>

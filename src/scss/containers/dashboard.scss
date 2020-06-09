@@ -259,12 +259,18 @@
   }
 
   .dashboard__map-drivers {
+    @include themify($themes) {
+      background-color: themed('localizeDriver');
+    }
     background-color: #2A2A31;
     border-radius: 5px;
     padding: 15px 28px;
     position: absolute;
     left: 47px;
     bottom: 80px;
+    max-height: 362px;
+    min-height: 362px;
+    overflow-y: scroll;
     // height: 40%;
     // width: 20%;
     // margin-top: -300px;

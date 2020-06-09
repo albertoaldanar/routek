@@ -38,4 +38,11 @@ export default [
     lng: 92.8921612,
     profile: 'https://www.scripturaengage.com/wp-content/uploads/2018/01/Profile-Picture-Jim-Verbist-2-Circle.png'
   },
-];
+  {
+    id: 4,
+    name: 'Fernando',
+    lat: 56.299410,
+    lng: 92.8921612,
+    profile: 'https://www.scripturaengage.com/wp-content/uploads/2018/01/Profile-Picture-Jim-Verbist-2-Circle.png'
+  },
+]

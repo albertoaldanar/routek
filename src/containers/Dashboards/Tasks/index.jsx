@@ -46,6 +46,16 @@ class Tasks extends PureComponent {
      console.log("Component mounted");
   }
 
+  setCenter(values) {
+
+    this.setState({
+      lat: values.lat,
+      lng: values.lng
+    });
+
+    console.log(values);
+  }
+
   toggle = (tab) => {
     const { activeTab } = this.state;
     if (activeTab !== tab) {
@@ -118,7 +128,7 @@ class Tasks extends PureComponent {
                     routes = {routes}
                     lat={lat} lng={lng}
                     showIcon={true} driverSelected={driverSelected}
-                    resetDrivers={this.resetDrivers.bind(this)} moveInMap={this.moveInMap.bind(this)}/>
+                    resetDrivers={this.resetDrivers.bind(this)} moveInMap={this.moveInMap.bind(this)} setCenter={this.setCenter.bind(this)}/>
                   <Drivers drivers={DriversList} moveInMap={this.moveInMap.bind(this)}/>
                   <div className="dashboard__map-button">
                       <UncontrolledDropdown>

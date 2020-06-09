@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { Component, Fragment } from 'react';
 import { connect, Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';

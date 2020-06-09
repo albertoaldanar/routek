@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { PureComponent } from 'react';
 import { Pie, PieChart, ResponsiveContainer } from 'recharts';
 import { withTranslation } from 'react-i18next';

@@ -9,7 +9,7 @@ import { compose } from 'redux';
 import ProjectList from "./components/projectList";
 import projectsFake from "./components/projectsFake";
 import PropTypes from 'prop-types';
-import UserAddIcon from 'mdi-react/UserAddIcon';
+import DotsVerticalIcon from 'mdi-react/DotsVerticalIcon';
 
 class Projects extends Component {
 
@@ -53,7 +53,7 @@ class Projects extends Component {
           <Col md={12} className="dashboard__title-and-button">
             <h3 className="page-title">Gestión de proyectos</h3>
             <Button color="success" className="dashboard__add-team icon">
-              <UserAddIcon /> {t('projects.add_project')}
+              <DotsVerticalIcon /> {t('projects.add_project')}
             </Button>
           </Col>
         </Row>

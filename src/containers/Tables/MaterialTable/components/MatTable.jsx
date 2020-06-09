@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { PureComponent } from 'react';
 import { Card, CardBody, Col } from 'reactstrap';
 import Table from '@material-ui/core/Table';
@@ -8,6 +9,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Checkbox from '@material-ui/core/Checkbox';
 import MatTableHead from './MatTableHead';
 import MatTableToolbar from './MatTableToolbar';
+import ModalComponent from "./modal";
 
 let counter = 0;
 
@@ -46,20 +48,50 @@ export default class MatTable extends PureComponent {
     order: 'asc',
     orderBy: 'calories',
     selected: new Map([]),
-    data: [
-      createData('Cupcake', 305, 3.7, 67, 4.3),
-      createData('Donut', 452, 25.0, 51, 4.9),
-      createData('Eclair', 262, 16.0, 24, 6.0),
-      createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-      createData('Gingerbread', 356, 16.0, 49, 3.9),
-      createData('Honeycomb', 408, 3.2, 87, 6.5),
-      createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-      createData('Jelly Bean', 375, 0.0, 94, 0.0),
-      createData('KitKat', 518, 26.0, 65, 7.0),
-      createData('Lollipop', 392, 0.2, 98, 0.0),
-      createData('Marshmallow', 318, 0, 81, 2.0),
-      createData('Nougat', 360, 19.0, 9, 37.0),
-      createData('Oreo', 437, 18.0, 63, 4.0),
+    // data: [
+    //   createData('Cupcake', 305, 3.7, 67, 4.3, 3.7, 67, 4.3),
+    //   createData('Donut', 452, 25.0, 51, 4.9),
+    //   createData('Eclair', 262, 16.0, 24, 6.0),
+    //   createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
+    //   createData('Gingerbread', 356, 16.0, 49, 3.9),
+    //   createData('Honeycomb', 408, 3.2, 87, 6.5),
+    //   createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
+    //   createData('Jelly Bean', 375, 0.0, 94, 0.0),
+    //   createData('KitKat', 518, 26.0, 65, 7.0, 4.3, 3.7, 67, 4.3),
+    //   createData('Lollipop', 392, 0.2, 98, 0.0),
+    //   createData('Marshmallow', 318, 0, 81, 2.0),
+    //   createData('Nougat', 360, 19.0, 9, 37.0),
+    //   createData('Oreo', 437, 18.0, 63, 4.0),
+    // ],
+    data : [
+      {
+        id: 0,
+        fecha: "16/03/2010",
+        cliente: "Alberto Aldana Ríos",
+        tienda: 139459,
+        metodo: "tarjeta",
+        monto: 150606,
+        empleado: 90011322,
+        mongo: 15066,
+        cDigital: 9059,
+        carteraLinea: 1202,
+        etl: 1394,
+        controlTienda: 0
+      },
+      {
+        id: 1,
+        fecha: "16/03/2010",
+        cliente: "Alberto Aldana Ríos",
+        tienda: 139459,
+        metodo: "tarjeta",
+        monto: 150606,
+        empleado: 90011322,
+        mongo: 15066,
+        cDigital: 9059,
+        carteraLinea: 1202,
+        etl: 1394,
+        controlTienda: 0
+      }
     ],
     page: 0,
     rowsPerPage: 5,
@@ -130,6 +162,7 @@ export default class MatTable extends PureComponent {
     const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - (page * rowsPerPage));
 
     return (
+
       <Col md={12} lg={12}>
         <Card>
           <CardBody>
@@ -157,6 +190,7 @@ export default class MatTable extends PureComponent {
                     .slice(page * rowsPerPage, (page * rowsPerPage) + rowsPerPage)
                     .map((d) => {
                       const isSelected = this.isSelected(d.id);
+                      console.log("data => ", d)
                       return (
                         <TableRow
                           className="material-table__row"
@@ -171,28 +205,69 @@ export default class MatTable extends PureComponent {
                             <Checkbox checked={isSelected} className="material-table__checkbox" />
                           </TableCell>
                           <TableCell
-                            className="material-table__cell material-table__cell-right"
                             component="th"
                             scope="row"
                             padding="none"
                           >
-                            {d.name}
+                            <div className ="detalles__cell">
+                              <p className ="detalles_label">Detalles</p>
+                            </div>
                           </TableCell>
                           <TableCell
-                            className="material-table__cell material-table__cell-right"
-                          >{d.calories}
+                            className="material-table__cell material-table__cell-row"
+                          >
+                            <p>{d.fecha}</p>
+                          </TableCell>
+                          <TableCell>
+                            <div className ="cliente__cell">
+                              <p>{d.cliente}</p>
+                            </div>
                           </TableCell>
                           <TableCell
-                            className="material-table__cell material-table__cell-right"
-                          >{d.fat}
+                            className="material-table__cell material-table__cell-row"
+                          >
+                            <p>{d.tienda}</p>
                           </TableCell>
                           <TableCell
-                            className="material-table__cell material-table__cell-right"
-                          >{d.carbs}
+                            className="material-table__cell material-table__cell-row"
+                          >
+                            <p>{d.metodo}</p>
                           </TableCell>
                           <TableCell
-                            className="material-table__cell material-table__cell-right"
-                          >{d.protein}
+                            className="material-table__cell material-table__cell-row"
+                          >
+                            <p>{d.monto}</p>
+                          </TableCell>
+                          <TableCell
+                            className="material-table__cell material-table__cell-row"
+                          >
+                            <p>{d.empleado}</p>
+                          </TableCell>
+                          <TableCell
+                            className="material-table__cell material-table__cell-row"
+                          >
+                            <p>{d.mongo}</p>
+                          </TableCell>
+                           <TableCell
+                            className="material-table__cell material-table__cell-row"
+                          >
+                            <p>{d.cDigital}</p>
+                          </TableCell>
+                          <TableCell
+                            className="material-table__cell material-table__cell-row"
+                          >
+                            <p>{d.carteraLinea}</p>
+                          </TableCell>
+                          <TableCell
+                            className="material-table__cell material-table__cell-row"
+                          >
+                            <p>{d.etl}</p>
+                          </TableCell>
+                          <TableCell
+                          >
+                            <div className ="controltiendas__label">
+                              <p >{d.controlTienda}</p>
+                            </div>
                           </TableCell>
                         </TableRow>
                       );

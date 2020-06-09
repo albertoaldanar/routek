@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -10,20 +11,42 @@ import { RTLProps } from '../../../../shared/prop-types/ReducerProps';
 
 const rows = [
   {
-    id: 'name', disablePadding: true, label: 'Dessert (100g serving)',
+    id: 'seleccionarTodo', disablePadding: true, label: 'Seleccionar todo',
   },
   {
-    id: 'calories', disablePadding: false, label: 'Calories',
+    id: 'fecha', disablePadding: true, label: 'Fecha',
   },
   {
-    id: 'fat', disablePadding: false, label: 'Fat (g)',
+    id: 'cliente', disablePadding: true, label: 'Cliente',
   },
   {
-    id: 'carbs', disablePadding: false, label: 'Carbs (g)',
+    id: 'tiends', disablePadding: true, label: 'Tienda',
   },
   {
-    id: 'protein', disablePadding: false, label: 'Protein (g)',
+    id: 'Metodo', disablePadding: true, label: 'Metodo',
   },
+  {
+    id: 'Monto', disablePadding: true, label: 'Monto',
+  },
+  {
+    id: 'Empleado', disablePadding: true, label: 'Empleado',
+  },
+  {
+    id: 'Mongo', disablePadding: true, label: 'Mongo', canal: true
+  },
+  {
+    id: 'Cdigital', disablePadding: true, label: 'Cdigital', canal: true
+  },
+  {
+    id: 'Cartera en linea', disablePadding: true, label: 'Cartera en linea', canal: true
+  },
+  {
+    id: 'Com_ETL', disablePadding: true, label: 'Com_ETL', canal: true
+  },
+  {
+    id: 'Control Tiendas', disablePadding: true, label: 'Control Tiendas', canal: true
+  },
+
 ];
 
 class MatTableHead extends PureComponent {
@@ -48,7 +71,7 @@ class MatTableHead extends PureComponent {
     } = this.props;
 
     return (
-      <TableHead>
+      <TableHead className ="table__header">
         <TableRow>
           <TableCell padding="checkbox">
             <Checkbox
@@ -60,7 +83,7 @@ class MatTableHead extends PureComponent {
           </TableCell>
           {rows.map(row => (
             <TableCell
-              className="material-table__cell material-table__cell--sort material-table__cell-right"
+              className={row.canal ? "material-table__cell material-table__cell--sort material-table__cell-canal": "material-table__cell material-table__cell--sort material-table__cell-right"}
               key={row.id}
               align={rtl.direction === 'rtl' ? 'right' : 'left'}
               padding={row.disablePadding ? 'none' : 'default'}
@@ -73,7 +96,7 @@ class MatTableHead extends PureComponent {
                 className="material-table__sort-label"
                 dir="ltr"
               >
-                {row.label}
+               <p> {row.label} </p>
               </TableSortLabel>
             </TableCell>
           ), this)}

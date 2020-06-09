@@ -18,6 +18,10 @@
     }
   }
 
+  &.but{
+    border-radius: 50px;
+  }
+
   &:before {
     position: absolute;
     height: 0;

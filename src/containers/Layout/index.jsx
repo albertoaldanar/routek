@@ -28,7 +28,7 @@ let notification = null;
 const showNotification = (rtl) => {
   notification.notice({
     content: <BasicNotification
-      title="👋 Welcome to the EasyDev!"
+      title="👋 Welcome to the Alberto!"
       message="You have successfully registered in the EasyDev. Now you can start to explore the dashboard
                 interface with a bunch of components and applications. Enjoy!"
     />,
