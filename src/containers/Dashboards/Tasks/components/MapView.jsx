@@ -50,6 +50,8 @@ const carIcon = {
   // scaledSize: new window.google.maps.Size(40, 40)
 }
 
+
+
 const MapView = compose(
   withProps({
     // generate your API key
@@ -67,7 +69,11 @@ const MapView = compose(
       defaultZoom={13}
       ref={(mapRef) => ref = mapRef}
       defaultCenter={{ lat: props.lat, lng: props.lng }}
-      defaultOptions={{ styles: darkMapStyle, mapTypeControl: false, streetViewControl: false, }}
+      defaultOptions={{
+        styles: props.theme.className == "theme-dark" ? darkMapStyle : silverMapStyle,
+        mapTypeControl: false,
+        streetViewControl: false,
+      }}
       center={{lat: props.lat, lng: props.lng}}
       onCenterChanged={(e) => {
           props.setCenter(ref.getCenter(e).toJSON())
@@ -75,7 +81,7 @@ const MapView = compose(
     >
 
       {
-        props.routes.routes.map(route => {
+        props.data.routes.routes.map(route => {
           var locations = [];
           return route.paradas.map(parada => {
             locations.push({"lat": parada.lat, "lng": parada.lng});
@@ -99,7 +105,7 @@ const MapView = compose(
       }
 
       {
-        props.routes.routes.map(route => {
+        props.data.routes.routes.map(route => {
           console.log("MAPA => ", props.lng, props.lat)
           return route.paradas.map((parada, index) => {
             // "position": new google.maps.Point(index + 1 > 9 ? 9 : 5.4, 37), "style": { fontSize: index + 1 > 10 ? "12px" : "13px" , padding: "2px", color: "#ffff"}, "label": <div>{ index + 1 }</div>
@@ -114,7 +120,6 @@ const MapView = compose(
                         "position": new google.maps.Point(index + 1 > 9 ? 9 : 5.4, 50), "style" : {fontSize: index + 1 > 10 ? "12px" : "13px", padding: "2px", color: "#ffff"}, "label": <div> { index + 1 } <FontAwesomeIcon style={{fontSize: "18px", marginLeft: "4px", marginBottom: "8px"}} icon = "clock"/>  </div>
                       }
                     :
-
                       {
                         "position": new google.maps.Point(index + 1 > 9 ? 9 : 5.4, 37), "style": { fontSize: index + 1 > 10 ? "12px" : "13px" , padding: "2px", color: "#ffff"}, "label": <div>{ index + 1 }</div>
                       }
@@ -123,6 +128,7 @@ const MapView = compose(
                 <MarkerWithLabel
                   position={{ lat: parada.lat, lng: parada.lng }}
                   icon={mIcon(parada.driver.color)}
+                  onClick={props.showTask.bind(this, parada)}
                   draggable={true}
                   labelAnchor={properties.position}
                   labelStyle={properties.style}
@@ -135,12 +141,12 @@ const MapView = compose(
       }
 
       {
-        props.drivers.map(driver => {
+        props.data.routes.drivers.map(driver => {
           // console.log(driver)
           return(
             <Marker
               icon={carIcon}
-              position={{ lat: driver.lat, lng: driver.lng }}
+              position={{ lat: driver.location.lat, lng: driver.location.lng }}
               draggable={true}
               onClick={props.moveInMap.bind(this, driver)}
             >
@@ -151,7 +157,19 @@ const MapView = compose(
                     <div className="map__marker-label">
                       <div className="map__marker-label-content">
                         <div className="map__maker-label-close" onClick={props.resetDrivers}><CloseIcon /></div>
-                          {driver.name}
+
+                          <div className ="map__name-image">
+                            <div className="dashboard__competitor-img">
+                              <img src={driver.profile} alt="" />
+                            </div>
+                          </div>
+
+                          <div className ="map__driver-info">
+                            <p style = {{color: driver.color, fontWeight: "bold"}}>{driver.name}</p>
+                            <p className ="map__small-label">En camino</p>
+                            <p className ="map__small-label">Actividades: 1/4 </p>
+                          </div>
+
                       </div>
                     </div>
                   </InfoBox>

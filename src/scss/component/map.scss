@@ -15,12 +15,16 @@
 }
 
 .map__marker-label-content {
+  display: flex;
+  flex-direction: row;
   background-color: white;
   box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.22);
-  border-radius: 5px;
-  padding: 10px 10px;
+  border-radius: 50px;
+  padding: 30px 15px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   font-size: 12px;
-  width: 130px;
+  width: 170px;
   min-height: 40px;
   position: relative;
 
@@ -41,9 +45,9 @@
   width: 12px;
   height: 12px;
   @include directify($directions) {
-    #{directed('right')}: 5px;
+    #{directed('right')}: 16px;
   }
-  top: 5px;
+  top: 3px;
   cursor: pointer;
 
   svg {
@@ -53,10 +57,37 @@
   }
 }
 
+.map__driver-info {
+  p {
+    color: gray;
+  }
+}
+
+
+.map__name-image {
+  display: flex;
+  flex-direction: row;
+  p {
+    color: black;
+  }
+}
+
+.map__small-label {
+  color: black;
+  font-size: 10px;
+  margin-top: 3px;
+}
+.map__driver-status {
+  p {
+    color: black;
+    text-align: left;
+  }
+}
+
 .map__marker-label {
   position: absolute;
-  top: -90px;
+  top: -105px;
   @include directify($directions) {
-    #{directed('left')}: -65px;
+    #{directed('left')}: -85px;
   }
 }

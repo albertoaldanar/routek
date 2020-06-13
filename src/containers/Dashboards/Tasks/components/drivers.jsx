@@ -13,23 +13,28 @@ class Drivers extends PureComponent {
   }
 
   render(){
-    const { moveInMap } = this.props;
+    const { moveInMap, data } = this.props;
     return(
       <div className="dashboard__map-drivers">
         <p className="dashboard__drivers-title">LOCALIZADOR</p>
         {
-          this.props.drivers.map(driver => {
-            return(
-              <a className="dashboard__competitor" to="/account/profile" onClick={moveInMap.bind(this, driver)}>
-                <div className="dashboard__competitor-img">
-                  <img src={driver.profile} alt="" />
-                </div>
-                <div className="dashboard__competitor-info">
-                  <p className="dashboard__competitor-name">{driver.name}</p>
-                </div>
-              </a>
-            );
-          })
+          data.loaded ?
+            data.routes.drivers.map(driver => {
+              return(
+                <a className="dashboard__competitor" to="/account/profile" >
+                  <div className="dashboard__competitor-img">
+                    <img src={driver.profile} alt="" />
+                  </div>
+                  <div className="dashboard__competitor-info">
+                    <p className="dashboard__competitor-name">
+                      {driver.name}
+                      <span className="dashboard__competitor-dot" style = {{backgroundColor: driver.color}}></span>
+                    </p>
+                    <p className="dashboard__competitor-link" onClick={moveInMap.bind(this, driver)}>Localizar</p>
+                  </div>
+                </a>
+              );
+            }) : null
         }
       </div>
     );

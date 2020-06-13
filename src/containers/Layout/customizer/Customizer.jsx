@@ -64,6 +64,7 @@ export default class Customizer extends PureComponent {
     return (
       <div className="customizer">
         <button className="customizer__btn" type="button" onClick={this.handleOpen}>
+          <p>Modificar rutas</p>
           <img className="customizer__btn-icon" src={settings} alt="icon" />
         </button>
         <div className={customizerClass} hidden={!open}>

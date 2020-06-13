@@ -21,6 +21,7 @@ import Calendar from "./components/Calendar";
 import events from "./components/events";
 import Drivers from "./components/drivers";
 import DriversList from "./components/driversList";
+import TaskModal from "./components/taskModal";
 import { getRoutes } from '../../../redux/actions/routesActions';
 // import { changeCryptoTableData, loadCryptoTableData } from '../../../redux/actions/cryptoTableActions';
 
@@ -36,14 +37,17 @@ class Tasks extends PureComponent {
       activeTab: '1',
       lat: 56.009483,
       lng: 92.8121694,
-      driverSelected: null
+      driverSelected: null,
+      activeDrivers: [],
+      loadedData: false,
+      showTaskModal: false,
+      taskSelected: {}
     };
 
   }
 
-  componentWillMount(){
-     this.props.getRoutes();
-     console.log("Component mounted");
+  componentDidMount(){
+    this.props.getRoutes();
   }
 
   setCenter(values) {
@@ -54,6 +58,13 @@ class Tasks extends PureComponent {
     });
 
     console.log(values);
+  }
+
+  showTask(task){
+    this.setState({
+      taskSelected: task,
+      showTaskModal: !this.state.showTaskModal
+    })
   }
 
   toggle = (tab) => {
@@ -67,7 +78,7 @@ class Tasks extends PureComponent {
 
   moveInMap(driver){
     this.setState({
-      lat: driver.lat, lng: driver.lng, driverSelected: driver.name
+      lat: driver.location.lat, lng: driver.location.lng, driverSelected: driver.name
     })
   }
 
@@ -78,9 +89,9 @@ class Tasks extends PureComponent {
   }
 
   render() {
-    const { t, routes, rtl, getRoutes} = this.props;
-    const { activeTab, lat, lng, driverSelected } = this.state;
-    console.log("R=> ", routes);
+    const { t, data, rtl, getRoutes, theme} = this.props;
+    const { activeTab, lat, lng, driverSelected, showTaskModal, taskSelected } = this.state;
+    console.log("R=> ", this.props.data);
 
     return (
       <Container className="dashboard">
@@ -123,13 +134,13 @@ class Tasks extends PureComponent {
                 </TabPane>
                 <TabPane tabId="2">
                   <MapView
-                    events={events}
-                    drivers={DriversList}
-                    routes = {routes}
+                    data = {data}
                     lat={lat} lng={lng}
+                    theme = {theme}
                     showIcon={true} driverSelected={driverSelected}
+                    showTask = {this.showTask.bind(this)}
                     resetDrivers={this.resetDrivers.bind(this)} moveInMap={this.moveInMap.bind(this)} setCenter={this.setCenter.bind(this)}/>
-                  <Drivers drivers={DriversList} moveInMap={this.moveInMap.bind(this)}/>
+                  <Drivers data={data} moveInMap={this.moveInMap.bind(this)}/>
                   <div className="dashboard__map-button">
                       <UncontrolledDropdown>
                         <DropdownToggle className="icon icon--right" color="success">
@@ -143,6 +154,8 @@ class Tasks extends PureComponent {
                   </div>
                 </TabPane>
               </TabContent>
+              <TaskModal showTaskModal={showTaskModal} taskSelected ={taskSelected}/>
+
             </div>
           </div>
         </CardBody>
@@ -153,7 +166,8 @@ class Tasks extends PureComponent {
 
 const mapStateToProps = state => ({
   rtl: state,
-  routes: state.routes,
+  data: state.routes,
+  theme: state.theme
 });
 
 const mapDispatchToProps = dispatch => ({
