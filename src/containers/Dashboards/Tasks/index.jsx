@@ -154,7 +154,11 @@ class Tasks extends PureComponent {
                   </div>
                 </TabPane>
               </TabContent>
-              <TaskModal showTaskModal={showTaskModal} taskSelected ={taskSelected}/>
+              <TaskModal
+                showTaskModal={showTaskModal}
+                taskSelected ={taskSelected}
+                showTask = {this.showTask.bind(this)}
+              />
 
             </div>
           </div>
