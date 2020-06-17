@@ -20,6 +20,7 @@ const modalStyle = {
     padding: 15,
     margin: 40,
     overflow:'scroll',
+    outline: 'none',
 }
 
 
@@ -30,14 +31,29 @@ class TaskModal extends PureComponent {
     super(props);
 
     this.state= {
-      tab: "ruta"
+      tab: "ruta",
+      info: "inicio"
     }
+  }
+
+  renderTaskStatus(status){
+
+      switch(status){
+          case 0: return <p style = {{marginTop: 0, marginLeft: 25, color:"black", fontWeight: "300"}}> Sin empezar  <span className="dashboard__competitor-dot" style = {{backgroundColor: "#A9A9A9"}}></span> </p>;
+          case 1: return <p style = {{marginTop: 0, marginLeft: 25, color:"black", fontWeight: "300"}}> En proceso  <span className="dashboard__competitor-dot" style = {{backgroundColor: "#6495ED"}}></span> </p>;
+
+          case 2: return <p style = {{marginTop: 0, marginLeft: 25, color:"black", fontWeight: "300"}}> Terminado  <span className="dashboard__competitor-dot" style = {{backgroundColor: "#4CE1B6"}}></span> </p>;
+
+          case 3: return <p style = {{marginTop: 0, marginLeft: 25, color:"black", fontWeight: "300"}}> Fallida  <span className="dashboard__competitor-dot" style = {{backgroundColor: "#DC143C"}}></span> </p>;
+
+          default: return "default error"
+      }
   }
 
   renderPictures(){
     const {taskSelected} = this.props;
 
-    if(taskSelected.pictures){
+    if(taskSelected.pictures.length > 0){
       return taskSelected.pictures.map(picture => {
         return(
             <img
@@ -46,11 +62,16 @@ class TaskModal extends PureComponent {
             />
         );
       })
+    } else {
+      return(
+        <p style = {{marginTop: 0, marginLeft: 25, color:"gray", fontWeight: "300", textAlign: "left"}}>No hay fotos de esta actividad</p>
+      );
     }
   }
 
-
   renderTabInfo(){
+    const {taskSelected} = this.props;
+
     if(this.state.tab == "ruta"){
       return(
         <div>
@@ -69,16 +90,22 @@ class TaskModal extends PureComponent {
                 <div className ="modal__task-items">
                   <p> <SignatureImageIcon />  Firma  </p>
                   <div className ="modal__task-pictures-container">
-                    <img
-                      src ={"https://upload.wikimedia.org/wikipedia/commons/b/b5/Signature-WangBowen.png"}
-                      className ="modal__task-signature"
-                    />
+                  {
+                    taskSelected.signature ?
+                      <img
+                        src ={taskSelected.signature}
+                        className ="modal__task-signature"
+                      />
+                    :
+                      <p style = {{marginTop: 0, marginLeft: 25, color:"gray", fontWeight: "300", textAlign: "left"}}>No hay firma en esta actividad</p>
+
+                  }
                   </div>
                 </div>
 
                 <div className ="modal__task-items">
                   <p> <CommentIcon />  Comentarios  </p>
-                  <p style = {{marginTop: 0, marginLeft: 25, color:"black", fontWeight: "300"}}>Se continuara mañana debido a que no nos abrio el guardia la casa para instalar.</p>
+                  <p style = {{marginTop: 0, marginLeft: 25, color:"gray", fontWeight: "300"}}>{taskSelected.comments || "No hay comentarios"}</p>
                 </div>
         </div>
       );
@@ -93,16 +120,14 @@ class TaskModal extends PureComponent {
 
   render(){
     const {showTaskModal, taskSelected, showTask} = this.props;
-    const {tab} = this.state;
-
-    console.log("PROPS => ", this.props.taskSelected.driver);
+    const {tab, info} = this.state;
 
     return(
       <div>
         <Modal
           disablePortal
           disableEnforceFocus
-          disableAutoFocus
+          disableAutoFocus = {true}
           open={showTaskModal}
           aria-labelledby="simple-modal-title"
           aria-describedby="simple-modal-description"
@@ -118,13 +143,14 @@ class TaskModal extends PureComponent {
                 <p style = {{fontSize: 10, marginTop: 1}}> Folio de actividad: {taskSelected.id}</p>
             </div>
 
-
             <div className="modal__task-data-container">
               <div className ="modal__task-column" style = {{ overflow: "scroll"}}>
+
                 <div className ="modal__task-items">
-                  <p> <FlagIcon />  Status   </p>
-                  <p style = {{marginTop: 0, marginLeft: 25, color:"black", fontWeight: "300"}}> Terminado  <span className="dashboard__competitor-dot" style = {{backgroundColor: "#4CE1B6"}}></span> </p>
+                   <p> <FlagIcon />  Status  </p>
+                   {this.renderTaskStatus(taskSelected.status)}
                 </div>
+
                 <div className ="modal__task-items">
                   <p> <SteeringIcon />  Conductor   </p>
                   {
@@ -133,7 +159,6 @@ class TaskModal extends PureComponent {
                     :
                       null
                   }
-
                 </div>
 
                 <div className ="modal__task-items">
@@ -144,7 +169,6 @@ class TaskModal extends PureComponent {
                     :
                       null
                   }
-
                 </div>
 
                 <div className ="modal__task-items">
@@ -161,31 +185,36 @@ class TaskModal extends PureComponent {
                   <p> <UserIcon />  Solicitud del cliente   </p>
                   <p style = {{marginTop: 0, marginLeft: 25, color:"black", fontWeight: "300"}}>Cambiar los filtros por que estan muy sicios</p>
                 </div>
-
               </div>
 
-
-              <div className ="modal__task-column" style = {{ overflow: "scroll"}}>
-
-                <div className ="modal__task-tabs">
-                  <p
-                    style = {{color: tab == "ruta" ? "black":  "gray", textDecoration: tab == "ruta" ? "underline":  "none", cursor: "pointer"}}
-                    onClick = {this.changeData.bind(this, "ruta")}
-                  >
-                    Ruta
-                  </p>
-                  <p
-                    style = {{color: tab == "gastos" ? "black":  "gray", textDecoration: tab == "gastos" ? "underline":  "none", cursor: "pointer"}}
-                    onClick = {this.changeData.bind(this, "gastos")}
-                  >
-                    Gastos
-                  </p>
-                </div>
-
-                {this.renderTabInfo()}
-
+              {
+                taskSelected.status > 0 ?
+                  <div className ="modal__task-column" style = {{ overflow: "scroll"}}>
+                    <div className ="modal__task-tabs">
+                      <p
+                        style = {{color: tab == "ruta" ? "black":  "gray", textDecoration: tab == "ruta" ? "underline":  "none", cursor: "pointer"}}
+                        onClick = {this.changeData.bind(this, "ruta")}
+                      >
+                        Ruta
+                      </p>
+                      <p
+                        style = {{color: tab == "gastos" ? "black":  "gray", textDecoration: tab == "gastos" ? "underline":  "none", cursor: "pointer"}}
+                        onClick = {this.changeData.bind(this, "gastos")}
+                      >
+                        Gastos
+                      </p>
+                    </div>
+                    {this.renderTabInfo()}
+                  </div>
+                : <div className ="modal__task-no-data-container">
+                    <img
+                      src ={"https://image.flaticon.com/icons/svg/2924/2924574.svg"}
+                      className ="modal__task-no-data-icon"
+                    />
+                    <p>La parada no ha comenzado aún</p>
+                  </div>
+              }
               </div>
-            </div>
 
             <div className ="modal__task-footer">
               <p style = {{marginLeft: 15}}>Editar</p>

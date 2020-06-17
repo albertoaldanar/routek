@@ -15,6 +15,7 @@ import MapMarkerIcon from 'mdi-react/MapMarkerIcon';
 import { connect } from 'react-redux';
 import SettingsIcon from 'mdi-react/SettingsIcon';
 import ChevronDownIcon from 'mdi-react/ChevronDownIcon';
+import MapMarkerPlusIcon from 'mdi-react/MapMarkerPlusIcon';
 import PropTypes from 'prop-types';
 import MapView from './components/MapView';
 import Calendar from "./components/Calendar";
@@ -22,6 +23,7 @@ import events from "./components/events";
 import Drivers from "./components/drivers";
 import DriversList from "./components/driversList";
 import TaskModal from "./components/taskModal";
+import CreateRouteModal from "./components/createRouteModal";
 import { getRoutes } from '../../../redux/actions/routesActions';
 // import { changeCryptoTableData, loadCryptoTableData } from '../../../redux/actions/cryptoTableActions';
 
@@ -41,7 +43,17 @@ class Tasks extends PureComponent {
       activeDrivers: [],
       loadedData: false,
       showTaskModal: false,
-      taskSelected: {}
+      taskSelected: {},
+      showCreateRouteModal: false,
+      createRouteData: {
+        duplicateRoute: false,
+        multipleDays: false,
+        multipleDrivers: false,
+        routeName: "",
+        startDate: "",
+        endDate: "",
+
+      }
     };
 
   }
@@ -58,6 +70,40 @@ class Tasks extends PureComponent {
     });
 
     console.log(values);
+  }
+
+  createRouteSetData(attr){
+
+    console.log("ATTR =>", attr);
+    switch (attr) {
+      case 1:
+        return  this.setState(prevState => ({
+            createRouteData: {
+                ...prevState.createRouteData,
+                duplicateRoute: !this.state.createRouteData.duplicateRoute
+            }
+        }))
+        break;
+      case 2:
+        return  this.setState(prevState => ({
+            createRouteData: {
+                ...prevState.createRouteData,
+                multipleDays: !this.state.createRouteData.multipleDays
+            }
+        }))
+        break;
+      case 3:
+        return  this.setState(prevState => ({
+            createRouteData: {
+                ...prevState.createRouteData,
+                multipleDrivers: !this.state.createRouteData.multipleDrivers
+            }
+        }))
+        break;
+      default:
+        console.log("Invalid Attr.")
+        break;
+    }
   }
 
   showTask(task){
@@ -90,7 +136,7 @@ class Tasks extends PureComponent {
 
   render() {
     const { t, data, rtl, getRoutes, theme} = this.props;
-    const { activeTab, lat, lng, driverSelected, showTaskModal, taskSelected } = this.state;
+    const { activeTab, lat, lng, driverSelected, showTaskModal, taskSelected, showCreateRouteModal, createRouteData } = this.state;
     console.log("R=> ", this.props.data);
 
     return (
@@ -98,8 +144,8 @@ class Tasks extends PureComponent {
         <Row>
           <Col md={12} className="dashboard__title-and-button">
             <h3 className="page-title">{t('tasks.page_title')}</h3>
-            <Button color="success" className="dashboard__add-team icon">
-              <UserAddIcon/> {t('tasks.add_activity')}
+            <Button color="success" className="dashboard__add-team icon" onClick = {() => this.setState({showCreateRouteModal: !this.state.showCreateRouteModal})}>
+              <MapMarkerPlusIcon/> {t('tasks.add_route')}
             </Button>
           </Col>
         </Row>
@@ -158,6 +204,13 @@ class Tasks extends PureComponent {
                 showTaskModal={showTaskModal}
                 taskSelected ={taskSelected}
                 showTask = {this.showTask.bind(this)}
+              />
+
+              <CreateRouteModal
+                showCreateRouteModal = {showCreateRouteModal}
+                showModal = {() => this.setState({showCreateRouteModal: !this.state.showCreateRouteModal})}
+                createRouteData = {createRouteData}
+                createRouteSetData = {this.createRouteSetData.bind(this)}
               />
 
             </div>

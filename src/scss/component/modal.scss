@@ -2,14 +2,154 @@
 
 }
 
+//CREATE ROUTE MODAL
+.modal__create-route-container {
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  height: 62%;
+  width: 35%;
+  position: relative;
+  // overflow: auto;
+  // padding: 3px;
+  outline: none;
+
+  input {
+    margin-left: 25px;
+    background-color: #f5f5f5;
+    font-family: 'Mark', 'Work Sans', Helvetica, sans-serif;
+    padding: 5px;
+    padding-bottom: 5px;
+    margin-top: 2px;
+    border: 0px solid gray;
+    border-bottom: 0.4px solid gray;
+    width: 50%;
+  }
+
+  input[type=text] {
+    transition: ease-in-out, width .35s ease-in-out;
+  }
+
+  input[type=text]:focus {
+    outline: none;
+  }
+
+  input::placeholder {
+    color: #dcdcdc;
+    font-weight: 300px;
+    font-style: oblique;
+  }
+
+}
+
+.modal__create-route-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 8px;
+
+  border-bottom: 0.6px solid #dcdcdc;
+
+  p {
+    color: black;
+    margin: 0px;
+    font-size: 15px;
+    cursor: pointer;
+  }
+}
+
+.modal__create-route-data {
+  padding: 20px;
+  height: 90%;
+  overflow: auto;
+}
+
+.modal__create-route-options{
+  display: flex;
+  flex-direction: row;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  justify-content:space-between;
+  width: 100%;
+  p {
+    color: black;
+    margin: 0px;
+  }
+}
+
+.modal__create-route-items {
+  margin-bottom: 25px;
+  p {
+    color: gray;
+  }
+  svg {
+    height: 18px;
+    width: 18px;
+    padding-bottom: 2px;
+  }
+}
+
+.modal__create-route-footer{
+  position: absolute;
+  bottom: 0;
+  border-top: 0.6px solid #dcdcdc;
+  background-color: #f5f5f5;
+  width: 100%;
+  padding: 5px;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  p {
+    color: black;
+    font-size: 13px;
+    border-radius: 5px;
+    text-decoration: underline;
+    cursor: pointer;
+    padding: 1px;
+    text-align: center;
+  }
+}
+
+.modal__create-route-dropdown {
+  margin-left: 25px;
+  margin-top: 2px;
+  position: relative;
+  p {
+    color: black;
+    font-weight: 300;
+    padding: 5px;
+    cursor: pointer;
+  }
+}
+
+.dashboard__create-route-dropdown-list{
+  width: 200px;
+  background-color: #dcdcdc;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  padding: 8px;
+  max-height: 100px;
+  font-weight: 300px;
+  overflow: scroll;
+  margin-left: 25px;
+  z-index: 2;
+  position: fixed;
+
+  p {
+    color: black;
+    cursor: pointer;
+  }
+}
+//CREATE ROUTE MODAL
+
+//TASK MODAL
 .modal__task-container {
   background-color: #f5f5f5;
   border-radius: 10px;
   height: 85%;
-  width: 65%;
+  width: 70%;
   position: relative;
   overflow: auto;
   padding: 3px;
+  outline: none;
 }
 
 .modal__task-data-container {
@@ -50,6 +190,25 @@
 .modal__task-signature {
   height: 70px;
   width: 80%;
+}
+
+.modal__task-no-data-icon {
+    text-align: center;
+    height: 70px;
+    width: 80%;
+    margin-top: 100px;
+}
+
+.modal__task-no-data-container {
+  align-items: center;
+  text-align: center;
+
+  height: 100%;
+
+  p {
+    color: black;
+    font-weight: 400px;
+  }
 }
 
 .modal__task-column {
@@ -118,6 +277,7 @@
   }
 }
 
+//TASK MODAL
 .modal__container {
   height: 100%;
   width: 100%;
