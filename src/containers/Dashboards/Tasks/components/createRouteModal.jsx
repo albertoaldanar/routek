@@ -45,6 +45,7 @@ class CreateRouteModal extends PureComponent {
 
 
   renderDropdownList(){
+    const { showModal, showCreateRouteModal, createRouteData, createRouteSetData, onChangeInput, changeDates } = this.props;
     return(
       <div className ="dashboard__create-route-dropdown-list">
         <p>Ruta la primavera</p>
@@ -57,10 +58,8 @@ class CreateRouteModal extends PureComponent {
 
   render(){
 
-    const { showModal, showCreateRouteModal, createRouteData, createRouteSetData } = this.props;
+    const { showModal, showCreateRouteModal, createRouteData, createRouteSetData, onChangeInput, changeDates } = this.props;
     const { showDriversList, showRoutesList } = this.state;
-
-    console.log(createRouteSetData, createRouteData);
 
     return(
       <div>
@@ -100,6 +99,7 @@ class CreateRouteModal extends PureComponent {
                     <input
                       type="text"
                       placeholder= "Nombre ruta"
+                      onChange = {onChangeInput('routeName')}
                     />
                   </form>
                 :
@@ -143,11 +143,12 @@ class CreateRouteModal extends PureComponent {
                       <div className="date-picker">
                         <DatePicker
                           className="form__form-group-datepicker"
-                          selected = {null}
+                          selected = {createRouteData.startDate}
                           placeholderText="yyyy/MM/dd"
                           dateFormat="yyyy/MM/dd"
                           dropDownMode="select"
                           popperPlacement="center"
+                          onChange = {changeDates.bind(this, 1)}
                         />
                       </div>
                   :
@@ -155,23 +156,23 @@ class CreateRouteModal extends PureComponent {
                       <div className="date-picker">
                         <DatePicker
                           className="form__form-group-datepicker"
-                          selected = {null}
+                          selected = {createRouteData.startDate}
                           placeholderText="Dia inicio"
                           dateFormat="yyyy/MM/dd"
                           dropDownMode="select"
                           popperPlacement="center"
-
+                          onChange = {changeDates.bind(this, 1)}
                         />
                       </div>
                       <div className="date-picker">
                         <DatePicker
                           className="form__form-group-datepicker"
-                          selected = {null}
+                          selected = {createRouteData.endDate}
                           placeholderText="Dia final"
                           dateFormat="yyyy/MM/dd"
                           dropDownMode="select"
                           popperPlacement="center"
-
+                          onChange = {changeDates.bind(this, 2)}
                         />
                       </div>
                     </div>

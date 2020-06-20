@@ -50,10 +50,13 @@ class Tasks extends PureComponent {
         multipleDays: false,
         multipleDrivers: false,
         routeName: "",
-        startDate: "",
-        endDate: "",
-
-      }
+        startDate: null,
+        endDate: null,
+        routeDriver: null
+      },
+      routeName: "",
+      startDate: "",
+      endDate: "",
     };
 
   }
@@ -62,14 +65,44 @@ class Tasks extends PureComponent {
     this.props.getRoutes();
   }
 
-  setCenter(values) {
 
-    this.setState({
-      lat: values.lat,
-      lng: values.lng
-    });
+  //INFORMACIÓN DE MODAL DE RUTA
+  onChangeInput = (state) => (e, value) => {
 
-    console.log(values);
+    if(state == "routeName"){
+        this.setState({
+          routeName: e.target.value
+        })
+    }
+  }
+
+  changeDates(index, date){
+    console.log(index);
+
+    if(index == 1){
+      this.setState(prevState => ({
+            createRouteData: {
+                ...prevState.createRouteData,
+                startDate: date
+            }
+      }))
+    } else {
+        this.setState(prevState => ({
+            createRouteData: {
+                ...prevState.createRouteData,
+                endDate: date
+            }
+        }))
+    }
+  }
+
+  selectRouteDriver(driver){
+        this.setState(prevState => ({
+            createRouteData: {
+                ...prevState.createRouteData,
+                routeDriver: driver
+            }
+        }))
   }
 
   createRouteSetData(attr){
@@ -105,6 +138,21 @@ class Tasks extends PureComponent {
         break;
     }
   }
+ //--INFORMACIÓN DE MODAL DE RUTA--
+
+
+
+ //NAVEGACIÓN EN MAPA
+  setCenter(values) {
+
+    this.setState({
+      lat: values.lat,
+      lng: values.lng
+    });
+
+    console.log(values);
+  }
+
 
   showTask(task){
     this.setState({
@@ -134,10 +182,12 @@ class Tasks extends PureComponent {
     })
   }
 
+//--NAVEGACIÓN EN MAPA--
+
   render() {
     const { t, data, rtl, getRoutes, theme} = this.props;
-    const { activeTab, lat, lng, driverSelected, showTaskModal, taskSelected, showCreateRouteModal, createRouteData } = this.state;
-    console.log("R=> ", this.props.data);
+    const { activeTab, lat, lng, driverSelected, showTaskModal, taskSelected, showCreateRouteModal, createRouteData, routeName } = this.state;
+    console.log("R=> ", this.state.createRouteData.changeDates);
 
     return (
       <Container className="dashboard">
@@ -210,7 +260,10 @@ class Tasks extends PureComponent {
                 showCreateRouteModal = {showCreateRouteModal}
                 showModal = {() => this.setState({showCreateRouteModal: !this.state.showCreateRouteModal})}
                 createRouteData = {createRouteData}
+                onChangeInput = {this.onChangeInput.bind(this)}
                 createRouteSetData = {this.createRouteSetData.bind(this)}
+                changeDates = {this.changeDates.bind(this)}
+                selectRouteDriver = {this.selectRouteDriver.bind(this)}
               />
 
             </div>
