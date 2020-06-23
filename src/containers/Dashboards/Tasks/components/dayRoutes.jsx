@@ -1,0 +1,103 @@
+/* eslint-disable */
+import React, { PureComponent } from 'react';
+import {
+  Button, ButtonToolbar, Container, Col, CardBody, Row, Nav, NavItem, NavLink, TabContent, TabPane,
+  DropdownItem,
+  DropdownMenu,
+  DropdownToggle,
+  UncontrolledDropdown,
+} from 'reactstrap';
+import SteeringIcon from 'mdi-react/SteeringIcon';
+import ClockOutlineIcon from 'mdi-react/ClockOutlineIcon';
+import MapMarkerIcon from 'mdi-react/MapMarkerIcon';
+import ChevronDownIcon from 'mdi-react/ChevronDownIcon';
+
+class DayRoutes extends PureComponent {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+
+    };
+  }
+
+
+
+  renderTaskStatus(status){
+
+      switch(status){
+          case 0: return <p style = {{marginTop: 0, marginLeft: 3, color:"black", fontWeight: "300", fontSize: 10}}> Sin empezar  <span className="dashboard__competitor-dot" style = {{backgroundColor: "#A9A9A9"}}></span> </p>;
+          case 1: return <p style = {{marginTop: 0, marginLeft: 3, color:"black", fontWeight: "300", fontSize: 10}}> En proceso  <span className="dashboard__competitor-dot" style = {{backgroundColor: "#6495ED"}}></span> </p>;
+
+          case 2: return <p style = {{marginTop: 0, marginLeft: 3, color:"black", fontWeight: "300", fontSize: 10}}> Terminado  <span className="dashboard__competitor-dot" style = {{backgroundColor: "#4CE1B6"}}></span> </p>;
+
+          case 3: return <p style = {{marginTop: 0, marginLeft: 3, color:"black", fontWeight: "300", fontSize: 10}}> Fallida  <span className="dashboard__competitor-dot" style = {{backgroundColor: "#DC143C"}}></span> </p>;
+
+          default: return "default error"
+      }
+  }
+
+  renderRouteStop(){
+      const {data, showTask} = this.props;
+
+      if(data.loaded){
+        return data.routes.routes.map(route => {
+          return(
+            <div className ="dashboard__day-routes-list">
+              <div className ="dashboard__day-routes-list-header">
+                <div>
+                  <p style = {{fontSize: 15, fontWeight: "400"}}>{route.name}</p>
+                </div>
+                 <p style = {{fontSize: 19, fontWeight: "400", margin: 0, color: "#4CE1B6", cursor: "pointer"}}> +</p>
+              </div>
+
+              <div className ="dashboard__day-routes-list-stops">
+                { route.paradas.map((parada, index) => {
+                    return(
+                      <div>
+                        <div className ="dashboard__day-routes-list-stop">
+
+                          <div style= {{display: "flex", flexDirection: "row", marginBottom: 5, justifyContent: "space-between"}}>
+                            {this.renderTaskStatus(parada.status)}
+                            <p style ={{margin: 0, cursor: "pointer", marginTop: -2}} onClick = {showTask.bind(this, parada)}>...</p>
+                          </div>
+                          <p style = {{fontWeight:"bold", fontSize: 13, marginLeft: 2}}>{index + 1}.  {parada.title}</p>
+
+                           <div className ="dashboard__day-routes-list-data" >
+                              <p style = {{marginTop: 0, marginLeft: 25, color:"black", fontWeight: "300"}}> <SteeringIcon /> {parada.driver.name}</p>
+                              <p style = {{marginTop: 0, marginLeft: 25, color:"black", fontWeight: "300"}}> <ClockOutlineIcon /> 10:40 am</p>
+                           </div>
+                        </div>
+                        {
+                          index + 1 < route.paradas.length ?
+                            <div className= "dashboard__day-routes-list-icon">
+                              <ChevronDownIcon />
+                            </div>
+                          :
+                            null
+                        }
+
+                      </div>
+                    )
+                  })
+                }
+              </div>
+            </div>
+          );
+        })
+      }
+  }
+
+  render() {
+    const {data, showTask} = this.props;
+    console.log("route data => ", data);
+
+    return (
+        <div className ="dashboard__day-routes-container">
+          {this.renderRouteStop()}
+        </div>
+    );
+  }
+}
+
+export default DayRoutes;

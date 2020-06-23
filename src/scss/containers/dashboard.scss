@@ -1,7 +1,101 @@
 .dashboard {
 
-  //teams
+  //LISTA ROUTAS
+  .dashboard__day-routes-container {
+    display: flex;
+    flex-direction: row;
+    width: 96%;
+    overflow-x: scroll;
+    position: absolute;
+    // background-color: red;
+    min-height: 80%;
+    p {
+      font-weight: 300px;
+      margin-top: 2px;
+      font-size: 12px;
+    }
 
+  }
+  .dashboard__day-routes-list {
+    margin-right: 70px;
+    height: 370px;
+    // max-width: 30px;
+
+    min-width: 300px;
+    max-width: 300px;
+    padding: 20px;
+    padding-top: 10px;
+    background-color: #2A2A31;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    // overflow-x: scroll;
+
+  }
+  .dashboard__day-routes-list-header {
+    display: flex;
+    flex-direction: row;
+    padding: 0px;
+    margin-bottom: 15px;
+    justify-content: space-between;
+    p {
+      font-weight: 300px;
+      margin-top: 2px;
+      font-size: 12px;
+    }
+    padding-bottom: 5px;
+    border-bottom: 0.4px solid #dcdcdc;
+    position: relative;
+  }
+
+  .dashboard__day-routes-list-stops {
+    padding: 0px;
+    p {
+      font-weight: 300px;
+      margin-top: 2px;
+      font-size: 12px;
+    }
+    height: 88%;
+    overflow: scroll;
+  }
+
+  .dashboard__day-routes-list-stop {
+    padding: 5px;
+    margin-bottom: 10px;
+    // border: 0.3px solid #dcdcdc;
+    background-color: #dcdcdc;
+    border-radius: 5px;
+    cursor: move;
+
+    p {
+      color: black;
+    }
+  }
+
+  .dashboard__day-routes-list-data {
+    margin-top: 12px;
+    margin-bottom: 5px;
+    display: flex;
+    flex-direction: row;
+
+    svg {
+      width: 14px;
+      height: 14px;
+    }
+  }
+
+
+  .dashboard__day-routes-list-icon {
+    text-align: center;
+    margin-bottom: 10px;
+    svg {
+      width: 14px;
+      height: 14px;
+      color: white;
+    }
+  }
+  //LISTA ROUTAS
+
+  //teams
   .dashboard__add-team {
     align: right;
   }

@@ -15,9 +15,9 @@
 	},
 	"tasks": {
 		"page_title": "Gestión de activadades",
-		"activities": "Actividades",
+		"routes": "Lista de rutas",
 		"add_route": "Crear ruta",
-		"map": "Mapa",
+		"map": "Mapa de rutas",
 		"subscriptions": "Abonnements",
 		"product_sales": "Verkauf von Produkten",
 		"new_orders": "Neue Bestellungen",

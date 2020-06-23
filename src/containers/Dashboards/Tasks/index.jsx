@@ -24,6 +24,7 @@ import Drivers from "./components/drivers";
 import DriversList from "./components/driversList";
 import TaskModal from "./components/taskModal";
 import CreateRouteModal from "./components/createRouteModal";
+import DayRoutes from "./components/dayRoutes";
 import { getRoutes } from '../../../redux/actions/routesActions';
 // import { changeCryptoTableData, loadCryptoTableData } from '../../../redux/actions/cryptoTableActions';
 
@@ -210,7 +211,7 @@ class Tasks extends PureComponent {
                       this.toggle('1');
                     }}
                   >
-                    <CalendarTaskIcon /> {t('tasks.activities')}
+                    <CalendarTaskIcon /> {t('tasks.routes')}
                   </NavLink>
                 </NavItem>
                 <NavItem>
@@ -225,8 +226,8 @@ class Tasks extends PureComponent {
                 </NavItem>
               </Nav>
               <TabContent activeTab={activeTab}>
-                <TabPane tabId="1">
-                    <Calendar events={events}/>
+                <TabPane tabId="1" style = {{height: 400, margin: 0}}>
+                    <DayRoutes data = {data} showTask = {this.showTask.bind(this)}/>
                 </TabPane>
                 <TabPane tabId="2">
                   <MapView

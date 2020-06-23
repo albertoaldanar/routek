@@ -17,7 +17,6 @@ import CommentIcon from 'mdi-react/CommentIcon';
 import MapOutlineIcon from 'mdi-react/MapOutlineIcon';
 import CalendarIcon from 'mdi-react/CalendarIcon';
 import ChevronDownIcon from 'mdi-react/ChevronDownIcon';
-
 import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
 
 const modalStyle = {
