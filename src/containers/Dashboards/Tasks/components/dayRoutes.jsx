@@ -11,6 +11,7 @@ import SteeringIcon from 'mdi-react/SteeringIcon';
 import ClockOutlineIcon from 'mdi-react/ClockOutlineIcon';
 import MapMarkerIcon from 'mdi-react/MapMarkerIcon';
 import ChevronDownIcon from 'mdi-react/ChevronDownIcon';
+import ArrowLeftIcon from 'mdi-react/ArrowLeftIcon';
 
 class DayRoutes extends PureComponent {
 
@@ -20,8 +21,6 @@ class DayRoutes extends PureComponent {
 
     };
   }
-
-
 
   renderTaskStatus(status){
 
@@ -93,9 +92,15 @@ class DayRoutes extends PureComponent {
     console.log("route data => ", data);
 
     return (
+      <div >
+        <p className ="dashboard__day-routes-date" >
+          <ArrowLeftIcon />
+          Calendario / 16 de Abril 2020
+        </p>
         <div className ="dashboard__day-routes-container">
           {this.renderRouteStop()}
         </div>
+      </div>
     );
   }
 }
