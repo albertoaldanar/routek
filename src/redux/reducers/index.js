@@ -7,6 +7,7 @@ import customizerReducer from './customizerReducer';
 import todoReducer from './todoReducer';
 import authReducer from './authReducer';
 import routesReducer from './routesReducer';
+import formRouteReducer from './formRouteReducer';
 
 export {
   themeReducer,
@@ -18,4 +19,5 @@ export {
   todoReducer,
   routesReducer,
   authReducer,
+  formRouteReducer,
 };

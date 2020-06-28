@@ -1,8 +1,9 @@
 /* eslint-disable */
 export const GET_ALL_ROUTES = 'GET_ALL_ROUTES';
-export const CREATE_ROUTE = 'CREATE_ROUTE';
+// export const CREATE_ROUTE = 'CREATE_ROUTE';
 export const UPDATE_ROUTE = 'UPDATE_ROUTE';
 export const FILTER_ROUTE = 'FILTER_ROUTE';
+export const FORM_ROUTE = 'FORM_ROUTE';
 
 export function getAllRoutes(routes) {
   return {
@@ -11,13 +12,18 @@ export function getAllRoutes(routes) {
   };
 }
 
-export function createRoute(data, index) {
+export function formRoute({prop, value}) {
   return {
-    type: CREATE_ROUTE,
-    data,
-    index,
-  };
+    type: FORM_ROUTE,
+    payload: {prop, value}
+  }
 }
+// export function createRoute(data) {
+//   return {
+//     type: CREATE_ROUTE,
+//     data
+//   };
+// }
 
 export function updateRoute(items) {
   return {

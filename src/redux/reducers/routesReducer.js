@@ -17,8 +17,6 @@ export default function(state = initialState, action){
         routes: action.routes,
         loaded: true
       }
-    // case CHANGE_DIRECTION_TO_RTL:
-    //   return { direction: 'rtl' };
     default:
       return state
   }

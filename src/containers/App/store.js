@@ -11,6 +11,7 @@ import {
   routesReducer,
   rtlReducer,
   authReducer,
+  formRouteReducer,
 
 } from '../../redux/reducers/index';
 
@@ -25,6 +26,7 @@ const reducer = combineReducers({
   todos: todoReducer,
   user: authReducer,
   routes: routesReducer,
+  formRouteData: formRouteReducer,
 });
 const store = createStore(reducer, applyMiddleware(thunk));
 

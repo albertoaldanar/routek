@@ -1,4 +1,4 @@
-/* eslint-disable no-return-assign */
+/* eslint-disable */
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -116,20 +116,6 @@ class Layout extends Component {
 
     return (
       <div className={layoutClass}>
-        <Customizer
-          customizer={customizer}
-          sidebar={sidebar}
-          theme={theme}
-          rtl={rtl}
-          changeSidebarVisibility={this.changeSidebarVisibility}
-          toggleTopNavigation={this.toggleTopNavigation}
-          changeToDark={this.changeToDark}
-          changeToLight={this.changeToLight}
-          changeToRTL={this.changeToRTL}
-          changeToLTR={this.changeToLTR}
-          changeBorderRadius={this.changeBorderRadius}
-          toggleBoxShadow={this.toggleBoxShadow}
-        />
         {customizer.topNavigation
           ? (
             <TopbarWithNavigation

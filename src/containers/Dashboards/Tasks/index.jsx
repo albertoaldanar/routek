@@ -227,7 +227,8 @@ class Tasks extends PureComponent {
               </Nav>
               <TabContent activeTab={activeTab}>
                 <TabPane tabId="1" style = {{height: 400, margin: 0}}>
-                    <DayRoutes data = {data} showTask = {this.showTask.bind(this)}/>
+                    <DayRoutes data= {data} showTask = {this.showTask.bind(this)}/>
+
                 </TabPane>
                 <TabPane tabId="2">
                   <MapView

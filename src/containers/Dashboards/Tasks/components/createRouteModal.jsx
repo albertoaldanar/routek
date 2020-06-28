@@ -5,6 +5,7 @@ import { withTranslation } from 'react-i18next';
 import Modal from '@material-ui/core/Modal';
 import DatePicker from 'react-datepicker';
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
+import { connect } from 'react-redux';
 import Checkbox from '@material-ui/core/Checkbox';
 import SteeringIcon from 'mdi-react/SteeringIcon';
 import UserIcon from 'mdi-react/UserIcon';
@@ -18,7 +19,7 @@ import MapOutlineIcon from 'mdi-react/MapOutlineIcon';
 import CalendarIcon from 'mdi-react/CalendarIcon';
 import ChevronDownIcon from 'mdi-react/ChevronDownIcon';
 import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
-
+import { formRoute } from '../../../../redux/actions/routesActions';
 const modalStyle = {
     display:'flex',
     alignItems:'center',
@@ -42,6 +43,10 @@ class CreateRouteModal extends PureComponent {
     }
   }
 
+  componentWillMount(){
+    console.log("REDUX => ", this.props.formRoute);
+  }
+
 
   renderDropdownList(){
     const { showModal, showCreateRouteModal, createRouteData, createRouteSetData, onChangeInput, changeDates } = this.props;
@@ -59,6 +64,7 @@ class CreateRouteModal extends PureComponent {
 
     const { showModal, showCreateRouteModal, createRouteData, createRouteSetData, onChangeInput, changeDates } = this.props;
     const { showDriversList, showRoutesList } = this.state;
+    console.log(this.props.data);
 
     return(
       <div>
@@ -98,7 +104,8 @@ class CreateRouteModal extends PureComponent {
                     <input
                       type="text"
                       placeholder= "Nombre ruta"
-                      onChange = {onChangeInput('routeName')}
+                      value= {this.props.data.routeName}
+                      onChange = {value => this.props.formRoute({prop: "routeName", value: value.target.value})}
                     />
                   </form>
                 :
@@ -216,7 +223,6 @@ class CreateRouteModal extends PureComponent {
                 }
 
               </div>
-
             </div>
 
             <div className ="modal__create-route-footer">
@@ -229,5 +235,13 @@ class CreateRouteModal extends PureComponent {
   }
 }
 
+const mapStateToProps = state => ({
+  data: state.formRouteData,
+});
 
-export default withTranslation('common')(CreateRouteModal);
+const mapDispatchToProps = dispatch => ({
+  createRoute: () => dispatch(createRoute()),
+  formRoute: ({prop, value}) => dispatch(formRoute({prop, value})),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation('common')(CreateRouteModal));

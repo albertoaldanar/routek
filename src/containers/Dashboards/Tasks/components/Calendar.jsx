@@ -104,6 +104,7 @@ export default class CalendarComponent extends PureComponent {
           onSelectEvent={this.message}
           defaultDate={new Date(2018, 3, 1)}
           eventPropGetter={(this.eventStyleGetter)}
+          onClick= {(date) => console.log(date)}
           messages={{
             previous: <span className="lnr lnr-chevron-left" />,
             next: <span className="lnr lnr-chevron-right" />,
