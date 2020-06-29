@@ -22,14 +22,14 @@ import Calendar from "./components/Calendar";
 import events from "./components/events";
 import Drivers from "./components/drivers";
 import DriversList from "./components/driversList";
-import TaskModal from "./components/taskModal";
+import StopModal from "./components/stopModal";
 import RouteModal from "./components/routeModal";
 import DayRoutes from "./components/dayRoutes";
 import { getRoutes } from '../../../redux/actions/routesActions';
 import { formRoute } from '../../../redux/actions/routesActions';
 import { selectRoute } from '../../../redux/actions/routesActions';
 
-class Tasks extends PureComponent {
+class Routes extends PureComponent {
   static propTypes = {
     t: PropTypes.func.isRequired,
   };
@@ -107,7 +107,7 @@ class Tasks extends PureComponent {
         <Row>
           <Col md={12} className="dashboard__title-and-button">
             <h3 className="page-title">{t('tasks.page_title')}</h3>
-            <Button color="success" className="dashboard__add-team icon" onClick = {formRoute.bind(this, {prop: "displayFormModal", value: true})}>
+            <Button color="success" className="dashboard__add-team icon" onClick = {formRoute.bind(this, {prop: "displayRouteFormModal", value: true})}>
               <MapMarkerPlusIcon/> {t('tasks.add_route')}
             </Button>
           </Col>
@@ -139,10 +139,7 @@ class Tasks extends PureComponent {
               </Nav>
               <TabContent activeTab={activeTab}>
                 <TabPane tabId="1" style = {{height: 400, margin: 0}}>
-                    <DayRoutes
-                      data= {data}
-                      showTask = {this.showTask.bind(this)}
-                    />
+                    <DayRoutes data= {data}/>
                 </TabPane>
                 <TabPane tabId="2">
                   <MapView
@@ -166,7 +163,7 @@ class Tasks extends PureComponent {
                   </div>
                 </TabPane>
               </TabContent>
-              <TaskModal
+              <StopModal
                 showTaskModal={showTaskModal}
                 taskSelected ={taskSelected}
                 showTask = {this.showTask.bind(this)}
@@ -194,5 +191,5 @@ const mapDispatchToProps = dispatch => ({
   selectRoute: (objectsArray) => dispatch(selectRoute(objectsArray)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(withTranslation('common')(Tasks));
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation('common')(Routes));
 

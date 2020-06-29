@@ -76,7 +76,7 @@ class RouteModal extends PureComponent {
           disablePortal
           disableEnforceFocus
           disableAutoFocus = {true}
-          open={data.displayFormModal}
+          open={data.displayRouteFormModal}
           aria-labelledby="simple-modal-title"
           aria-describedby="simple-modal-description"
           style={modalStyle}

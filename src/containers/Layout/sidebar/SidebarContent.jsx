@@ -25,7 +25,7 @@ class SidebarContent extends Component {
           <SidebarLink
             title="Actividades"
             icon="location"
-            route="/tasks"
+            route="/routes"
             onClick={this.hideSidebar}
           />
           <SidebarLink

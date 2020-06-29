@@ -2,6 +2,7 @@
 import React, {PureComponent} from 'react';
 import { Link } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
+import { connect } from 'react-redux';
 import Modal from '@material-ui/core/Modal';
 import SteeringIcon from 'mdi-react/SteeringIcon';
 import UserIcon from 'mdi-react/UserIcon';
@@ -18,6 +19,7 @@ import DateFnsUtils from '@date-io/date-fns';
 import DatePicker, { registerLocale } from 'react-datepicker';
 import es from "date-fns/locale/es";
 registerLocale("es", es);
+import { formStop } from '../../../../redux/actions/stopsActions';
 
 import {
   MuiPickersUtilsProvider,
@@ -37,7 +39,7 @@ const modalStyle = {
 
 
 
-class TaskModal extends PureComponent {
+class StopModal extends PureComponent {
 
   constructor(props){
     super(props);
@@ -64,10 +66,10 @@ class TaskModal extends PureComponent {
   }
 
   renderPictures(){
-    const {taskSelected} = this.props;
+    const {data} = this.props;
 
-    if(taskSelected.pictures.length > 0){
-      return taskSelected.pictures.map(picture => {
+    if(data.pictures.length > 0){
+      return data.pictures.map(picture => {
         return(
             <img
               src ={picture}
@@ -83,7 +85,7 @@ class TaskModal extends PureComponent {
   }
 
   renderTabInfo(){
-    const {taskSelected} = this.props;
+    const {data} = this.props;
 
     if(this.state.tab == "ruta"){
       return(
@@ -104,9 +106,9 @@ class TaskModal extends PureComponent {
                   <p> <SignatureImageIcon />  Firma  </p>
                   <div className ="modal__task-pictures-container">
                   {
-                    taskSelected.signature ?
+                    data.signature ?
                       <img
-                        src ={taskSelected.signature}
+                        src ={data.signature}
                         className ="modal__task-signature"
                       />
                     :
@@ -118,7 +120,7 @@ class TaskModal extends PureComponent {
 
                 <div className ="modal__task-items">
                   <p> <CommentIcon />  Comentarios  </p>
-                  <p style = {{marginTop: 0, marginLeft: 25, color:"gray", fontWeight: "300"}}>{taskSelected.comments || "No hay comentarios"}</p>
+                  <p style = {{marginTop: 0, marginLeft: 25, color:"gray", fontWeight: "300"}}>{data.comments || "No hay comentarios"}</p>
                 </div>
         </div>
       );
@@ -132,8 +134,9 @@ class TaskModal extends PureComponent {
   }
 
   render(){
-    const {showTaskModal, taskSelected, showTask} = this.props;
+    const { data, formStop } = this.props;
     const {tab, info, editMode} = this.state;
+    // console.log(this.props.data);
 
     return(
       <div>
@@ -141,7 +144,7 @@ class TaskModal extends PureComponent {
           disablePortal
           disableEnforceFocus
           disableAutoFocus = {true}
-          open={showTaskModal}
+          open={data.displayStopFormModal}
           aria-labelledby="simple-modal-title"
           aria-describedby="simple-modal-description"
           style={modalStyle}
@@ -150,27 +153,27 @@ class TaskModal extends PureComponent {
             {
               !editMode ?
                 <div className ="modal__task-container">
-                  <div className ="modal__task-close" onClick = {showTask.bind(this, {})}>
+                  <div className ="modal__task-close" onClick = {() => formStop({prop: null, value: null})}>
                     <p>X</p>
                   </div>
 
                   <div className ="modal__task-header">
-                      <p style = {{color: "black", fontSize: 17}}>{taskSelected.title}</p>
-                      <p style = {{fontSize: 10, marginTop: 1}}> Folio de actividad: {taskSelected.id}</p>
+                      <p style = {{color: "black", fontSize: 17}}>{data.stopName}</p>
+                      <p style = {{fontSize: 10, marginTop: 1}}> Folio de actividad: {data.id}</p>
                   </div>
                   <div className="modal__task-data-container">
                     <div className ="modal__task-column" style = {{ overflow: "scroll"}}>
 
                       <div className ="modal__task-items">
                          <p> <FlagIcon />  Status  </p>
-                         {this.renderTaskStatus(taskSelected.status)}
+                         {this.renderTaskStatus(data.status)}
                       </div>
 
                       <div className ="modal__task-items">
                         <p> <SteeringIcon />  Conductor   </p>
                         {
-                          taskSelected.driver ?
-                            <p style = {{marginTop: 0, marginLeft: 25, color:"black", fontWeight: "300"}}>{taskSelected.driver.name} {taskSelected.driver.lastName}</p>
+                          data.driver ?
+                            <p style = {{marginTop: 0, marginLeft: 25, color:"black", fontWeight: "300"}}>{data.driver.name} {data.driver.lastName}</p>
                           :
                             null
                         }
@@ -179,8 +182,8 @@ class TaskModal extends PureComponent {
                       <div className ="modal__task-items">
                         <p> <UserIcon />  Cliente   </p>
                         {
-                          taskSelected.client ?
-                            <p style = {{marginTop: 0, marginLeft: 25, color:"black", fontWeight: "300"}}>{taskSelected.client}</p>
+                          data.client ?
+                            <p style = {{marginTop: 0, marginLeft: 25, color:"black", fontWeight: "300"}}>{data.client}</p>
                           :
                             null
                         }
@@ -188,7 +191,7 @@ class TaskModal extends PureComponent {
 
                       <div className ="modal__task-items">
                         <p> <MapMarkerIcon />  Destino   </p>
-                        <p style = {{marginTop: 0, marginLeft: 25, color:"black", fontWeight: "300"}}>{taskSelected.destination}</p>
+                        <p style = {{marginTop: 0, marginLeft: 25, color:"black", fontWeight: "300"}}>{data.destination}</p>
                       </div>
 
                       <div className ="modal__task-items">
@@ -203,7 +206,7 @@ class TaskModal extends PureComponent {
                     </div>
 
                     {
-                      taskSelected.status > 0 ?
+                      data.status > 0 ?
                         <div className ="modal__task-column" style = {{ overflow: "scroll"}}>
                           <div className ="modal__task-tabs">
                             <p
@@ -241,7 +244,7 @@ class TaskModal extends PureComponent {
 
 
                 <div className ="modal__task-container">
-                  <div className ="modal__task-close" onClick = {showTask.bind(this, {})}>
+                  <div className ="modal__task-close" >
                     <p>X</p>
                   </div>
 
@@ -254,7 +257,7 @@ class TaskModal extends PureComponent {
                         <input
                           type="text"
                           placeholder= "Nombre ruta"
-                          value= {taskSelected.title}
+                          value= {data.title}
                           style = {{color: "black", fontSize: 17, width: "35%"}}
                         />
                       </form>
@@ -265,11 +268,11 @@ class TaskModal extends PureComponent {
                       <div className ="modal__task-items">
                         <p> <SteeringIcon />  Conductor   </p>
                         {
-                          taskSelected.driver ?
+                          data.driver ?
 
                             <div className ="modal__create-route-dropdown">
                               <p style = {{color: "black"}}>
-                                {taskSelected.driver.name  +  taskSelected.driver.lastName} <ChevronDownIcon />
+                                {data.driver.name  +  data.driver.lastName} <ChevronDownIcon />
                               </p>
                             </div>
                           :
@@ -293,10 +296,10 @@ class TaskModal extends PureComponent {
                       <div className ="modal__task-items">
                         <p> <UserIcon />  Cliente   </p>
                         {
-                          taskSelected.client ?
+                          data.client ?
                             <div className ="modal__create-route-dropdown">
                               <p style = {{color: "black"}}>
-                                {taskSelected.client} <ChevronDownIcon />
+                                {data.client} <ChevronDownIcon />
                               </p>
                             </div>
                           :
@@ -311,7 +314,7 @@ class TaskModal extends PureComponent {
                           <input
                             type="text"
                             placeholder= "Nombre ruta"
-                            value= {taskSelected.destination}
+                            value= {data.destination}
                           />
                         </form>
                       </div>
@@ -344,5 +347,12 @@ class TaskModal extends PureComponent {
   }
 }
 
+const mapStateToProps = state => ({
+  data: state.formStopData,
+});
 
-export default withTranslation('common')(TaskModal);
+const mapDispatchToProps = dispatch => ({
+  formStop: ({prop, value}) => dispatch(formStop({prop, value})),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation('common')(StopModal));

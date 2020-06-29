@@ -21,7 +21,7 @@ import Projects from '../../../Dashboards/Projects/index';
 import Teams from '../../../Dashboards/Teams/index';
 import Stats from '../../../Dashboards/Stats/index';
 import Records from '../../../Dashboards/Records/index';
-import Tasks from '../../../Dashboards/Tasks/index';
+import Routes from '../../../Dashboards/Routes/index';
 import Settings from '../../../Dashboards/Settings/index';
 
 // Original example routes
@@ -39,7 +39,7 @@ export default () => (
     <Layout />
     <div className="container__wrap">
       <Route path="/teams" component={Teams} />
-      <Route path="/tasks" component={Tasks} />
+      <Route path="/routes" component={Routes} />
       <Route path="/projects" component={Projects} />
       <Route path="/settings" component={Settings} />
       <Route exact path="/stats" component={Stats} />

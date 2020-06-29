@@ -2,7 +2,7 @@
 import { FORM_ROUTE, RESET_INFO } from "../actions/routesActions";
 
 const initialState = {
-  displayFormModal: false,
+  displayRouteFormModal: null,
   modalType: null,
   duplicatedRoute: false,
   multipleDays: false,
@@ -23,9 +23,8 @@ export default function(state = initialState, action){
       } else {
           console.log("ACTION => ", action.payload)
           const {routeName, duplicatedRoute, multipleDays, startDate, endDate, multipleDrivers} = action.payload
-          return {...state, displayFormModal: true, routeName, multipleDays, endDate, startDate, multipleDrivers, modalType: "EDIT"}
+          return {...state, displayRouteFormModal: true, routeName, multipleDays, endDate, startDate, multipleDrivers, modalType: "EDIT"}
       }
-
       // }
     case RESET_INFO:
       return initialState;

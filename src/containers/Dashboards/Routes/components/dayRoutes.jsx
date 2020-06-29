@@ -15,6 +15,7 @@ import MapMarkerIcon from 'mdi-react/MapMarkerIcon';
 import ChevronDownIcon from 'mdi-react/ChevronDownIcon';
 import ArrowLeftIcon from 'mdi-react/ArrowLeftIcon';
 import { selectRoute } from '../../../../redux/actions/routesActions';
+import { selectStop } from '../../../../redux/actions/stopsActions';
 
 class DayRoutes extends PureComponent {
 
@@ -40,7 +41,7 @@ class DayRoutes extends PureComponent {
   }
 
   renderRouteStop(){
-      const {data, showTask, selectRoute} = this.props;
+      const {data, selectRoute, selectStop} = this.props;
 
       if(data.loaded){
         return data.routes.routes.map(route => {
@@ -65,9 +66,9 @@ class DayRoutes extends PureComponent {
 
                           <div style= {{display: "flex", flexDirection: "row", marginBottom: 5, justifyContent: "space-between"}}>
                             {this.renderTaskStatus(parada.status)}
-                            <p style ={{margin: 0, cursor: "pointer", marginTop: -2}} onClick = {showTask.bind(this, parada)}>...</p>
+                            <p style ={{margin: 0, cursor: "pointer", marginTop: -2}} onClick = {selectStop.bind(this, parada)}>...</p>
                           </div>
-                          <p style = {{fontWeight:"bold", fontSize: 13, marginLeft: 2}}>{index + 1}.  {parada.title}</p>
+                          <p style = {{fontWeight:"bold", fontSize: 13, marginLeft: 2}}>{index + 1}.  {parada.stopName}</p>
 
                            <div className ="dashboard__day-routes-list-data" >
                               <p style = {{marginTop: 0, marginLeft: 25, color:"black", fontWeight: "300"}}> <SteeringIcon /> {parada.driver.name}</p>
@@ -95,7 +96,7 @@ class DayRoutes extends PureComponent {
   }
 
   render() {
-    const {data, showTask} = this.props;
+    const {data} = this.props;
     console.log("route data => ", data);
 
     return (
@@ -114,6 +115,7 @@ class DayRoutes extends PureComponent {
 
 const mapDispatchToProps = dispatch => ({
   selectRoute: (objectsArray) => dispatch(selectRoute(objectsArray)),
+  selectStop: (objectsArray) => dispatch(selectStop(objectsArray)),
 });
 
 export default connect(null, mapDispatchToProps)(withTranslation('common')(DayRoutes));
