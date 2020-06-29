@@ -1,5 +1,7 @@
 /* eslint-disable */
 import React, { PureComponent } from 'react';
+import { connect } from 'react-redux';
+import { withTranslation } from 'react-i18next';
 import {
   Button, ButtonToolbar, Container, Col, CardBody, Row, Nav, NavItem, NavLink, TabContent, TabPane,
   DropdownItem,
@@ -12,6 +14,7 @@ import ClockOutlineIcon from 'mdi-react/ClockOutlineIcon';
 import MapMarkerIcon from 'mdi-react/MapMarkerIcon';
 import ChevronDownIcon from 'mdi-react/ChevronDownIcon';
 import ArrowLeftIcon from 'mdi-react/ArrowLeftIcon';
+import { selectRoute } from '../../../../redux/actions/routesActions';
 
 class DayRoutes extends PureComponent {
 
@@ -37,7 +40,7 @@ class DayRoutes extends PureComponent {
   }
 
   renderRouteStop(){
-      const {data, showTask} = this.props;
+      const {data, showTask, selectRoute} = this.props;
 
       if(data.loaded){
         return data.routes.routes.map(route => {
@@ -45,11 +48,11 @@ class DayRoutes extends PureComponent {
             <div className ="dashboard__day-routes-list">
               <div className ="dashboard__day-routes-list-header">
                 <div>
-                  <p style = {{fontSize: 15, fontWeight: "400"}}>{route.name}</p>
+                  <p style = {{fontSize: 15, fontWeight: "400"}}>{route.routeName}</p>
                 </div>
                  <p
                     style = {{fontSize: 19, fontWeight: "400", margin: 0, color: "#4CE1B6", cursor: "pointer"}}
-                    onClick = {() => console.log("fired log")}
+                    onClick = {selectRoute.bind(this, route)}
                   > +
                   </p>
               </div>
@@ -109,4 +112,8 @@ class DayRoutes extends PureComponent {
   }
 }
 
-export default DayRoutes;
+const mapDispatchToProps = dispatch => ({
+  selectRoute: (objectsArray) => dispatch(selectRoute(objectsArray)),
+});
+
+export default connect(null, mapDispatchToProps)(withTranslation('common')(DayRoutes));

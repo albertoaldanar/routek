@@ -22,7 +22,8 @@ export default function(state = initialState, action){
           return {...state, [action.payload.prop]: action.payload.value}
       } else {
           console.log("ACTION => ", action.payload)
-          return {...state, displayFormModal: true, routeName: "QUE SHOW", multipleDays: true}
+          const {routeName, duplicatedRoute, multipleDays, startDate, endDate, multipleDrivers} = action.payload
+          return {...state, displayFormModal: true, routeName, multipleDays, endDate, startDate, multipleDrivers, modalType: "EDIT"}
       }
 
       // }

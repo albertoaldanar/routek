@@ -30,7 +30,7 @@ const modalStyle = {
     outline: 'none',
 }
 
-class CreateRouteModal extends PureComponent {
+class RouteModal extends PureComponent {
 
   constructor(props){
     super(props);
@@ -229,13 +229,13 @@ class CreateRouteModal extends PureComponent {
               </div>
             </div>
             {
-              data.modalType == "CREATE" ?
+              data.modalType == "EDIT" ?
                 <div className ="modal__create-route-footer">
-                  <p>Crear ruta</p>
+                  <p>Editar ruta</p>
                 </div>
               :
                 <div className ="modal__create-route-footer">
-                  <p>Editar ruta</p>
+                  <p>Crear ruta</p>
                 </div>
             }
           </div>
@@ -254,4 +254,4 @@ const mapDispatchToProps = dispatch => ({
   formRoute: ({prop, value}) => dispatch(formRoute({prop, value})),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(withTranslation('common')(CreateRouteModal));
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation('common')(RouteModal));

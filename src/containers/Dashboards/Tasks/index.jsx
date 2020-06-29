@@ -23,7 +23,7 @@ import events from "./components/events";
 import Drivers from "./components/drivers";
 import DriversList from "./components/driversList";
 import TaskModal from "./components/taskModal";
-import CreateRouteModal from "./components/createRouteModal";
+import RouteModal from "./components/routeModal";
 import DayRoutes from "./components/dayRoutes";
 import { getRoutes } from '../../../redux/actions/routesActions';
 import { formRoute } from '../../../redux/actions/routesActions';
@@ -172,7 +172,7 @@ class Tasks extends PureComponent {
                 showTask = {this.showTask.bind(this)}
               />
 
-              <CreateRouteModal />
+              <RouteModal />
 
             </div>
           </div>

@@ -52,9 +52,13 @@ export function getRoutes(){
           startDate: new Date(2020, 6, 12),
           endDate: new Date(2020, 6, 12),
           fixedRoute: true,
-          name: "Ruta la primavera",
+          routeName: "Ruta la primavera",
           key: "2020-6-12*01",
           status: 0,
+          duplicatedRoute: false,
+          multipleDays: true,
+          multipleDrivers: false,
+          routeDriver: null,
           paradas: [
             {
               id: 0,
@@ -174,10 +178,14 @@ export function getRoutes(){
         {
           id: 2,
           startDate: new Date(2020, 6, 12),
-          endDate: new Date(2020, 6, 12),
+          endDate: null,
           fixedRoute: true,
-          name: "Ruta las quintas",
+          routeName: "Ruta las quintas",
           key: "2020-6-12*01",
+          duplicatedRoute: false,
+          multipleDays: false,
+          multipleDrivers: false,
+          routeDriver: null,
           status: 0,
           paradas: [
               {
