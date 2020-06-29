@@ -26,7 +26,8 @@ import TaskModal from "./components/taskModal";
 import CreateRouteModal from "./components/createRouteModal";
 import DayRoutes from "./components/dayRoutes";
 import { getRoutes } from '../../../redux/actions/routesActions';
-// import { changeCryptoTableData, loadCryptoTableData } from '../../../redux/actions/cryptoTableActions';
+import { formRoute } from '../../../redux/actions/routesActions';
+import { selectRoute } from '../../../redux/actions/routesActions';
 
 class Tasks extends PureComponent {
   static propTypes = {
@@ -46,18 +47,7 @@ class Tasks extends PureComponent {
       showTaskModal: false,
       taskSelected: {},
       showCreateRouteModal: false,
-      createRouteData: {
-        duplicateRoute: false,
-        multipleDays: false,
-        multipleDrivers: false,
-        routeName: "",
-        startDate: null,
-        endDate: null,
-        routeDriver: null
-      },
-      routeName: "",
-      startDate: "",
-      endDate: "",
+      createTypeModal: null
     };
 
   }
@@ -65,83 +55,6 @@ class Tasks extends PureComponent {
   componentDidMount(){
     this.props.getRoutes();
   }
-
-
-  //INFORMACIÓN DE MODAL DE RUTA
-  onChangeInput = (state) => (e, value) => {
-
-    if(state == "routeName"){
-        this.setState({
-          routeName: e.target.value
-        })
-    }
-  }
-
-  changeDates(index, date){
-    console.log(index);
-
-    if(index == 1){
-      this.setState(prevState => ({
-            createRouteData: {
-                ...prevState.createRouteData,
-                startDate: date
-            }
-      }))
-    } else {
-        this.setState(prevState => ({
-            createRouteData: {
-                ...prevState.createRouteData,
-                endDate: date
-            }
-        }))
-    }
-  }
-
-  selectRouteDriver(driver){
-        this.setState(prevState => ({
-            createRouteData: {
-                ...prevState.createRouteData,
-                routeDriver: driver
-            }
-        }))
-  }
-
-  createRouteSetData(attr){
-
-    console.log("ATTR =>", attr);
-    switch (attr) {
-      case 1:
-        return  this.setState(prevState => ({
-            createRouteData: {
-                ...prevState.createRouteData,
-                duplicateRoute: !this.state.createRouteData.duplicateRoute
-            }
-        }))
-        break;
-      case 2:
-        return  this.setState(prevState => ({
-            createRouteData: {
-                ...prevState.createRouteData,
-                multipleDays: !this.state.createRouteData.multipleDays
-            }
-        }))
-        break;
-      case 3:
-        return  this.setState(prevState => ({
-            createRouteData: {
-                ...prevState.createRouteData,
-                multipleDrivers: !this.state.createRouteData.multipleDrivers
-            }
-        }))
-        break;
-      default:
-        console.log("Invalid Attr.")
-        break;
-    }
-  }
- //--INFORMACIÓN DE MODAL DE RUTA--
-
-
 
  //NAVEGACIÓN EN MAPA
   setCenter(values) {
@@ -186,16 +99,15 @@ class Tasks extends PureComponent {
 //--NAVEGACIÓN EN MAPA--
 
   render() {
-    const { t, data, rtl, getRoutes, theme} = this.props;
-    const { activeTab, lat, lng, driverSelected, showTaskModal, taskSelected, showCreateRouteModal, createRouteData, routeName } = this.state;
-    console.log("R=> ", this.state.createRouteData.changeDates);
+    const { t, data, rtl, getRoutes, theme, formRoute, selectRoute} = this.props;
+    const { activeTab, lat, lng, driverSelected, showTaskModal, taskSelected, showCreateRouteModal, createRouteData, createTypeModal } = this.state;
 
     return (
       <Container className="dashboard">
         <Row>
           <Col md={12} className="dashboard__title-and-button">
             <h3 className="page-title">{t('tasks.page_title')}</h3>
-            <Button color="success" className="dashboard__add-team icon" onClick = {() => this.setState({showCreateRouteModal: !this.state.showCreateRouteModal})}>
+            <Button color="success" className="dashboard__add-team icon" onClick = {formRoute.bind(this, {prop: "displayFormModal", value: true})}>
               <MapMarkerPlusIcon/> {t('tasks.add_route')}
             </Button>
           </Col>
@@ -227,8 +139,10 @@ class Tasks extends PureComponent {
               </Nav>
               <TabContent activeTab={activeTab}>
                 <TabPane tabId="1" style = {{height: 400, margin: 0}}>
-                    <DayRoutes data= {data} showTask = {this.showTask.bind(this)}/>
-
+                    <DayRoutes
+                      data= {data}
+                      showTask = {this.showTask.bind(this)}
+                    />
                 </TabPane>
                 <TabPane tabId="2">
                   <MapView
@@ -258,15 +172,7 @@ class Tasks extends PureComponent {
                 showTask = {this.showTask.bind(this)}
               />
 
-              <CreateRouteModal
-                showCreateRouteModal = {showCreateRouteModal}
-                showModal = {() => this.setState({showCreateRouteModal: !this.state.showCreateRouteModal})}
-                createRouteData = {createRouteData}
-                onChangeInput = {this.onChangeInput.bind(this)}
-                createRouteSetData = {this.createRouteSetData.bind(this)}
-                changeDates = {this.changeDates.bind(this)}
-                selectRouteDriver = {this.selectRouteDriver.bind(this)}
-              />
+              <CreateRouteModal />
 
             </div>
           </div>
@@ -279,11 +185,13 @@ class Tasks extends PureComponent {
 const mapStateToProps = state => ({
   rtl: state,
   data: state.routes,
-  theme: state.theme
+  theme: state.theme,
 });
 
 const mapDispatchToProps = dispatch => ({
   getRoutes: () => dispatch(getRoutes()),
+  formRoute: ({prop, value}) => dispatch(formRoute({prop, value})),
+  selectRoute: (objectsArray) => dispatch(selectRoute(objectsArray)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(withTranslation('common')(Tasks));

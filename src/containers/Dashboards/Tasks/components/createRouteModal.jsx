@@ -60,9 +60,13 @@ class CreateRouteModal extends PureComponent {
     );
   }
 
+  // resetData(){
+  //   this.props.f
+  // }
+
   render(){
 
-    const { showModal, showCreateRouteModal, createRouteData, createRouteSetData, onChangeInput, changeDates } = this.props;
+    const { showModal, showCreateRouteModal, data, formRoute } = this.props;
     const { showDriversList, showRoutesList } = this.state;
     console.log(this.props.data);
 
@@ -72,7 +76,7 @@ class CreateRouteModal extends PureComponent {
           disablePortal
           disableEnforceFocus
           disableAutoFocus = {true}
-          open={showCreateRouteModal}
+          open={data.displayFormModal}
           aria-labelledby="simple-modal-title"
           aria-describedby="simple-modal-description"
           style={modalStyle}
@@ -80,7 +84,7 @@ class CreateRouteModal extends PureComponent {
           <div className ="modal__create-route-container">
             <div className ="modal__create-route-header">
               <p style = {{marginLeft: 2}}> Creación de ruta </p>
-              <p onClick = {showModal}> X </p>
+              <p onClick = {() => formRoute({prop: null, value: null}) }> X </p>
             </div>
 
             <div className = "modal__create-route-data">
@@ -89,8 +93,8 @@ class CreateRouteModal extends PureComponent {
                   <p> <MapOutlineIcon />  Nombre de ruta  </p>
                   <div style = {{display: "flex", fleDirection:"row"}}>
                     <Checkbox
-                      checked={createRouteData.duplicateRoute}
-                      onClick={createRouteSetData.bind(this, 1)}
+                      checked={data.duplicatedRoute}
+                      onClick={formRoute.bind(this, {prop: "duplicatedRoute", value: !data.duplicatedRoute})}
                       name="checkedB"
                       style = {{padding: 0, color: "#4CE1B6", marginRight: 2}}
                     />
@@ -99,13 +103,13 @@ class CreateRouteModal extends PureComponent {
                   </div>
                 </div>
               {
-                !createRouteData.duplicateRoute ?
+                !data.duplicatedRoute ?
                   <form>
                     <input
                       type="text"
                       placeholder= "Nombre ruta"
-                      value= {this.props.data.routeName}
-                      onChange = {value => this.props.formRoute({prop: "routeName", value: value.target.value})}
+                      value= {data.routeName}
+                      onChange = {value => formRoute({prop: "routeName", value: value.target.value})}
                     />
                   </form>
                 :
@@ -127,7 +131,6 @@ class CreateRouteModal extends PureComponent {
                   </div>
 
               }
-
               </div>
 
               <div className ="modal__create-route-items">
@@ -135,8 +138,8 @@ class CreateRouteModal extends PureComponent {
                   <p> <CalendarIcon />  Fecha  </p>
                   <div style = {{display: "flex", fleDirection:"row"}}>
                     <Checkbox
-                      checked={createRouteData.multipleDays}
-                      onClick={createRouteSetData.bind(this, 2)}
+                      checked={data.multipleDays}
+                      onClick={this.props.formRoute.bind(this, {prop: "multipleDays", value: !data.multipleDays})}
                       name="checkedB"
                       style = {{padding: 0, color: "#4CE1B6", marginRight: 2 }}
                     />
@@ -145,16 +148,16 @@ class CreateRouteModal extends PureComponent {
                 </div>
 
                 {
-                  !createRouteData.multipleDays ?
+                  !data.multipleDays ?
                       <div className="date-picker">
                         <DatePicker
                           className="form__form-group-datepicker"
-                          selected = {createRouteData.startDate}
+                          selected = {data.startDate}
                           placeholderText="yyyy/MM/dd"
                           dateFormat="yyyy/MM/dd"
                           dropDownMode="select"
                           popperPlacement="center"
-                          onChange = {changeDates.bind(this, 1)}
+                          onChange = {value => formRoute({prop: "startDate", value: value})}
                         />
                       </div>
                   :
@@ -162,23 +165,24 @@ class CreateRouteModal extends PureComponent {
                       <div className="date-picker">
                         <DatePicker
                           className="form__form-group-datepicker"
-                          selected = {createRouteData.startDate}
+                          selected = {data.startDate}
                           placeholderText="Dia inicio"
                           dateFormat="yyyy/MM/dd"
                           dropDownMode="select"
                           popperPlacement="center"
-                          onChange = {changeDates.bind(this, 1)}
+                          onChange = {value => formRoute({prop: "startDate", value: value})}
+
                         />
                       </div>
                       <div className="date-picker">
                         <DatePicker
                           className="form__form-group-datepicker"
-                          selected = {createRouteData.endDate}
+                          selected = {data.endDate}
                           placeholderText="Dia final"
                           dateFormat="yyyy/MM/dd"
                           dropDownMode="select"
                           popperPlacement="center"
-                          onChange = {changeDates.bind(this, 2)}
+                          onChange = {value => formRoute({prop: "endDate", value: value})}
                         />
                       </div>
                     </div>
@@ -192,8 +196,8 @@ class CreateRouteModal extends PureComponent {
                   <p> <SteeringIcon  />  Conductor  </p>
                   <div style = {{display: "flex", fleDirection:"row"}}>
                     <Checkbox
-                      checked={createRouteData.multipleDrivers}
-                      onClick={createRouteSetData.bind(this, 3)}
+                      checked={data.multipleDrivers}
+                      onClick={this.props.formRoute.bind(this, {prop: "multipleDrivers", value: !data.multipleDrivers})}
                       name="checkedB"
                       style = {{padding: 0, color: "#4CE1B6", marginRight: 2}}
                     />
@@ -201,7 +205,7 @@ class CreateRouteModal extends PureComponent {
                   </div>
                 </div>
                 {
-                  createRouteData.multipleDrivers ?
+                  data.multipleDrivers ?
                     <p style = {{marginTop: 0, marginLeft: 25, color:"black", fontWeight: "300", paddingTop: 7}}>Listo! Podras asignar un conductor a cada parda cuando la crees</p>
                   :
                     <div>
@@ -224,10 +228,16 @@ class CreateRouteModal extends PureComponent {
 
               </div>
             </div>
-
-            <div className ="modal__create-route-footer">
-              <p>Crear ruta</p>
-            </div>
+            {
+              data.modalType == "CREATE" ?
+                <div className ="modal__create-route-footer">
+                  <p>Crear ruta</p>
+                </div>
+              :
+                <div className ="modal__create-route-footer">
+                  <p>Editar ruta</p>
+                </div>
+            }
           </div>
         </Modal>
       </div>

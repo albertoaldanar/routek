@@ -47,7 +47,11 @@ class DayRoutes extends PureComponent {
                 <div>
                   <p style = {{fontSize: 15, fontWeight: "400"}}>{route.name}</p>
                 </div>
-                 <p style = {{fontSize: 19, fontWeight: "400", margin: 0, color: "#4CE1B6", cursor: "pointer"}}> +</p>
+                 <p
+                    style = {{fontSize: 19, fontWeight: "400", margin: 0, color: "#4CE1B6", cursor: "pointer"}}
+                    onClick = {() => console.log("fired log")}
+                  > +
+                  </p>
               </div>
 
               <div className ="dashboard__day-routes-list-stops">

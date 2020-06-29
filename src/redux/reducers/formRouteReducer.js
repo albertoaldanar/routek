@@ -1,8 +1,10 @@
 /* eslint-disable */
-import { FORM_ROUTE } from "../actions/routesActions";
+import { FORM_ROUTE, RESET_INFO } from "../actions/routesActions";
 
 const initialState = {
-  duplicateRoute: false,
+  displayFormModal: false,
+  modalType: null,
+  duplicatedRoute: false,
   multipleDays: false,
   multipleDrivers: false,
   routeName: "",
@@ -15,9 +17,16 @@ export default function(state = initialState, action){
 
   switch (action.type) {
     case FORM_ROUTE:
-      console.log("ACTION => ", action.payload)
-      return {...state, [action.payload.prop]: action.payload.value}
-    case "reset_info":
+      if(action.multipleStates == false) {
+          console.log("Actions => ", action)
+          return {...state, [action.payload.prop]: action.payload.value}
+      } else {
+          console.log("ACTION => ", action.payload)
+          return {...state, displayFormModal: true, routeName: "QUE SHOW", multipleDays: true}
+      }
+
+      // }
+    case RESET_INFO:
       return initialState;
     default:
       return state

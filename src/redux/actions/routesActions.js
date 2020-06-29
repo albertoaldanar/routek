@@ -4,6 +4,7 @@ export const GET_ALL_ROUTES = 'GET_ALL_ROUTES';
 export const UPDATE_ROUTE = 'UPDATE_ROUTE';
 export const FILTER_ROUTE = 'FILTER_ROUTE';
 export const FORM_ROUTE = 'FORM_ROUTE';
+export const RESET_INFO = 'RESET_INFO';
 
 export function getAllRoutes(routes) {
   return {
@@ -14,23 +15,33 @@ export function getAllRoutes(routes) {
 
 export function formRoute({prop, value}) {
   return {
-    type: FORM_ROUTE,
-    payload: {prop, value}
+    type: prop == null && value == null ? RESET_INFO : FORM_ROUTE,
+    payload: {prop, value},
+    multipleStates: false,
   }
 }
-// export function createRoute(data) {
-//   return {
-//     type: CREATE_ROUTE,
-//     data
-//   };
-// }
 
-export function updateRoute(items) {
+export function selectRoute(stateObject) {
   return {
-    type: UPDATE_ROUTE,
-    items,
+    type: FORM_ROUTE,
+    payload: stateObject,
+    multipleStates: true,
+  }
+}
+
+export function createRoute(data) {
+  return {
+    type: CREATE_ROUTE,
+    data
   };
 }
+
+// export function updateRoute(items) {
+//   return {
+//     type: UPDATE_ROUTE,
+//     items,
+//   };
+// }
 
 export function getRoutes(){
   return(dispatch) => {
