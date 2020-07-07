@@ -19,11 +19,9 @@ import MapMarkerPlusIcon from 'mdi-react/MapMarkerPlusIcon';
 import PropTypes from 'prop-types';
 import MapView from './components/MapView';
 import Calendar from "./components/Calendar";
-import events from "./components/events";
 import Drivers from "./components/drivers";
-import DriversList from "./components/driversList";
-import StopModal from "./components/stopModal";
-import RouteModal from "./components/routeModal";
+import StopModal from "./components/modals/stops/index";
+import RouteModal from "./components/modals/routes/routeModal";
 import DayRoutes from "./components/dayRoutes";
 import { getRoutes } from '../../../redux/actions/routesActions';
 import { formRoute } from '../../../redux/actions/routesActions';
@@ -163,12 +161,8 @@ class Routes extends PureComponent {
                   </div>
                 </TabPane>
               </TabContent>
-              <StopModal
-                showTaskModal={showTaskModal}
-                taskSelected ={taskSelected}
-                showTask = {this.showTask.bind(this)}
-              />
 
+              <StopModal />
               <RouteModal />
 
             </div>

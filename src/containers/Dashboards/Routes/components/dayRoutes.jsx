@@ -16,6 +16,7 @@ import ChevronDownIcon from 'mdi-react/ChevronDownIcon';
 import ArrowLeftIcon from 'mdi-react/ArrowLeftIcon';
 import { selectRoute } from '../../../../redux/actions/routesActions';
 import { selectStop } from '../../../../redux/actions/stopsActions';
+import { formStop } from '../../../../redux/actions/stopsActions';
 
 class DayRoutes extends PureComponent {
 
@@ -41,7 +42,7 @@ class DayRoutes extends PureComponent {
   }
 
   renderRouteStop(){
-      const {data, selectRoute, selectStop} = this.props;
+      const {data, selectRoute, selectStop, formStop} = this.props;
 
       if(data.loaded){
         return data.routes.routes.map(route => {
@@ -53,7 +54,7 @@ class DayRoutes extends PureComponent {
                 </div>
                  <p
                     style = {{fontSize: 19, fontWeight: "400", margin: 0, color: "#4CE1B6", cursor: "pointer"}}
-                    onClick = {selectRoute.bind(this, route)}
+                    onClick = {formStop.bind(this, {prop: "displayStopFormModal", value: true})}
                   > +
                   </p>
               </div>
@@ -116,6 +117,7 @@ class DayRoutes extends PureComponent {
 const mapDispatchToProps = dispatch => ({
   selectRoute: (objectsArray) => dispatch(selectRoute(objectsArray)),
   selectStop: (objectsArray) => dispatch(selectStop(objectsArray)),
+  formStop: ({prop, value}) => dispatch(formStop({prop, value})),
 });
 
 export default connect(null, mapDispatchToProps)(withTranslation('common')(DayRoutes));

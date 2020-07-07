@@ -13,6 +13,7 @@ export const RESET_INFO = 'RESET_INFO';
 //   };
 // }
 
+
 // export function formRoute({prop, value}) {
 //   return {
 //     type: prop == null && value == null ? RESET_INFO : FORM_ROUTE,

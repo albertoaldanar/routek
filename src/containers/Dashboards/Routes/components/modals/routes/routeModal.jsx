@@ -19,7 +19,7 @@ import MapOutlineIcon from 'mdi-react/MapOutlineIcon';
 import CalendarIcon from 'mdi-react/CalendarIcon';
 import ChevronDownIcon from 'mdi-react/ChevronDownIcon';
 import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
-import { formRoute } from '../../../../redux/actions/routesActions';
+import { formRoute } from '../../../../../../redux/actions/routesActions';
 const modalStyle = {
     display:'flex',
     alignItems:'center',
@@ -68,7 +68,7 @@ class RouteModal extends PureComponent {
 
     const { showModal, showCreateRouteModal, data, formRoute } = this.props;
     const { showDriversList, showRoutesList } = this.state;
-    console.log(this.props.data);
+    // console.log(this.props.data);
 
     return(
       <div>

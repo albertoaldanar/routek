@@ -3,6 +3,7 @@ import { FORM_STOP, RESET_INFO } from "../actions/stopsActions";
 
 const initialState = {
     displayStopFormModal: null,
+    modalType: null,
     id: 0,
     stopName: '',
     allDay: true,
@@ -33,7 +34,7 @@ export default function(state = initialState, action){
       } else {
           console.log("ACTION => ", action.payload)
           const {id, stopName, allDay, startDate, endDate, project, lat, lng, destination, pictures, signature, comments, done, working, client, status, driver} = action.payload
-          return {...state, displayStopFormModal: true, stopName, allDay, startDate, endDate, project, lat, lng, destination, pictures, signature, comments, done, working, client, status, driver}
+          return {...state, displayStopFormModal: true, modalType: "EDIT", stopName, allDay, startDate, endDate, project, lat, lng, destination, pictures, signature, comments, done, working, client, status, driver}
       }
     case RESET_INFO:
       return initialState;

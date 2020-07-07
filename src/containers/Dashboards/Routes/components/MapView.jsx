@@ -8,11 +8,7 @@ import PropTypes from 'prop-types';
 import CloseIcon from 'mdi-react/CloseIcon';
 import { connect } from 'react-redux';
 import { InfoBox } from 'react-google-maps/lib/components/addons/InfoBox';
-import silverMapStyle from './silverMapStyle.json';
-import blueMapStyle from './blueMapStyle.json';
-import retroMapStyle from './retroMapStyle.json';
-import darkMapStyle from './darkMapStyle.json';
-import nightMapStyle from './nightMapStyle.json';
+import {  blueMapStyle, darkMapStyle, nightMapStyle, retroMapStyle, silverMapStyle } from './mapStyles/index';
 import UserAddIcon from 'mdi-react/UserAddIcon';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {MarkerWithLabel} from "react-google-maps/lib/components/addons/MarkerWithLabel";

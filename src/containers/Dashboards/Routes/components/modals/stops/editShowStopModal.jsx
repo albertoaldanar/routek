@@ -19,7 +19,8 @@ import DateFnsUtils from '@date-io/date-fns';
 import DatePicker, { registerLocale } from 'react-datepicker';
 import es from "date-fns/locale/es";
 registerLocale("es", es);
-import { formStop } from '../../../../redux/actions/stopsActions';
+import CreateStopModal from "./createStopModal";
+import { formStop } from '../../../../../../redux/actions/stopsActions';
 
 import {
   MuiPickersUtilsProvider,
@@ -39,7 +40,7 @@ const modalStyle = {
 
 
 
-class StopModal extends PureComponent {
+class EditShowStopModal extends PureComponent {
 
   constructor(props){
     super(props);
@@ -136,23 +137,13 @@ class StopModal extends PureComponent {
   render(){
     const { data, formStop } = this.props;
     const {tab, info, editMode} = this.state;
-    // console.log(this.props.data);
+    console.log("STOP => ", this.props.data);
 
     return(
-      <div>
-        <Modal
-          disablePortal
-          disableEnforceFocus
-          disableAutoFocus = {true}
-          open={data.displayStopFormModal}
-          aria-labelledby="simple-modal-title"
-          aria-describedby="simple-modal-description"
-          style={modalStyle}
-        >
-
-            {
-              !editMode ?
-                <div className ="modal__task-container">
+      <div className ="modal__task-container">
+        {
+            !editMode ?
+                <div >
                   <div className ="modal__task-close" onClick = {() => formStop({prop: null, value: null})}>
                     <p>X</p>
                   </div>
@@ -239,11 +230,9 @@ class StopModal extends PureComponent {
                   </div>
                 </div>
 
-
               :
 
-
-                <div className ="modal__task-container">
+                <div >
                   <div className ="modal__task-close" >
                     <p>X</p>
                   </div>
@@ -257,8 +246,9 @@ class StopModal extends PureComponent {
                         <input
                           type="text"
                           placeholder= "Nombre ruta"
-                          value= {data.title}
+                          value= {data.stopName}
                           style = {{color: "black", fontSize: 17, width: "35%"}}
+                          onChange = {value => formStop({prop: "stopName", value: value.target.value})}
                         />
                       </form>
                   </div>
@@ -339,9 +329,9 @@ class StopModal extends PureComponent {
                   </div>
 
                 </div>
-            }
 
-        </Modal>
+        }
+
       </div>
     );
   }
@@ -355,4 +345,4 @@ const mapDispatchToProps = dispatch => ({
   formStop: ({prop, value}) => dispatch(formStop({prop, value})),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(withTranslation('common')(StopModal));
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation('common')(EditShowStopModal));
