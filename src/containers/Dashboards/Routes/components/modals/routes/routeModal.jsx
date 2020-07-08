@@ -230,11 +230,11 @@ class RouteModal extends PureComponent {
             </div>
             {
               data.modalType == "EDIT" ?
-                <div className ="modal__create-route-footer">
+                <div className ="modal__create-footer">
                   <p>Editar ruta</p>
                 </div>
               :
-                <div className ="modal__create-route-footer">
+                <div className ="modal__create-footer">
                   <p>Crear ruta</p>
                 </div>
             }

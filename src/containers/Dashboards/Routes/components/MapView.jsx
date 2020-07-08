@@ -54,8 +54,8 @@ const MapView = compose(
     googleMapURL: 'https://maps.googleapis.com/maps/api/js?key=AIzaSyA1PquORAjAjumChpMb1to9WHsifrBrjvs&callback=initMap'
     + 'exp&libraries=geometry,drawing,places',
     loadingElement: <div style={{ height: '100%' }} />,
-    containerElement: <div className="map" style={{ height: '445px' }} />,
-    mapElement: <div style={{ height: '100%' }} />,
+    containerElement: <div className="map" style={{ height: window.innerHeight , width: '100%' }} />,
+    mapElement: <div style={{ height: '100%',  }} />,
   }),
   withScriptjs,
   withGoogleMap,
@@ -66,9 +66,10 @@ const MapView = compose(
       ref={(mapRef) => ref = mapRef}
       defaultCenter={{ lat: props.lat, lng: props.lng }}
       defaultOptions={{
-        styles: props.theme.className == "theme-dark" ? darkMapStyle : silverMapStyle,
+        styles: props.theme.className == "theme-dark" ? darkMapStyle : retroMapStyle,
         mapTypeControl: false,
         streetViewControl: false,
+        fullscreenControl: false,
       }}
       center={{lat: props.lat, lng: props.lng}}
       onCenterChanged={(e) => {

@@ -46,7 +46,7 @@ class CreateStopModal extends PureComponent {
 
   render() {
 
-    const {data} = this.props;
+    const {data, formStop} = this.props;
 
     return (
           <div className ="modal__task-container">
@@ -55,11 +55,10 @@ class CreateStopModal extends PureComponent {
                   </div>
 
                   <div className ="modal__task-header">
-
                       <form>
                         <input
                           type="text"
-                          placeholder= "Nombre ruta"
+                          placeholder= "Nombre de parada"
                           value= {data.stopName}
                           style = {{color: "black", fontSize: 17, width: "35%"}}
                           onChange = {value => formStop({prop: "stopName", value: value.target.value})}
@@ -87,7 +86,7 @@ class CreateStopModal extends PureComponent {
                       <div className ="modal__task-items" >
                         <p> <ClockOutlineIcon />  Dia y Hora   </p>
                           <DatePicker
-                            selected={new Date()}
+                            selected={null}
                             showTimeSelect
                             timeFormat="HH:mm"
                             timeIntervals={15}
@@ -99,16 +98,14 @@ class CreateStopModal extends PureComponent {
 
                       <div className ="modal__task-items">
                         <p> <UserIcon />  Cliente   </p>
-                        {
-                          data.client ?
-                            <div className ="modal__create-route-dropdown">
-                              <p style = {{color: "black"}}>
-                                {data.client} <ChevronDownIcon />
-                              </p>
-                            </div>
-                          :
-                            null
-                        }
+                        <form>
+                          <input
+                            type="text"
+                            placeholder= "Nombre de cliente"
+                            value= {data.client}
+                            onChange = {value => formStop({prop: "client", value: value.target.value})}
+                          />
+                        </form>
                       </div>
 
                       <div className ="modal__task-items">
@@ -117,8 +114,9 @@ class CreateStopModal extends PureComponent {
                         <form>
                           <input
                             type="text"
-                            placeholder= "Nombre ruta"
+                            placeholder= "Dirección de destino"
                             value= {data.destination}
+                            onChange = {value => formStop({prop: "destination", value: value.target.value})}
                           />
                         </form>
                       </div>
@@ -136,9 +134,8 @@ class CreateStopModal extends PureComponent {
                       </div>
                     </div>
 
-                    <div className ="modal__task-footer-edit">
-                      <p style = {{marginLeft: 15, color: "#228B22"}} onClick ={() => this.setState({editMode: true})}>Guardar cambios</p>
-                      <p style ={{margin: 0, marginRight: 15, color: "#DC143C"}}>Eliminar</p>
+                    <div className ="modal__create-footer">
+                      <p>Crear parada</p>
                     </div>
                   </div>
 

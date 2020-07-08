@@ -7,11 +7,15 @@
   }
 }
 
+.container__dashboards {
+  padding-top: 90px;
+}
+
 .container__wrap {
   @include directify($directions) {
     #{directed('padding-left')}: 0px;
   }
-  padding-top: 90px;
+  // padding-top: 90px;
   min-height: 100vh;
   transition: padding-left 0.3s;
 
