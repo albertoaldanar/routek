@@ -36,7 +36,7 @@ class Routes extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      activeTab: '1',
+      activeTab: '2',
       lat: 56.009483,
       lng: 92.8121694,
       driverSelected: null,
@@ -101,9 +101,13 @@ class Routes extends PureComponent {
     const { activeTab, lat, lng, driverSelected, showTaskModal, taskSelected, showCreateRouteModal, createRouteData, createTypeModal } = this.state;
 
     return (
-      <div style = {{position: "relative", paddingTop: -90}}>
+      <div style = {{position: "relative", paddingLeft: 0}}>
             <div className ="dashboard__header-tools-container">
-              <p>helo</p>
+              <div className ="dashboard__header-tools-options">
+                <p onClick = {this.toggle.bind(this, "2")} style ={{textDecoration: activeTab == "2" ? "underline":  "none"}}>Lista</p>
+                <p onClick = {this.toggle.bind(this, "1")} style = {{textDecoration: activeTab == "1" ? "underline":  "none", paddingLeft: 20}}>Mapa</p>
+              </div>
+
             </div>
               {
                 activeTab == "1" ?
