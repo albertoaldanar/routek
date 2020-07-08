@@ -122,6 +122,8 @@ class Routes extends PureComponent {
                 :
                   <DayRoutes data= {data}/>
               }
+            <StopModal />
+            <RouteModal />
       </div>
     );
   }

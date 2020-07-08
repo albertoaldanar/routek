@@ -32,6 +32,12 @@
 
 .layout {
 
+    & + .container__wrap{
+        @include directify($directions) {
+          #{directed('padding-left')}: 16.5%;
+        }
+    }
+
   &.layout--collapse {
 
     & + .container__wrap {

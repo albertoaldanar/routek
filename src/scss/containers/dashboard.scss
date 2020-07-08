@@ -14,7 +14,7 @@
 .dashboard__header-tools-options {
   display: flex;
   flex-direction: row;
-  padding-left: 10px;
+  padding-left: 15px;
   padding-top: 10px;
   p {
     margin: 0px;
@@ -31,7 +31,7 @@
     overflow-x: scroll;
     position: relative;
     min-height: 80%;
-    margin-top: 90px;
+    margin-top: 95px;
     p {
       font-weight: 300px;
       margin-top: 2px;
@@ -54,7 +54,7 @@
     }
 }
 .dashboard__day-routes-list {
-    margin-right: 70px;
+    margin-right: 50px;
     height: 100%;
     // max-width: 30px;
 
@@ -62,9 +62,10 @@
     max-width: 300px;
     padding: 20px;
     padding-top: 10px;
-    background-color: #2A2A31;
+    background-color: #222228;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
+    margin-left: 20px;
     // overflow-x: scroll;
 
 }
@@ -91,7 +92,7 @@
       margin-top: 2px;
       font-size: 12px;
     }
-    height: 88%;
+    height: 90%;
     overflow: scroll;
 }
 
