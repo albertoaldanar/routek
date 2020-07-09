@@ -45,7 +45,8 @@ class Routes extends PureComponent {
       showTaskModal: false,
       taskSelected: {},
       showCreateRouteModal: false,
-      createTypeModal: null
+      createTypeModal: null, 
+      new: true,
     };
 
   }
