@@ -22,7 +22,7 @@ import { RTLProps } from '../../../shared/prop-types/ReducerProps';
 import ChevronDownIcon from 'mdi-react/ChevronDownIcon';
 
 const Stats = ({ rtl }) => (
-  <Container className="dashboard">
+  <Container className=" container__dashboards dashboard">
     <Row>
       <Col md={12} className="dashboard__title-and-button">
         <h3 className="page-title">Estadísticas de ruta</h3>

@@ -15,7 +15,7 @@
   @include directify($directions) {
     #{directed('padding-left')}: 0px;
   }
-  padding-left: -10px;
+  // padding-left: -10px;
   min-height: 100vh;
   transition: padding-left 0.3s;
 
@@ -34,7 +34,7 @@
 
     // & + .container__wrap{
     //     @include directify($directions) {
-    //       #{directed('padding-left')}: 16.5%;
+    //       #{directed('padding-left')}: 235px;
     //     }
     // }
 
@@ -47,7 +47,7 @@
 
       @media screen and (min-width: 576px) {
         @include directify($directions) {
-          #{directed('padding-left')}: 55px;
+          #{directed('padding-left')}: 65px;
         }
       }
     }

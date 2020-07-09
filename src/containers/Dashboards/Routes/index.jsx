@@ -101,11 +101,12 @@ class Routes extends PureComponent {
     const { activeTab, lat, lng, driverSelected, showTaskModal, taskSelected, showCreateRouteModal, createRouteData, createTypeModal } = this.state;
 
     return (
-      <div style = {{position: "relative", paddingLeft: 0}}>
+      <div style = {{position: "relative", marginLeft: -10}}>
             <div className ="dashboard__header-tools-container">
               <div className ="dashboard__header-tools-options">
                 <p onClick = {this.toggle.bind(this, "2")} style ={{textDecoration: activeTab == "2" ? "underline":  "none"}}>Lista</p>
                 <p onClick = {this.toggle.bind(this, "1")} style = {{textDecoration: activeTab == "1" ? "underline":  "none", paddingLeft: 20}}>Mapa</p>
+                <p onClick = {formRoute.bind(this, {prop: "displayRouteFormModal", value: true})} style = {{position: "absolute", right: 10}}>+ Crear ruta</p>
               </div>
 
             </div>
