@@ -111,14 +111,18 @@ class Routes extends PureComponent {
             </div>
               {
                 activeTab == "1" ?
-                  <MapView
-                    data = {data}
-                    lat={lat} lng={lng}
-                    theme = {theme}
-                    showIcon={true} driverSelected={driverSelected}
-                    showTask = {this.showTask.bind(this)}
-                    resetDrivers={this.resetDrivers.bind(this)} moveInMap={this.moveInMap.bind(this)} setCenter={this.setCenter.bind(this)}
-                  />
+                  <div>
+                    <Drivers data={data} moveInMap={this.moveInMap.bind(this)}/>
+                    <MapView
+                      data = {data}
+                      lat={lat} lng={lng}
+                      theme = {theme}
+                      showIcon={true} driverSelected={driverSelected}
+                      showTask = {this.showTask.bind(this)}
+                      resetDrivers={this.resetDrivers.bind(this)} moveInMap={this.moveInMap.bind(this)} setCenter={this.setCenter.bind(this)}
+                    />
+                  </div>
+
                 :
                   <DayRoutes data= {data}/>
               }
