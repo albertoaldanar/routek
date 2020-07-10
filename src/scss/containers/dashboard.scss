@@ -6,7 +6,9 @@
     top: 60px;
     width: 100%;
     height: 40px;
-    background-color: #232329;
+    @include themify($themes) {
+      background-color: themed('colorBackground');
+    }
     z-index: 20;
     justify-content: space-between;
     left: 0px;
@@ -27,8 +29,6 @@
 
 //DAY ROUTES___________________________________________________________________
 .dashboard__day-routes-container {
-    display: flex;
-    flex-direction: row;
     width: 100%;
     overflow-x: scroll;
     position: relative;
@@ -57,14 +57,15 @@
 }
 .dashboard__day-routes-list {
     margin-right: 50px;
-    min-height: 100%;
-    max-height: 100%;
-
-    min-width: 300px;
-    max-width: 300px;
+    min-height: 200px;
+    max-height: 200px;
+    width: 95%;
     padding: 20px;
     padding-top: 10px;
-    background-color: #222228;
+    margin-bottom: 25px;
+    @include themify($themes) {
+      background-color: themed('colorBackgroundStopsList');
+    }
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
     margin-left: 20px;
@@ -88,6 +89,9 @@
 }
 
 .dashboard__day-routes-list-stops {
+    display: flex;
+    flex-direction: row;
+    overflow-x: scroll;
     padding: 0px;
     p {
       font-weight: 300px;
@@ -100,7 +104,9 @@
 
 .dashboard__day-routes-list-stop {
     padding: 5px;
-    margin-bottom: 7px;
+    margin-right: 45px;
+    width: 280px;
+    margin-top: 10px;
     // border: 0.3px solid #dcdcdc;
     background-color: #dcdcdc;
     border-radius: 5px;
@@ -142,7 +148,7 @@
     @include themify($themes) {
       background-color: themed('localizeDriver');
     }
-    background-color: #2A2A31;
+    background-color: transparent;
     border-radius: 5px;
     padding: 15px 28px;
     left: 47px;

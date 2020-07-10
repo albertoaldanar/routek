@@ -76,15 +76,6 @@ class DayRoutes extends PureComponent {
                               <p style = {{marginTop: 0, marginLeft: 25, color:"black", fontWeight: "300"}}> <ClockOutlineIcon /> 10:40 am</p>
                            </div>
                         </div>
-                        {
-                          index + 1 < route.paradas.length ?
-                            <div className= "dashboard__day-routes-list-icon">
-                              <ChevronDownIcon />
-                            </div>
-                          :
-                            null
-                        }
-
                       </div>
                     )
                   })

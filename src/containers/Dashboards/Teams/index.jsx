@@ -38,7 +38,7 @@ class Teams extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      hasTeams: true,
+      hasTeams: false,
       showCalendar: false
     };
   }
@@ -75,7 +75,7 @@ class Teams extends PureComponent {
     };
 
     return (
-      <Container className="dashboard">
+      <Container className="dashboard container__dashboards">
         <Row>
           <Col md={12} className="dashboard__title-and-button">
             <h3 className="page-title">{t('teams.page_title')}</h3>
