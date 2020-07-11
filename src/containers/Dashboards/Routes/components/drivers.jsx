@@ -15,7 +15,6 @@ class Drivers extends PureComponent {
     const { moveInMap, data } = this.props;
     return(
       <div className="dashboard__map-drivers">
-        <p className="dashboard__drivers-title">LOCALIZADOR</p>
         {
           data.loaded ?
             data.routes.drivers.map(driver => {

@@ -12,7 +12,8 @@ import { withTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import MapView from './components/MapView';
-import Calendar from "./components/Calendar";
+import EyeOutlineIcon from 'mdi-react/EyeOutlineIcon';
+import ChevronDownIcon from 'mdi-react/ChevronDownIcon';
 import Drivers from "./components/drivers";
 import StopModal from "./components/modals/stops/index";
 import RouteModal from "./components/modals/routes/routeModal";
@@ -40,7 +41,7 @@ class Routes extends PureComponent {
       taskSelected: {},
       showCreateRouteModal: false,
       createTypeModal: null, 
-      new: true,
+      showDrivers: false,
     };
 
   }
@@ -93,22 +94,39 @@ class Routes extends PureComponent {
 
   render() {
     const { t, data, rtl, getRoutes, theme, formRoute, selectRoute} = this.props;
-    const { activeTab, lat, lng, driverSelected, showTaskModal, taskSelected, showCreateRouteModal, createRouteData, createTypeModal } = this.state;
+    const { activeTab, lat, lng, driverSelected, showDrivers  } = this.state;
 
     return (
       <div style = {{position: "relative", marginLeft: -10}}>
             <div className ="dashboard__header-tools-container">
               <div className ="dashboard__header-tools-options">
+                <p  className ="dashboard__header-tools-date-picker "> 16/02/2020 </p>
                 <p onClick = {this.toggle.bind(this, "2")} style ={{textDecoration: activeTab == "2" ? "underline":  "none"}}>Lista</p>
                 <p onClick = {this.toggle.bind(this, "1")} style = {{textDecoration: activeTab == "1" ? "underline":  "none", paddingLeft: 20}}>Mapa</p>
-                <p onClick = {formRoute.bind(this, {prop: "displayRouteFormModal", value: true})} style = {{position: "absolute", right: 10}}>+ Crear ruta</p>
+                <div style = {{position: "absolute", right: 25, display: "flex", flexDirection: "row"}} >
+                  <p onClick = {formRoute.bind(this, {prop: "displayRouteFormModal", value: true})}>+ Crear ruta</p>
+                </div>
               </div>
+
+              
 
             </div>
               {
                 activeTab == "1" ?
-                  <div>
-                    <Drivers data={data} moveInMap={this.moveInMap.bind(this)}/>
+                  <div style = {{position: "relative"}}>
+                    {
+                      showDrivers ? 
+                         <Drivers data={data} moveInMap={this.moveInMap.bind(this)}/>
+                      : 
+                        null
+                    }
+
+                    <div style = {{backgroundColor:"#232329", position: "absolute", top: 100, bottom: 0, right: 0, height: window.innerHeight -95, zIndex: 21, width: "15%", overflowY: "scroll", borderTop: "0.4px solid gray"}} >
+                      <p style ={{marginTop: 10, marginLeft: 10}} >
+                        Equipo 
+                      </p>
+                    </div>
+                    
                     <MapView
                       data = {data}
                       lat={lat} lng={lng}

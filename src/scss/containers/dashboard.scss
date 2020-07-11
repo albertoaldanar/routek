@@ -19,10 +19,38 @@
   display: flex;
   flex-direction: row;
   padding-left: 15px;
-  padding-top: 7px;
+  padding-top: 10px;
   p {
     margin: 0px;
     cursor: pointer;
+  }
+}
+
+.dashboard__header-tools-localizador {
+  margin-right: 40px;
+  margin-top: -2px;
+  svg {
+    width: 15px;
+    height: 15px;
+  }
+}
+
+.dashboard__header-tools-date-picker {
+  position: absolute;
+  left: 45%;
+  right: 50%;
+  display: inline;
+  svg {
+    fill: red;
+    width: 15px;
+    height: 15px;
+  }
+}
+
+
+@media screen and (max-width: 900px) {
+  .dashboard__header-tools-localizador {
+    display: none;
   }
 }
 //TOOLS HEADER___________________________________________________________________
@@ -59,7 +87,7 @@
     margin-right: 50px;
     min-height: 200px;
     max-height: 200px;
-    width: 95%;
+    width: 97%;
     padding: 20px;
     padding-top: 10px;
     margin-bottom: 25px;
@@ -132,10 +160,11 @@
 
 .dashboard__day-routes-list-icon {
     text-align: center;
-    margin-bottom: 10px;
+    margin-top: 40px;
+    margin-right: 30px;
     svg {
-      width: 14px;
-      height: 14px;
+      width: 20px;
+      height: 20px;
       color: white;
     }
 }
@@ -145,18 +174,21 @@
 .dashboard__map-drivers {
     z-index: 20;
     position: absolute;
-    @include themify($themes) {
-      background-color: themed('localizeDriver');
-    }
+    // @include themify($themes) {
+    //   background-color: themed('localizeDriver');
+    // }  
+    display: flex;
+    flex-direction: row;
     background-color: transparent;
     border-radius: 5px;
     padding: 15px 28px;
-    left: 47px;
-    max-height: 362px;
-    min-height: 362px;
-    top: 25%;
-    width: 190px;
-    overflow-y: scroll;
+    left: 15%;
+    left: 15%;
+    max-height: 100px;
+    min-height: 100px;
+    bottom: 10%;
+    width: 70%;
+    overflow-x: scroll;
 }
 
 .dashboard__drivers-title {
@@ -171,35 +203,42 @@
 }
 .dashboard__competitor {
     display: flex;
-    padding: 10px 0;
+    flex-direction: "row";
+    padding: 10px;
+    padding-right: 40px;
     position: relative;
-    margin-bottom: 15px;
+    margin-right: 80px;
+    width: 40%;
 
-    &:before {
-      content: "";
-      position: absolute;
-      height: 100%;
-      width: calc(100% + 30px);
-      top: 0;
-      @include directify($directions) {
-        #{directed('left')}: -10px;
-      }
-      z-index: 0;
-      opacity: 0;
-      transition: all 0.3s;
-
-      @include themify($themes) {
-        background: themed('colorHover');
-      }
+    @include themify($themes) {
+      background-color: themed('localizeDriver');
     }
 
-    &:hover {
+    // &:before {
+    //   content: "";
+    //   position: absolute;
+    //   height: 100%;
+    //   width: calc(100% + 30px);
+    //   top: 0;
+    //   @include directify($directions) {
+    //     #{directed('left')}: -10px;
+    //   }
+    //   z-index: 0;
+    //   opacity: 0;
+    //   transition: all 0.3s;
 
-      &:before {
-        opacity: 0.3;
-        border-radius: 5px;
-      }
-    }
+    //   @include themify($themes) {
+    //     background: themed('colorHover');
+    //   }
+    // }
+
+    // &:hover {
+
+    //   &:before {
+    //     opacity: 0.3;
+    //     border-radius: 5px;
+    //   }
+    // }
 }
 
 .dashboard__competitor-img {

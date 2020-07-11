@@ -2,17 +2,9 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { withTranslation } from 'react-i18next';
-import {
-  Button, ButtonToolbar, Container, Col, CardBody, Row, Nav, NavItem, NavLink, TabContent, TabPane,
-  DropdownItem,
-  DropdownMenu,
-  DropdownToggle,
-  UncontrolledDropdown,
-} from 'reactstrap';
 import SteeringIcon from 'mdi-react/SteeringIcon';
 import ClockOutlineIcon from 'mdi-react/ClockOutlineIcon';
-import MapMarkerIcon from 'mdi-react/MapMarkerIcon';
-import ChevronDownIcon from 'mdi-react/ChevronDownIcon';
+import ChevronRightIcon from 'mdi-react/ChevronRightIcon';
 import ArrowLeftIcon from 'mdi-react/ArrowLeftIcon';
 import { selectRoute } from '../../../../redux/actions/routesActions';
 import { selectStop } from '../../../../redux/actions/stopsActions';
@@ -53,16 +45,16 @@ class DayRoutes extends PureComponent {
                   <p style = {{fontSize: 15, fontWeight: "400"}}>{route.routeName}</p>
                 </div>
                  <p
-                    style = {{fontSize: 19, fontWeight: "400", margin: 0, color: "#4CE1B6", cursor: "pointer"}}
+                    style = {{fontSize: 14, fontWeight: "400", margin: 0, color: "#4CE1B6", cursor: "pointer"}}
                     onClick = {formStop.bind(this, {prop: "displayStopFormModal", value: true})}
-                  > +
+                  > + Nueva parada
                   </p>
               </div>
 
               <div className ="dashboard__day-routes-list-stops">
                 { route.paradas.map((parada, index) => {
                     return(
-                      <div>
+                      <div style= {{display: "flex", flexDirection: "row"}} >
                         <div className ="dashboard__day-routes-list-stop">
 
                           <div style= {{display: "flex", flexDirection: "row", marginBottom: 5, justifyContent: "space-between"}}>
