@@ -32,6 +32,9 @@
   svg {
     width: 15px;
     height: 15px;
+    @include themify($themes) {
+      fill: themed('colorEmoji');
+    }
   }
 }
 
@@ -39,12 +42,32 @@
   position: absolute;
   left: 45%;
   right: 50%;
-  display: inline;
+  display: flex;
+  flex-direction: row;
+  width: 110px;
   svg {
-    fill: red;
-    width: 15px;
-    height: 15px;
+    width: 18px;
+    height: 18px;
+    margin-left: 1px;
+    margin-top: 1px;
+    @include themify($themes) {
+      fill: themed('colorEmoji');
+    }
   }
+}
+
+.dashboard__header-tools-date-picker-dropdown {
+  @include themify($themes) {
+    background-color: themed('colorBackground');
+  }
+  position: absolute;
+  border-radius: 5px;
+  z-index: 22;
+  top: 30px;
+  width: 170px;
+  padding: 15px;
+  left:-5px;
+  box-shadow: 0 1px 30px 1px rgba(0, 0, 0, 0.11);
 }
 
 
@@ -174,9 +197,9 @@
 .dashboard__map-drivers {
     z-index: 20;
     position: absolute;
-    // @include themify($themes) {
-    //   background-color: themed('localizeDriver');
-    // }  
+    @include themify($themes) {
+      background-color: themed('localizeDriver');
+    }  
     display: flex;
     flex-direction: row;
     background-color: transparent;
@@ -189,6 +212,62 @@
     bottom: 10%;
     width: 70%;
     overflow-x: scroll;
+}
+
+
+.dashboard__map-drivers-sidebar {
+  z-index: 21;
+  position: absolute;
+  @include themify($themes) {
+    background-color: themed('localizeDriver');
+  }  
+  transition: opacity 0.5s;
+  opacity: 1;
+  // background-color: red;
+  top: 100px;
+  right: 0px;
+  bottom: 0px;
+  width: 200px;
+  p {
+    margin: 0px;
+  }
+  box-shadow: 0 1px 30px 1px rgba(0, 0, 0, 0.11);
+
+  svg {
+    width: 17px;
+    height: 17px;
+    margin-left: 5px;
+    cursor: pointer;
+    @include themify($themes) {
+      fill: themed('colorEmoji');
+    }  
+  }
+}
+
+.dashboard__map-drivers-sidebar-open {
+  z-index: 21;
+  position: absolute;
+  @include themify($themes) {
+    background-color: themed('localizeDriver');
+  }  
+  transition: opacity 0.5s;
+  opacity: 1;
+  text-align: left;
+  padding-right: 15px;
+  padding-left:10px;
+  padding-bottom: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  // background-color: red;
+  top: 150px;
+  right: 0px;
+  box-shadow: 0 1px 30px 1px rgba(0, 0, 0, 0.11);
+
+  svg {
+    width: 17px;  
+    height: 17px;
+    margin-right: 3px;
+  }
 }
 
 .dashboard__drivers-title {
@@ -205,40 +284,15 @@
     display: flex;
     flex-direction: "row";
     padding: 10px;
-    padding-right: 40px;
     position: relative;
-    margin-right: 80px;
-    width: 40%;
+    padding-left: 30px;
+    margin-bottom: 30px;
+    width: 100%;
+    // margin: 20px;
 
     @include themify($themes) {
       background-color: themed('localizeDriver');
     }
-
-    // &:before {
-    //   content: "";
-    //   position: absolute;
-    //   height: 100%;
-    //   width: calc(100% + 30px);
-    //   top: 0;
-    //   @include directify($directions) {
-    //     #{directed('left')}: -10px;
-    //   }
-    //   z-index: 0;
-    //   opacity: 0;
-    //   transition: all 0.3s;
-
-    //   @include themify($themes) {
-    //     background: themed('colorHover');
-    //   }
-    // }
-
-    // &:hover {
-
-    //   &:before {
-    //     opacity: 0.3;
-    //     border-radius: 5px;
-    //   }
-    // }
 }
 
 .dashboard__competitor-img {

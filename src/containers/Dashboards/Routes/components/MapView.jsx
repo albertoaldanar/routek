@@ -54,7 +54,7 @@ const MapView = compose(
     googleMapURL: 'https://maps.googleapis.com/maps/api/js?key=AIzaSyA1PquORAjAjumChpMb1to9WHsifrBrjvs&callback=initMap'
     + 'exp&libraries=geometry,drawing,places',
     loadingElement: <div style={{ height: '100%' }} />,
-    containerElement: <div className="map" style={{ height: window.innerHeight , width: '100%' }} />,
+    containerElement: <div className="map" style={{ height: window.innerHeight , width: "100%"}} />,
     mapElement: <div style={{ height: '100%',  }} />,
   }),
   withScriptjs,
@@ -66,7 +66,7 @@ const MapView = compose(
       ref={(mapRef) => ref = mapRef}
       defaultCenter={{ lat: props.lat, lng: props.lng }}
       defaultOptions={{
-        styles: props.theme.className == "theme-dark" ? darkMapStyle : retroMapStyle,
+        styles: props.theme.className == "theme-dark" ? darkMapStyle : null,
         mapTypeControl: false,
         streetViewControl: false,
         fullscreenControl: false,
@@ -125,7 +125,7 @@ const MapView = compose(
                 <MarkerWithLabel
                   position={{ lat: parada.lat, lng: parada.lng }}
                   icon={mIcon(parada.driver.color)}
-                  onClick={props.showTask.bind(this, parada)}
+                  // onClick={props.showTask.bind(this, parada)}
                   draggable={true}
                   labelAnchor={properties.position}
                   labelStyle={properties.style}

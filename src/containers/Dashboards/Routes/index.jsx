@@ -7,13 +7,16 @@ import {
   DropdownToggle,
   UncontrolledDropdown,
 } from 'reactstrap';
-import classnames from 'classnames';
 import { withTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import MapView from './components/MapView';
-import EyeOutlineIcon from 'mdi-react/EyeOutlineIcon';
+import DatePicker, { registerLocale } from 'react-datepicker';
+import es from "date-fns/locale/es";
+import RightSidebar from './components/rightSidebar';
+import CogOutlineIcon from 'mdi-react/CogOutlineIcon';
 import ChevronDownIcon from 'mdi-react/ChevronDownIcon';
+import moment from 'moment';
 import Drivers from "./components/drivers";
 import StopModal from "./components/modals/stops/index";
 import RouteModal from "./components/modals/routes/routeModal";
@@ -21,6 +24,20 @@ import DayRoutes from "./components/dayRoutes";
 import { getRoutes } from '../../../redux/actions/routesActions';
 import { formRoute } from '../../../redux/actions/routesActions';
 import { selectRoute } from '../../../redux/actions/routesActions';
+
+var date = new Date();
+var formatted = moment(date).format('L');
+
+const DayPicker = ({ value, onClick }) => (
+  <div style = {{width: 110, height: 30}} onClick={onClick}>
+   <p>
+     {
+       formatted == value ? "Rutas de hoy" : value
+     }
+      <ChevronDownIcon/>
+    </p> 
+  </div>
+);
 
 class Routes extends PureComponent {
   static propTypes = {
@@ -31,22 +48,22 @@ class Routes extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      activeTab: '2',
+      activeTab: '1',
       lat: 56.009483,
       lng: 92.8121694,
       driverSelected: null,
-      activeDrivers: [],
       loadedData: false,
-      showTaskModal: false,
       taskSelected: {},
-      showCreateRouteModal: false,
       createTypeModal: null, 
-      showDrivers: false,
+      showRightSidebar: true,
+      dateDropdown: false, 
+      daySelected: new Date(),
     };
 
   }
 
   componentDidMount(){
+    console.log(formatted);
     this.props.getRoutes();
   }
 
@@ -59,14 +76,6 @@ class Routes extends PureComponent {
     });
 
     console.log(values);
-  }
-
-
-  showTask(task){
-    this.setState({
-      taskSelected: task,
-      showTaskModal: !this.state.showTaskModal
-    })
   }
 
   toggle = (tab) => {
@@ -94,13 +103,26 @@ class Routes extends PureComponent {
 
   render() {
     const { t, data, rtl, getRoutes, theme, formRoute, selectRoute} = this.props;
-    const { activeTab, lat, lng, driverSelected, showDrivers  } = this.state;
+    const { activeTab, lat, lng, driverSelected, showRightSidebar, dateDropdown, daySelected  } = this.state;
 
     return (
       <div style = {{position: "relative", marginLeft: -10}}>
             <div className ="dashboard__header-tools-container">
               <div className ="dashboard__header-tools-options">
-                <p  className ="dashboard__header-tools-date-picker "> 16/02/2020 </p>
+                <div className ="dashboard__header-tools-date-picker" onClick = {() => this.setState({dateDropdown: !this.state.dateDropdown})}>
+
+                      {
+                          <DatePicker
+                            selected={daySelected}
+                            onChange={date => this.setState({daySelected: date})}
+                            locale="es"
+                            customInput={
+                             < DayPicker />
+                            }
+                          />
+                      }
+                </div>
+               
                 <p onClick = {this.toggle.bind(this, "2")} style ={{textDecoration: activeTab == "2" ? "underline":  "none"}}>Lista</p>
                 <p onClick = {this.toggle.bind(this, "1")} style = {{textDecoration: activeTab == "1" ? "underline":  "none", paddingLeft: 20}}>Mapa</p>
                 <div style = {{position: "absolute", right: 25, display: "flex", flexDirection: "row"}} >
@@ -108,31 +130,31 @@ class Routes extends PureComponent {
                 </div>
               </div>
 
-              
-
             </div>
               {
                 activeTab == "1" ?
                   <div style = {{position: "relative"}}>
-                    {
-                      showDrivers ? 
-                         <Drivers data={data} moveInMap={this.moveInMap.bind(this)}/>
-                      : 
-                        null
+
+                    {showRightSidebar ? 
+                      <RightSidebar 
+                        showRightSidebar = {() => this.setState({showRightSidebar: false})} 
+                        data={data} 
+                        moveInMap={this.moveInMap.bind(this)}
+                      />
+                    : 
+                      <div className ="dashboard__map-drivers-sidebar-open" onClick = {() => this.setState({showRightSidebar: true})} >
+                        <p style ={{marginTop: 10, marginLeft: 10}} >
+                          <CogOutlineIcon /> Herramientas 
+                        </p>
+                      </div>
                     }
 
-                    <div style = {{backgroundColor:"#232329", position: "absolute", top: 100, bottom: 0, right: 0, height: window.innerHeight -95, zIndex: 21, width: "15%", overflowY: "scroll", borderTop: "0.4px solid gray"}} >
-                      <p style ={{marginTop: 10, marginLeft: 10}} >
-                        Equipo 
-                      </p>
-                    </div>
                     
                     <MapView
                       data = {data}
                       lat={lat} lng={lng}
                       theme = {theme}
                       showIcon={true} driverSelected={driverSelected}
-                      showTask = {this.showTask.bind(this)}
                       resetDrivers={this.resetDrivers.bind(this)} moveInMap={this.moveInMap.bind(this)} setCenter={this.setCenter.bind(this)}
                     />
                   </div>
