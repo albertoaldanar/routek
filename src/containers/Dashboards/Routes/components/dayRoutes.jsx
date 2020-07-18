@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { withTranslation } from 'react-i18next';
 import SteeringIcon from 'mdi-react/SteeringIcon';
 import ClockOutlineIcon from 'mdi-react/ClockOutlineIcon';
-import ChevronRightIcon from 'mdi-react/ChevronRightIcon';
 import ArrowLeftIcon from 'mdi-react/ArrowLeftIcon';
 import { selectRoute } from '../../../../redux/actions/routesActions';
 import { selectStop } from '../../../../redux/actions/stopsActions';
@@ -43,11 +42,21 @@ class DayRoutes extends PureComponent {
                 <div>
                   <p style = {{fontSize: 15, fontWeight: "400"}}>{route.routeName}</p>
                 </div>
-                 <p
-                    style = {{fontSize: 14, fontWeight: "400", margin: 0, color: "#4CE1B6", cursor: "pointer"}}
-                    onClick = {formStop.bind(this, {prop: "displayStopFormModal", value: true})}
+                <div style = {{display: "flex", flexDirection: "row"}}>
+                  <p
+                      style = {{fontSize: 14, fontWeight: "400", paddingRight: 15, marginTop: -3, cursor: "pointer"}}
+                      onClick = {selectRoute.bind(this, route)}
+                  > 
+                  ...
+                  </p>
+                  <p
+                      style = {{fontSize: 14, fontWeight: "400", margin: 0, color: "#4CE1B6", cursor: "pointer"}}
+                      onClick = {formStop.bind(this, {prop: "displayStopFormModal", value: true})}
                   > + 
                   </p>
+                </div>
+
+
               </div>
 
               <div className ="dashboard__day-routes-list-stops dashboard__right_sidebar_stop-list" style = {{paddingLeft: 10}}>
@@ -58,7 +67,6 @@ class DayRoutes extends PureComponent {
                         <view className ="dashboard__day-routes-list-stop">
                           <view style= {{display: "flex", flexDirection: "row", marginBottom: 5, justifyContent: "space-between", paddingLeft: 20}}>
                             <p style = {{fontWeight:"bold", fontSize: 14}}>{parada.stopName}</p>
-
                             <p style ={{margin: 0, cursor: "pointer", marginTop: -2}} onClick = {selectStop.bind(this, parada)}>...</p>
                           </view>
                           {this.renderTaskStatus(parada.status)}

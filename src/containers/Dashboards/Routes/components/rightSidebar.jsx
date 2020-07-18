@@ -6,8 +6,7 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 import CarIcon from 'mdi-react/CarIcon';
 import ArrowLeftIcon from 'mdi-react/ArrowLeftIcon';
 import ClockOutlineIcon from 'mdi-react/ClockOutlineIcon';
-import ArrowDownIcon from 'mdi-react/ArrowDownIcon';
-import { Line, Circle } from 'rc-progress';
+import { Progress } from 'reactstrap';
 
 class RightSidebar extends PureComponent {
 
@@ -28,14 +27,12 @@ class RightSidebar extends PureComponent {
             !selectDriver ? 
               <div>
                 
-                <ArrowRightIcon onClick = {showRightSidebar} />
-                
                 <div onClick = {showRightSidebar} style ={{display: "flex", justifyContent:"space-around", flexDirection: "row", marginTop: 10, borderRadius: 5, backgroundColor: "#dcdcdc", marginLeft: 5, marginRight: 5}} >
                     <p style = {{textDecoration: "underline", color: "#232329"}}> Equipo </p>
                     <p style = {{color: "#232329"}}>  Rutas </p>
                 </div>
 
-                <div style = {{marginTop: 35,}}>
+                <div style = {{marginTop: 35}}>
                   {
                     data.loaded ?
                       data.routes.drivers.map(driver => {
@@ -50,9 +47,9 @@ class RightSidebar extends PureComponent {
 
                               <p style = {{fontSize: 11, fontWeight: "300", marginBottom: 3, marginTop: 3, fontStyle: "italic"}}> En trayecto <CarIcon style= {{width: 13, height: 13, marginTop:-2}}/></p>
 
-                              <p style = {{fontSize: 9, fontWeight: "300"}}>10 / 15 paradas</p>
-                              <div style = {{width: "100%"}} >
-                                <LinearProgress variant = "buffer" value={40} style= {{color: "red", colorPrimary: {background: "red"}, fill: "red"}}/>
+                              <p style = {{fontSize: 9, fontWeight: "300", marginBottom: 2}}>10 / 15 paradas</p>
+                              <div style = {{width: "100%"}} className="progress-wrap progress-wrap--small" >
+                                <Progress animated value={70} />
                               </div>
             
                               <div style = {{display: "flex", flexDirection: "row", marginTop: 10}}>
@@ -69,9 +66,23 @@ class RightSidebar extends PureComponent {
               </div>
             : 
               <div>
-                <ArrowLeftIcon style={{marginRight: 2, marginTop: 4}} onClick = {() => this.setState({selectDriver: false})}/>
+                <ArrowLeftIcon style={{marginRight: 2, marginTop: 2, marginLeft: 2}} onClick = {() => this.setState({selectDriver: false})}/>
+                <div style = {{marginTop: 10, marginBottom: 40, marginLeft: 25, alignItems: "center"}}>  
 
+                    <p>Alberto Aldana <span className="dashboard__right_sidebar-driver-dot" style = {{backgroundColor: "blue"}}></span></p>
+                    <p style = {{fontStyle: "italic", fontSize:  10}}>Inactivo</p>
 
+                    <div style = {{display: "flex", flexDirection: "row", justifyContent: "space-between", marginTop: 10}}>
+                      <p style = {{fontSize: 9, fontWeight: "300", marginBottom: 2}}>10 / 15 paradas</p>
+                      <p style = {{fontSize: 9, fontWeight: "300", marginBottom: 2, marginRight: 20}}> 60 %</p>
+                    </div>
+
+                    <div style = {{width: "90%"}} className="progress-wrap progress-wrap--small" >
+                        <Progress animated value={70} />
+                    </div>
+                </div>
+
+                <p style = {{margin: 10}}>Paradas</p>
                 <div className ="dashboard__right_sidebar_stop-list">
                   <ul>
                     {
