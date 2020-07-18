@@ -22,14 +22,13 @@ class DayRoutes extends PureComponent {
   renderTaskStatus(status){
 
       switch(status){
-          case 0: return <p style = {{marginTop: 0, marginLeft: 3, color:"black", fontWeight: "300", fontSize: 10}}> Sin empezar  <span className="dashboard__competitor-dot" style = {{backgroundColor: "#A9A9A9"}}></span> </p>;
-          case 1: return <p style = {{marginTop: 0, marginLeft: 3, color:"black", fontWeight: "300", fontSize: 10}}> En proceso  <span className="dashboard__competitor-dot" style = {{backgroundColor: "#6495ED"}}></span> </p>;
+          case 1: return <p style = {{marginTop: 0, marginLeft: 3, fontWeight: "300", fontSize: 12, paddingLeft: 20}}> En proceso  <span className="dashboard__right_sidebar-driver-dot " style = {{backgroundColor: "#6495ED"}}></span> </p>;
 
-          case 2: return <p style = {{marginTop: 0, marginLeft: 3, color:"black", fontWeight: "300", fontSize: 10}}> Terminado  <span className="dashboard__competitor-dot" style = {{backgroundColor: "#4CE1B6"}}></span> </p>;
+          case 2: return <p style = {{marginTop: 0, marginLeft: 3, fontWeight: "300", fontSize: 12, paddingLeft: 20}}> Terminado  <span className="dashboard__right_sidebar-driver-dot " style = {{backgroundColor: "#4CE1B6"}}></span> </p>;
 
-          case 3: return <p style = {{marginTop: 0, marginLeft: 3, color:"black", fontWeight: "300", fontSize: 10}}> Fallida  <span className="dashboard__competitor-dot" style = {{backgroundColor: "#DC143C"}}></span> </p>;
+          case 3: return <p style = {{marginTop: 0, marginLeft: 3, fontWeight: "300", fontSize: 12, paddingLeft: 20}}> Fallida  <span className="dashboard__right_sidebar-driver-dot " style = {{backgroundColor: "#DC143C"}}></span> </p>;
 
-          default: return "default error"
+          default: return <p style = {{marginTop: 0, marginLeft: 3, fontWeight: "300", fontSize: 12, paddingLeft: 20}}> Terminado  <span className="dashboard__right_sidebar-driver-dot " style = {{backgroundColor: "#4CE1B6"}}></span> </p>;
       }
   }
 
@@ -47,31 +46,32 @@ class DayRoutes extends PureComponent {
                  <p
                     style = {{fontSize: 14, fontWeight: "400", margin: 0, color: "#4CE1B6", cursor: "pointer"}}
                     onClick = {formStop.bind(this, {prop: "displayStopFormModal", value: true})}
-                  > + Nueva parada
+                  > + 
                   </p>
               </div>
 
-              <div className ="dashboard__day-routes-list-stops">
+              <div className ="dashboard__day-routes-list-stops dashboard__right_sidebar_stop-list" style = {{paddingLeft: 10}}>
+              <ul style= {{paddingRight: 10,}}>
                 { route.paradas.map((parada, index) => {
                     return(
-                      <div style= {{display: "flex", flexDirection: "row"}} >
-                        <div className ="dashboard__day-routes-list-stop">
+                      <div style = {{marginBottom: 50}}>
+                        <view className ="dashboard__day-routes-list-stop">
+                          <view style= {{display: "flex", flexDirection: "row", marginBottom: 5, justifyContent: "space-between", paddingLeft: 20}}>
+                            <p style = {{fontWeight:"bold", fontSize: 14}}>{parada.stopName}</p>
 
-                          <div style= {{display: "flex", flexDirection: "row", marginBottom: 5, justifyContent: "space-between"}}>
-                            {this.renderTaskStatus(parada.status)}
                             <p style ={{margin: 0, cursor: "pointer", marginTop: -2}} onClick = {selectStop.bind(this, parada)}>...</p>
-                          </div>
-                          <p style = {{fontWeight:"bold", fontSize: 13, marginLeft: 2}}>{index + 1}.  {parada.stopName}</p>
-
-                           <div className ="dashboard__day-routes-list-data" >
-                              <p style = {{marginTop: 0, marginLeft: 25, color:"black", fontWeight: "300"}}> <SteeringIcon /> {parada.driver.name}</p>
-                              <p style = {{marginTop: 0, marginLeft: 25, color:"black", fontWeight: "300"}}> <ClockOutlineIcon /> 10:40 am</p>
-                           </div>
-                        </div>
+                          </view>
+                          {this.renderTaskStatus(parada.status)}
+                           <view className ="dashboard__day-routes-list-data" style= {{paddingLeft: 20}}>
+                              <p style = {{marginTop: 0,fontWeight: "300"}}> <SteeringIcon /> {parada.driver.name}</p>
+                              <p style = {{marginTop: 0,  fontWeight: "300"}}> <ClockOutlineIcon /> 10:40 am</p>
+                           </view>
+                        </view>
                       </div>
                     )
                   })
                 }
+              </ul>
               </div>
             </div>
           );
@@ -89,7 +89,7 @@ class DayRoutes extends PureComponent {
           <ArrowLeftIcon />
           Calendario / 16 de Abril 2020
         </p>
-        <div className ="dashboard__day-routes-container">
+        <div className ="dashboard__day-routes-container" style = {{height: window.innerHeight -120}}> 
           {this.renderRouteStop()}
         </div>
       </div>

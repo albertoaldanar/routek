@@ -48,7 +48,7 @@ class Routes extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      activeTab: '1',
+      activeTab: '2',
       lat: 56.009483,
       lng: 92.8121694,
       driverSelected: null,

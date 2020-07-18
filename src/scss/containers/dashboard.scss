@@ -83,8 +83,8 @@
     width: 100%;
     overflow-x: scroll;
     position: relative;
-    min-height: 100%;
-    // background-color: red;
+    display: flex;
+    flex-direction: row;
     margin-top: 95px;
     p {
       font-weight: 300px;
@@ -108,10 +108,10 @@
 }
 .dashboard__day-routes-list {
     margin-right: 50px;
-    min-height: 200px;
-    max-height: 200px;
-    width: 97%;
-    padding: 20px;
+    height: 95%;
+    min-width: 300px;
+    max-width: 300px;
+    padding: 10px;
     padding-top: 10px;
     margin-bottom: 25px;
     @include themify($themes) {
@@ -140,8 +140,8 @@
 }
 
 .dashboard__day-routes-list-stops {
-    display: flex;
-    flex-direction: row;
+    // display: flex;
+    // flex-direction: row;
     overflow-x: scroll;
     padding: 0px;
     p {
@@ -149,23 +149,17 @@
       margin-top: 2px;
       font-size: 12px;
     }
-    height: 90%;
+    height: 100%;
     overflow: scroll;
 }
 
 .dashboard__day-routes-list-stop {
     padding: 5px;
-    margin-right: 45px;
-    width: 280px;
-    margin-top: 10px;
-    // border: 0.3px solid #dcdcdc;
-    background-color: #dcdcdc;
+    padding-right: 10px;
+    width: 90%;
+    margin-bottom: 30px;
     border-radius: 5px;
     cursor: default;
-
-    p {
-      color: black;
-    }
 }
 
 .dashboard__day-routes-list-data {
@@ -173,13 +167,12 @@
     margin-bottom: 5px;
     display: flex;
     flex-direction: row;
-
+    justify-content: space-between;
     svg {
       width: 14px;
       height: 14px;
     }
 }
-
 
 .dashboard__day-routes-list-icon {
     text-align: center;
@@ -366,7 +359,7 @@
   
   ul div {
     list-style: none;
-    margin: 0 0 75px 0;
+    margin: 0 0 85px 0;
     padding: 0;
   }
   
