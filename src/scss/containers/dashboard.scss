@@ -194,8 +194,14 @@
   position: absolute;
   @include themify($themes) {
     background-color: themed('localizeDriver');
-  }  
-  transition: opacity 0.5s;
+  }
+  transition: transform 0.3s, width 0.3s;
+  // transition: opacity 0.5s;
+  // transition: all 0.3s;
+  opacity:0;
+  width:0;
+  height:0;
+  transition: width 0.5s 0.5s, height 0.5s 0.5s, opacity 0.5s;
   opacity: 1;
   // background-color: red;
   top: 100px;
@@ -214,9 +220,35 @@
     cursor: pointer;
     @include themify($themes) {
       fill: themed('colorEmoji');
-    }  
+    }
   }
   overflow: auto;
+}
+
+.dashboard__map-drivers-sidebar-close {
+  z-index: 21;
+  position: absolute;
+  @include themify($themes) {
+    background-color: themed('localizeDriver');
+  }
+  transition: opacity 0.5s;
+  opacity: 1;
+  text-align: left;
+  padding-right: 15px;
+  padding-left:10px;
+  padding-bottom: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  // background-color: red;
+  top: 150px;
+  right: 230px;
+  box-shadow: 0 1px 30px 1px rgba(0, 0, 0, 0.11);
+
+  svg {
+    width: 17px;
+    height: 17px;
+    margin-right: 3px;
+  }
 }
 
 .dashboard__map-drivers-sidebar-open {
@@ -224,7 +256,7 @@
   position: absolute;
   @include themify($themes) {
     background-color: themed('localizeDriver');
-  }  
+  }
   transition: opacity 0.5s;
   opacity: 1;
   text-align: left;
@@ -239,7 +271,7 @@
   box-shadow: 0 1px 30px 1px rgba(0, 0, 0, 0.11);
 
   svg {
-    width: 17px;  
+    width: 17px;
     height: 17px;
     margin-right: 3px;
   }
@@ -354,19 +386,19 @@
     margin: 1em;
     padding: 0;
   }
-  
+
   ul div {
     list-style: none;
     margin: 0 0 85px 0;
     padding: 0;
   }
-  
+
   ul div:before {
     display: inline-block;
     width: 1.5em;
     height: 1.5em;
     margin: 0 0.5em 0 -0.65em;
-    border-radius: 50%;  
+    border-radius: 50%;
     content: counter(list);
     text-align: center;
     background: lightgrey;

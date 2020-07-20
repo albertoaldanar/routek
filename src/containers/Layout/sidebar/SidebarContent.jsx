@@ -35,18 +35,6 @@ class SidebarContent extends Component {
             onClick={this.hideSidebar}
           />
           <SidebarLink
-            title="Registros"
-            icon="list"
-            route="/records"
-            onClick={this.hideSidebar}
-          />
-          <SidebarLink
-            title="Configuración"
-            icon="cog"
-            route="/settings"
-            onClick={this.hideSidebar}
-          />
-          <SidebarLink
             title="Estadisticas"
             icon="chart-bars"
             route="/stats"

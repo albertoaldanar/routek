@@ -16,6 +16,8 @@ import es from "date-fns/locale/es";
 import RightSidebar from './components/rightSidebar';
 import CogOutlineIcon from 'mdi-react/CogOutlineIcon';
 import ChevronDownIcon from 'mdi-react/ChevronDownIcon';
+import ArrowRightIcon from 'mdi-react/ArrowRightIcon';
+import UsersOutlineIcon from 'mdi-react/UsersOutlineIcon';
 import moment from 'moment';
 import Drivers from "./components/drivers";
 import StopModal from "./components/modals/stops/index";
@@ -35,7 +37,7 @@ const DayPicker = ({ value, onClick }) => (
        formatted == value ? "Rutas de hoy" : value
      }
       <ChevronDownIcon/>
-    </p> 
+    </p>
   </div>
 );
 
@@ -54,9 +56,9 @@ class Routes extends PureComponent {
       driverSelected: null,
       loadedData: false,
       taskSelected: {},
-      createTypeModal: null, 
+      createTypeModal: null,
       showRightSidebar: true,
-      dateDropdown: false, 
+      dateDropdown: false,
       daySelected: new Date(),
     };
 
@@ -122,7 +124,7 @@ class Routes extends PureComponent {
                           />
                       }
                 </div>
-               
+
                 <p onClick = {this.toggle.bind(this, "2")} style ={{textDecoration: activeTab == "2" ? "underline":  "none"}}>Lista</p>
                 <p onClick = {this.toggle.bind(this, "1")} style = {{textDecoration: activeTab == "1" ? "underline":  "none", paddingLeft: 20}}>Mapa</p>
                 <div style = {{position: "absolute", right: 25, display: "flex", flexDirection: "row"}} >
@@ -135,21 +137,28 @@ class Routes extends PureComponent {
                 activeTab == "1" ?
                   <div style = {{position: "relative"}}>
 
-                    {showRightSidebar ? 
-                      <RightSidebar 
-                        showRightSidebar = {() => this.setState({showRightSidebar: false})} 
-                        data={data} 
-                        moveInMap={this.moveInMap.bind(this)}
-                      />
-                    : 
+                    {showRightSidebar ?
+                      <div>
+                      <div className ="dashboard__map-drivers-sidebar-close" onClick = {() => this.setState({showRightSidebar: false})} >
+                        <p style ={{marginTop: 10, marginLeft: 10}} >
+                          <ArrowRightIcon />
+                        </p>
+                      </div>
+                        <RightSidebar
+                          showRightSidebar = {() => this.setState({showRightSidebar: false})}
+                          data={data}
+                          moveInMap={this.moveInMap.bind(this)}
+                        />
+                      </div>
+                    :
                       <div className ="dashboard__map-drivers-sidebar-open" onClick = {() => this.setState({showRightSidebar: true})} >
                         <p style ={{marginTop: 10, marginLeft: 10}} >
-                          <CogOutlineIcon /> Herramientas 
+                          <UsersOutlineIcon /> Equipo
                         </p>
                       </div>
                     }
 
-                    
+
                     <MapView
                       data = {data}
                       lat={lat} lng={lng}

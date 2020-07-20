@@ -23,11 +23,11 @@ class RightSidebar extends PureComponent {
 
     return(
         <div className ="dashboard__map-drivers-sidebar" style = {{height: window.innerHeight -99}}  >
-          { 
-            !selectDriver ? 
+
+          {
+            !selectDriver ?
               <div>
-                
-                <div onClick = {showRightSidebar} style ={{display: "flex", justifyContent:"space-around", flexDirection: "row", marginTop: 10, borderRadius: 5, backgroundColor: "#dcdcdc", marginLeft: 5, marginRight: 5}} >
+                <div style ={{display: "flex", justifyContent:"space-around", flexDirection: "row", marginTop: 10, borderRadius: 5, backgroundColor: "#dcdcdc", marginLeft: 5, marginRight: 5}} >
                     <p style = {{textDecoration: "underline", color: "#232329"}}> Equipo </p>
                     <p style = {{color: "#232329"}}>  Rutas </p>
                 </div>
@@ -51,7 +51,7 @@ class RightSidebar extends PureComponent {
                               <div style = {{width: "100%"}} className="progress-wrap progress-wrap--small" >
                                 <Progress animated value={70} />
                               </div>
-            
+
                               <div style = {{display: "flex", flexDirection: "row", marginTop: 10}}>
                                 <p className="dashboard__right_sidebar-driver-link" onClick={moveInMap.bind(this, driver)}>Localizar</p>
                                 <p className="dashboard__right_sidebar-driver-link" style = {{paddingLeft: 15}} onClick = {() => this.setState({selectDriver: true})}>Ver ruta</p>
@@ -64,10 +64,10 @@ class RightSidebar extends PureComponent {
                   }
                 </div>
               </div>
-            : 
+            :
               <div>
                 <ArrowLeftIcon style={{marginRight: 2, marginTop: 2, marginLeft: 2}} onClick = {() => this.setState({selectDriver: false})}/>
-                <div style = {{marginTop: 10, marginBottom: 40, marginLeft: 25, alignItems: "center"}}>  
+                <div style = {{marginTop: 10, marginBottom: 40, marginLeft: 25, alignItems: "center"}}>
 
                     <p>Alberto Aldana <span className="dashboard__right_sidebar-driver-dot" style = {{backgroundColor: "blue"}}></span></p>
                     <p style = {{fontStyle: "italic", fontSize:  10}}>Inactivo</p>
@@ -91,7 +91,7 @@ class RightSidebar extends PureComponent {
                           <view>
                             <p> {stop.name}</p>
                             <p style = {{marginTop: 0, fontWeight: "300", fontSize: 11, marginBottom: 5}}> Terminado  <span className="dashboard__right_sidebar-driver-dot" style = {{backgroundColor: "#4CE1B6"}}></span> </p>
-                           
+
                             <view style = {{display: "flex", flexDirection: "row", justifyContent: "space-between", marginTop: 10}}>
                               <p style = {{fontSize: 11, fontWeight: "300"}}> <ClockOutlineIcon style = {{width: 11, height: 11, marginTop: -2}}/> 10: 40 am</p>
                               <p style = {{fontSize: 11, textDecoration: "underline", fontWeight: "300"}} >Ver parada</p>
@@ -104,8 +104,8 @@ class RightSidebar extends PureComponent {
                 </div>
               </div>
           }
-        
-        </div> 
+
+        </div>
     );
   }
 }
