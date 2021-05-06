@@ -72,7 +72,7 @@
     "react-dnd-html5-backend": "^7.0.2",
     "react-dom": "^16.8.3",
     "react-dotdotdot": "^1.2.3",
-    "react-draft-wysiwyg": "^1.13.2",
+    "react-draft-wysiwyg": "^1.14.6",
     "react-dropzone": "^9.0.0",
     "react-facebook-login": "^4.1.1",
     "react-ga": "^2.5.7",
